@@ -1,1 +1,5 @@
 .env
+.hdfc_sync_state.json
+.hdfc_sync.lock
+logs/
+__pycache__/

@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import email.utils
 import json
 import os
 import re
@@ -29,6 +30,23 @@ class Config:
     lookback_days: int
     state_file: Path
     dry_run: bool
+
+
+def load_dotenv(path: Path) -> None:
+    if not path.exists():
+        return
+
+    for raw_line in path.read_text(encoding="utf-8").splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        key = key.strip()
+        value = value.strip()
+        if not key:
+            continue
+        if key not in os.environ:
+            os.environ[key] = value
 
 
 def run_gog(args: List[str], gog_account: Optional[str]) -> Dict[str, Any]:
@@ -97,6 +115,42 @@ def as_float(amount_text: str) -> float:
     return float(amount_text.replace(",", "").strip())
 
 
+def normalize_txn_date(value: str) -> str:
+    raw = value.strip()
+    if not raw:
+        return ""
+
+    patterns = [
+        ("%d-%m-%y", "%Y-%m-%d"),
+        ("%d-%m-%Y", "%Y-%m-%d"),
+        ("%d %b, %Y %H:%M:%S", "%Y-%m-%d %H:%M:%S"),
+        ("%d %b %Y %H:%M:%S", "%Y-%m-%d %H:%M:%S"),
+        ("%d %b, %Y", "%Y-%m-%d"),
+        ("%d %b %Y", "%Y-%m-%d"),
+    ]
+
+    for pattern, output_pattern in patterns:
+        try:
+            return datetime.strptime(raw, pattern).strftime(output_pattern)
+        except ValueError:
+            continue
+
+    parsed_email_date = email.utils.parsedate_to_datetime(raw)
+    if parsed_email_date:
+        if parsed_email_date.tzinfo:
+            parsed_email_date = parsed_email_date.astimezone(timezone.utc)
+        return parsed_email_date.strftime("%Y-%m-%d %H:%M:%S")
+
+    return raw
+
+
+def to_sheet_txn_date(value: str) -> str:
+    cleaned = value.strip()
+    if not cleaned:
+        return ""
+    return f"'{cleaned}"
+
+
 def is_expense_candidate(subject: str, snippet: str) -> bool:
     text = f"{subject} {snippet}".lower()
 
@@ -133,6 +187,7 @@ def parse_credit_card(subject: str, snippet: str) -> Optional[Dict[str, Any]]:
         txn_date = date_match.group(1)
         if date_match.group(2):
             txn_date = f"{txn_date} {date_match.group(2)}"
+        txn_date = normalize_txn_date(txn_date)
 
     return {
         "amount": as_float(amount_match.group(1)),
@@ -150,7 +205,7 @@ def parse_upi(snippet: str, subject: str) -> Optional[Dict[str, Any]]:
         return None
 
     main = re.search(
-        r"Rs\.?\s*([0-9,]+(?:\.[0-9]{1,2})?)\s+has\s+been\s+debited\s+from\s+account\s+\**(\d{2,4})\s+to\s+VPA\s+(.+?)\s+on\s+([0-9]{2}-[0-9]{2}-[0-9]{2})",
+        r"Rs\.?\s*([0-9,]+(?:\.[0-9]{1,2})?)\s+has\s+been\s+debited\s+from\s+account\s+\**(\d{2,4})\s+to\s+VPA\s+([^\s]+)(?:\s+(.+?))?\s+on\s+([0-9]{2}-[0-9]{2}-[0-9]{2})",
         snippet,
         re.IGNORECASE,
     )
@@ -163,13 +218,15 @@ def parse_upi(snippet: str, subject: str) -> Optional[Dict[str, Any]]:
         re.IGNORECASE,
     )
 
+    entity = (main.group(4) or "").strip()
+
     return {
         "amount": as_float(main.group(1)),
         "mode": "upi",
-        "merchant_or_payee": main.group(3).strip(),
+        "merchant_or_payee": entity if entity else main.group(3).strip(),
         "account_or_card": f"**{main.group(2)}",
         "reference_no": ref_match.group(1) if ref_match else "",
-        "txn_date": main.group(4),
+        "txn_date": normalize_txn_date(main.group(5)),
     }
 
 
@@ -198,7 +255,7 @@ def parse_transaction(message: Dict[str, Any]) -> Optional[Dict[str, Any]]:
     parsed["synced_at"] = datetime.now(timezone.utc).isoformat()
 
     if not parsed.get("txn_date"):
-        parsed["txn_date"] = get_header(message, "Date")
+        parsed["txn_date"] = normalize_txn_date(get_header(message, "Date"))
 
     return parsed
 
@@ -227,7 +284,14 @@ def ensure_sheet(config: Config, state: Dict[str, Any]) -> str:
         return "DRY_RUN_SPREADSHEET_ID"
 
     created = run_gog(
-        ["sheets", "create", config.spreadsheet_title], config.gog_account
+        [
+            "sheets",
+            "create",
+            config.spreadsheet_title,
+            "--sheets",
+            config.tab_name,
+        ],
+        config.gog_account,
     )
     spreadsheet_id = find_spreadsheet_id(created)
     if not spreadsheet_id:
@@ -268,8 +332,57 @@ def ensure_sheet(config: Config, state: Dict[str, Any]) -> str:
     return spreadsheet_id
 
 
+def resolve_tab_name(config: Config, spreadsheet_id: str) -> str:
+    metadata = run_gog(["sheets", "metadata", spreadsheet_id], config.gog_account)
+    tabs = []
+    for sheet in metadata.get("sheets", []):
+        title = sheet.get("properties", {}).get("title")
+        if isinstance(title, str) and title:
+            tabs.append(title)
+
+    if config.tab_name in tabs:
+        return config.tab_name
+    if tabs:
+        return tabs[0]
+    return config.tab_name
+
+
+def ensure_header_row(config: Config, spreadsheet_id: str, tab_name: str) -> None:
+    headers = [
+        [
+            "txn_date",
+            "amount",
+            "mode",
+            "merchant_or_payee",
+            "account_or_card",
+            "reference_no",
+            "subject",
+            "message_id",
+            "snippet",
+            "synced_at",
+        ]
+    ]
+
+    run_gog(
+        [
+            "sheets",
+            "update",
+            spreadsheet_id,
+            f"{tab_name}!A1:J1",
+            "--values-json",
+            json.dumps(headers),
+            "--input",
+            "USER_ENTERED",
+        ],
+        config.gog_account,
+    )
+
+
 def append_rows(
-    config: Config, spreadsheet_id: str, transactions: List[Dict[str, Any]]
+    config: Config,
+    spreadsheet_id: str,
+    tab_name: str,
+    transactions: List[Dict[str, Any]],
 ) -> None:
     if not transactions:
         return
@@ -278,7 +391,7 @@ def append_rows(
     for t in transactions:
         values.append(
             [
-                t.get("txn_date", ""),
+                to_sheet_txn_date(t.get("txn_date", "")),
                 t.get("amount", ""),
                 t.get("mode", ""),
                 t.get("merchant_or_payee", ""),
@@ -300,7 +413,7 @@ def append_rows(
             "sheets",
             "append",
             spreadsheet_id,
-            f"{config.tab_name}!A:J",
+            f"{tab_name}!A:J",
             "--values-json",
             json.dumps(values),
             "--input",
@@ -313,6 +426,7 @@ def append_rows(
 
 
 def build_config(args: argparse.Namespace) -> Config:
+    load_dotenv(Path(".env").resolve())
     state_path = (
         Path(os.getenv("STATE_FILE", DEFAULT_STATE_FILE)).expanduser().resolve()
     )
@@ -334,6 +448,9 @@ def main() -> int:
     parser.add_argument(
         "--dry-run", action="store_true", help="Print parsed rows without writing"
     )
+    parser.add_argument(
+        "--debug", action="store_true", help="Print per-message parse details"
+    )
     args = parser.parse_args()
 
     config = build_config(args)
@@ -353,15 +470,34 @@ def main() -> int:
         for message in messages:
             message_id = message.get("id")
             if not message_id or message_id in processed_ids:
+                if args.debug and message_id:
+                    print(f"[SKIP already-processed] {message_id}")
                 continue
 
+            subject = get_header(message, "Subject")
+            from_h = get_header(message, "From")
+            snippet = message.get("snippet", "")
             parsed = parse_transaction(message)
             newly_seen_ids.add(message_id)
             if parsed:
                 transactions.append(parsed)
+                if args.debug:
+                    print(f"[PARSED] {message_id} | {parsed.get('mode')} | Rs.{parsed.get('amount')} | {parsed.get('merchant_or_payee')}")
+            elif args.debug:
+                print(f"[SKIPPED] {message_id}")
+                print(f"  from={from_h[:60]}")
+                print(f"  subj={subject[:80]}")
+                print(f"  snippet={snippet[:120]}")
 
     spreadsheet_id = ensure_sheet(config, state)
-    append_rows(config, spreadsheet_id, transactions)
+    tab_name = config.tab_name
+
+    if spreadsheet_id != "DRY_RUN_SPREADSHEET_ID":
+        tab_name = resolve_tab_name(config, spreadsheet_id)
+        if not config.dry_run:
+            ensure_header_row(config, spreadsheet_id, tab_name)
+
+    append_rows(config, spreadsheet_id, tab_name, transactions)
 
     if not config.dry_run:
         processed_ids.update(newly_seen_ids)
@@ -372,7 +508,7 @@ def main() -> int:
 
     print(
         f"Scanned threads: {len(threads)} | Parsed new expenses: {len(transactions)} | "
-        f"Spreadsheet: {spreadsheet_id}"
+        f"Spreadsheet: {spreadsheet_id} | Tab: {tab_name}"
     )
     return 0
 
