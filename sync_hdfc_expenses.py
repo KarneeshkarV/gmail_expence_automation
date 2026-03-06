@@ -262,7 +262,7 @@ def parse_transaction(message: Dict[str, Any]) -> Optional[Dict[str, Any]]:
 
 def search_threads(config: Config) -> List[Dict[str, Any]]:
     query = (
-        "(from:alerts@hdfcbank.net OR from:alerts@hdfcbank.com) "
+        "(from:alerts@hdfcbank.net OR from:alerts@hdfcbank.com OR from:alerts@hdfcbank.bank.in) "
         '("Credit Card" OR "UPI txn" OR debited OR transaction) '
         f"newer_than:{config.lookback_days}d"
     )
