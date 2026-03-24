@@ -83,6 +83,9 @@ if ((CPU_USAGE < CPU_THRESHOLD && RAM_USAGE < RAM_THRESHOLD)); then
 
     printf '%s Generating report...\n' "$(date --iso-8601=seconds)"
     $RUN "$SCRIPT_DIR/sync_hdfc_expenses.py" --report
+
+    printf '%s Exporting dashboard data...\n' "$(date --iso-8601=seconds)"
+    $RUN "$SCRIPT_DIR/export_dashboard_data.py"
   } >> "$LOG_FILE" 2>&1
 else
   printf '%s Skipped: CPU=%s%% RAM=%s%% (thresholds: CPU<%s%% RAM<%s%%).\n' \

@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XPNSE — Expense Terminal</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ── Reset & Variables ─────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg-deep:#0a0e1a;
+  --bg-card:#111827;
+  --bg-card-hover:#1a2332;
+  --bg-surface:#0f1629;
+  --border:#1e293b;
+  --border-glow:rgba(34,211,238,.12);
+  --text-primary:#e2e8f0;
+  --text-secondary:#94a3b8;
+  --text-muted:#475569;
+  --accent:#22d3ee;
+  --accent-glow:rgba(34,211,238,.25);
+  --coral:#f87171;
+  --coral-glow:rgba(248,113,113,.2);
+  --green:#34d399;
+  --green-glow:rgba(52,211,153,.2);
+  --purple:#a78bfa;
+  --amber:#fbbf24;
+  --font-mono:'IBM Plex Mono',monospace;
+  --font-display:'Syne',sans-serif;
+  --radius:12px;
+  --radius-sm:8px;
+}
+html{font-size:14px;scroll-behavior:smooth}
+body{
+  font-family:var(--font-mono);
+  background:var(--bg-deep);
+  color:var(--text-primary);
+  min-height:100vh;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.03) 2px,rgba(0,0,0,.03) 4px);
+}
+
+/* ── Layout ────────────────────────────────────────────── */
+.shell{max-width:1440px;margin:0 auto;padding:1.5rem}
+.grid{display:grid;gap:1.25rem}
+.grid-2{grid-template-columns:repeat(2,1fr)}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+.grid-4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:1024px){.grid-3,.grid-4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}}
+
+/* ── Card ──────────────────────────────────────────────── */
+.card{
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:1.25rem;
+  position:relative;
+  overflow:hidden;
+  transition:border-color .3s,box-shadow .3s;
+}
+.card:hover{border-color:var(--border-glow);box-shadow:0 0 30px rgba(34,211,238,.04)}
+.card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--accent-glow),transparent);
+}
+.card-title{
+  font-family:var(--font-display);font-size:.7rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.15em;color:var(--text-muted);
+  margin-bottom:1rem;display:flex;align-items:center;gap:.5rem;
+}
+.card-title .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);
+  box-shadow:0 0 8px var(--accent-glow);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* ── Header ────────────────────────────────────────────── */
+.header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.5rem 0;border-bottom:1px solid var(--border);margin-bottom:1.5rem;
+}
+.logo{font-family:var(--font-display);font-size:1.8rem;font-weight:800;
+  background:linear-gradient(135deg,var(--accent),var(--purple));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  letter-spacing:-.02em;
+}
+.logo span{font-weight:400;opacity:.5;font-size:1rem;letter-spacing:.1em;
+  -webkit-text-fill-color:var(--text-muted)}
+.header-meta{text-align:right;font-size:.75rem;color:var(--text-muted)}
+.header-meta strong{color:var(--text-secondary)}
+
+/* ── Stat Cards ────────────────────────────────────────── */
+.stat-value{
+  font-family:var(--font-display);font-size:1.65rem;font-weight:700;
+  line-height:1.2;margin-bottom:.15rem;
+}
+.stat-value.accent{color:var(--accent)}
+.stat-value.coral{color:var(--coral)}
+.stat-value.green{color:var(--green)}
+.stat-value.purple{color:var(--purple)}
+.stat-label{font-size:.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.1em}
+.stat-change{font-size:.7rem;margin-top:.35rem;display:flex;align-items:center;gap:.3rem}
+.stat-change.up{color:var(--coral)}
+.stat-change.down{color:var(--green)}
+
+/* ── Budget Bars ───────────────────────────────────────── */
+.budget-row{
+  display:flex;align-items:center;gap:.75rem;padding:.6rem 0;
+  border-bottom:1px solid rgba(30,41,59,.5);
+}
+.budget-row:last-child{border-bottom:none}
+.budget-cat{width:110px;font-size:.72rem;color:var(--text-secondary);text-align:right;flex-shrink:0}
+.budget-track{flex:1;height:22px;background:rgba(30,41,59,.6);border-radius:4px;position:relative;overflow:hidden}
+.budget-fill{height:100%;border-radius:4px;transition:width .8s cubic-bezier(.22,1,.36,1);position:relative}
+.budget-fill.ok{background:linear-gradient(90deg,var(--green),rgba(52,211,153,.6))}
+.budget-fill.warn{background:linear-gradient(90deg,var(--amber),rgba(251,191,36,.6))}
+.budget-fill.over{background:linear-gradient(90deg,var(--coral),rgba(248,113,113,.6))}
+.budget-fill::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(255,255,255,.12),transparent);
+}
+.budget-nums{width:140px;font-size:.68rem;color:var(--text-muted);text-align:right;flex-shrink:0}
+.budget-nums strong{color:var(--text-secondary)}
+
+/* ── Transaction Table ─────────────────────────────────── */
+.table-wrap{max-height:450px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
+.table-wrap::-webkit-scrollbar{width:6px}
+.table-wrap::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+table{width:100%;border-collapse:collapse;font-size:.75rem}
+thead{position:sticky;top:0;z-index:2;background:var(--bg-card)}
+th{
+  text-align:left;padding:.6rem .5rem;color:var(--text-muted);font-weight:600;
+  font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;
+  border-bottom:1px solid var(--border);
+}
+td{padding:.5rem;border-bottom:1px solid rgba(30,41,59,.3);color:var(--text-secondary)}
+tr:hover td{background:rgba(34,211,238,.02);color:var(--text-primary)}
+.chip{
+  display:inline-block;padding:.15rem .5rem;border-radius:20px;font-size:.62rem;
+  font-weight:600;letter-spacing:.04em;
+}
+.chip-Food{background:rgba(251,191,36,.15);color:#fbbf24}
+.chip-Shopping{background:rgba(167,139,250,.15);color:#a78bfa}
+.chip-Transport{background:rgba(96,165,250,.15);color:#60a5fa}
+.chip-Subscriptions{background:rgba(244,114,182,.15);color:#f472b6}
+.chip-Medical{background:rgba(248,113,113,.15);color:#f87171}
+.chip-Rent{background:rgba(45,212,191,.15);color:#2dd4bf}
+.chip-Investment{background:rgba(52,211,153,.15);color:#34d399}
+.chip-Entertainment{background:rgba(251,146,60,.15);color:#fb923c}
+.chip-Groceries{background:rgba(163,230,53,.15);color:#a3e635}
+.chip-Fuel{background:rgba(156,163,175,.15);color:#9ca3af}
+.chip-Personal{background:rgba(34,211,238,.15);color:#22d3ee}
+.chip-Uncategorized{background:rgba(100,116,139,.15);color:#64748b}
+.amount-cell{font-weight:600;text-align:right;font-variant-numeric:tabular-nums}
+
+/* ── Search ────────────────────────────────────────────── */
+.search-box{
+  width:100%;padding:.6rem .8rem;background:var(--bg-surface);border:1px solid var(--border);
+  border-radius:var(--radius-sm);color:var(--text-primary);font-family:var(--font-mono);
+  font-size:.8rem;outline:none;transition:border-color .2s;margin-bottom:1rem;
+}
+.search-box:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}
+.search-box::placeholder{color:var(--text-muted)}
+
+/* ── Toggle ────────────────────────────────────────────── */
+.toggle-group{display:flex;gap:2px;background:var(--bg-surface);border-radius:6px;padding:2px;margin-bottom:1rem}
+.toggle-btn{
+  padding:.35rem .8rem;border:none;background:none;color:var(--text-muted);
+  font-family:var(--font-mono);font-size:.68rem;font-weight:600;cursor:pointer;
+  border-radius:4px;transition:all .2s;text-transform:uppercase;letter-spacing:.08em;
+}
+.toggle-btn.active{background:var(--accent);color:var(--bg-deep)}
+
+/* ── Chart containers ──────────────────────────────────── */
+.chart-container{position:relative;width:100%}
+.chart-container.donut{max-width:280px;margin:0 auto}
+.chart-container.bar{height:300px}
+.chart-container.hbar{height:350px}
+
+/* ── Animations ────────────────────────────────────────── */
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.card{animation:slideUp .5s ease-out both}
+.card:nth-child(1){animation-delay:.05s}
+.card:nth-child(2){animation-delay:.1s}
+.card:nth-child(3){animation-delay:.15s}
+.card:nth-child(4){animation-delay:.2s}
+.card:nth-child(5){animation-delay:.25s}
+.card:nth-child(6){animation-delay:.3s}
+.card:nth-child(7){animation-delay:.35s}
+.card:nth-child(8){animation-delay:.4s}
+
+/* ── Glow ring on donut ───────────────────────────────── */
+.donut-center{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  text-align:center;pointer-events:none;
+}
+.donut-center .big{font-family:var(--font-display);font-size:1.4rem;font-weight:700;color:var(--accent)}
+.donut-center .sub{font-size:.6rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.1em}
+
+/* ── Merchant bars ─────────────────────────────────────── */
+.merchant-row{display:flex;align-items:center;gap:.5rem;padding:.35rem 0}
+.merchant-name{width:140px;font-size:.7rem;color:var(--text-secondary);text-align:right;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex-shrink:0}
+.merchant-bar{flex:1;height:14px;background:rgba(30,41,59,.4);border-radius:3px;overflow:hidden}
+.merchant-bar-fill{height:100%;border-radius:3px;
+  background:linear-gradient(90deg,var(--accent),var(--purple));
+  transition:width .6s cubic-bezier(.22,1,.36,1);
+}
+.merchant-val{width:70px;font-size:.68rem;color:var(--text-muted);font-variant-numeric:tabular-nums}
+
+/* ── Footer ────────────────────────────────────────────── */
+.footer{text-align:center;padding:2rem 0 1rem;color:var(--text-muted);font-size:.65rem;letter-spacing:.1em}
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <!-- Header -->
+  <div class="header">
+    <div>
+      <div class="logo">XPNSE <span>// terminal</span></div>
+    </div>
+    <div class="header-meta">
+      <div>Last sync: <strong id="syncTime">—</strong></div>
+      <div><strong id="txnCount">0</strong> transactions tracked</div>
+    </div>
+  </div>
+
+  <!-- Stat Cards -->
+  <div class="grid grid-4" id="statsRow"></div>
+
+  <!-- Row 2: Donut + Monthly Stacked -->
+  <div class="grid grid-3" style="margin-top:1.25rem;grid-template-columns:1fr 2fr">
+    <div class="card">
+      <div class="card-title"><span class="dot"></span> Spending Breakdown</div>
+      <div class="toggle-group" id="donutToggle">
+        <button class="toggle-btn active" data-mode="current">This Month</button>
+        <button class="toggle-btn" data-mode="all">All Time</button>
+      </div>
+      <div class="chart-container donut" style="position:relative">
+        <canvas id="donutChart"></canvas>
+        <div class="donut-center">
+          <div class="big" id="donutTotal">—</div>
+          <div class="sub" id="donutLabel">total</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="dot"></span> Monthly Breakdown</div>
+      <div class="chart-container bar">
+        <canvas id="monthlyChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Row 3: Budget vs Actual + Top Merchants -->
+  <div class="grid grid-2" style="margin-top:1.25rem">
+    <div class="card">
+      <div class="card-title"><span class="dot"></span> Budget vs Actual — <span id="budgetMonth">—</span></div>
+      <div id="budgetBars"></div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="dot"></span> Top Merchants</div>
+      <div id="merchantBars"></div>
+    </div>
+  </div>
+
+  <!-- Row 4: Category Trends -->
+  <div class="card" style="margin-top:1.25rem">
+    <div class="card-title"><span class="dot"></span> Category Trends</div>
+    <div class="chart-container" style="height:280px">
+      <canvas id="trendChart"></canvas>
+    </div>
+  </div>
+
+  <!-- Row 5: Transaction Table -->
+  <div class="card" style="margin-top:1.25rem">
+    <div class="card-title"><span class="dot"></span> Transactions</div>
+    <input type="text" class="search-box" id="txnSearch" placeholder="Search merchant, category, date...">
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Merchant</th>
+            <th>Category</th>
+            <th>Mode</th>
+            <th style="text-align:right">Amount</th>
+          </tr>
+        </thead>
+        <tbody id="txnBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="footer">XPNSE TERMINAL — DATA REFRESHED VIA GOG CLI + HDFC SYNC</div>
+</div>
+
+<script>
+// ── Config ──────────────────────────────────────────────
+const DATA_PATH = 'dashboard_data.json';
+
+const CAT_COLORS = {
+  Food:'#fbbf24', Shopping:'#a78bfa', Transport:'#60a5fa',
+  Subscriptions:'#f472b6', Medical:'#f87171', Rent:'#2dd4bf',
+  Investment:'#34d399', Entertainment:'#fb923c', Groceries:'#a3e635',
+  Fuel:'#9ca3af', 'Personal Transfer':'#22d3ee', Uncategorized:'#64748b',
+};
+function catColor(c){ return CAT_COLORS[c] || '#64748b' }
+function chipClass(c){
+  if(c.startsWith('Personal')) return 'chip-Personal';
+  return 'chip-'+c.replace(/\s+/g,'');
+}
+function fmt(n){ return '₹'+n.toLocaleString('en-IN',{maximumFractionDigits:0}) }
+
+let DATA = null;
+let donutChart, monthlyChart, trendChart;
+let donutMode = 'current';
+
+// ── Load Data ───────────────────────────────────────────
+fetch(DATA_PATH).then(r=>r.json()).then(d=>{
+  DATA=d;
+  document.getElementById('syncTime').textContent = d.generated_at?.slice(0,16).replace('T',' ') || '—';
+  document.getElementById('txnCount').textContent = d.transaction_count;
+  renderStats();
+  renderDonut();
+  renderMonthly();
+  renderBudget();
+  renderMerchants();
+  renderTrends();
+  renderTable();
+  setupSearch();
+  setupDonutToggle();
+}).catch(e=>{
+  document.querySelector('.shell').innerHTML =
+    `<div style="text-align:center;padding:4rem;color:var(--coral)">
+      <h2 style="font-family:var(--font-display)">Data load failed</h2>
+      <p style="margin-top:1rem;color:var(--text-muted)">Run: python3 export_dashboard_data.py</p>
+      <p style="margin-top:.5rem;color:var(--text-muted);font-size:.8rem">${e.message}</p>
+    </div>`;
+});
+
+// ── Stats ───────────────────────────────────────────────
+function renderStats(){
+  const months = DATA.months;
+  const mb = DATA.monthly_breakdown;
+  const current = mb[mb.length-1] || {};
+  const prev = mb.length>=2 ? mb[mb.length-2] : null;
+  const totalSpend = Object.values(DATA.category_totals).reduce((a,b)=>a+b,0);
+  const monthlyAvg = totalSpend / Math.max(months.length,1);
+  const currentTotal = current.total || 0;
+
+  let changeHtml = '';
+  if(prev){
+    const diff = currentTotal - prev.total;
+    const pct = ((diff/prev.total)*100).toFixed(0);
+    const cls = diff>0?'up':'down';
+    const arrow = diff>0?'▲':'▼';
+    changeHtml = `<div class="stat-change ${cls}">${arrow} ${Math.abs(pct)}% vs last month</div>`;
+  }
+
+  // Savings rate (Investment category)
+  const investTotal = DATA.category_totals['Investment'] || 0;
+  const savingsRate = ((investTotal / totalSpend)*100).toFixed(0);
+
+  // Over-budget count for current month
+  let overCount = 0;
+  for(const [cat, budget] of Object.entries(DATA.budget)){
+    if((current[cat]||0) > budget) overCount++;
+  }
+
+  document.getElementById('statsRow').innerHTML = `
+    <div class="card">
+      <div class="card-title"><span class="dot"></span> Total Spend</div>
+      <div class="stat-value accent">${fmt(totalSpend)}</div>
+      <div class="stat-label">${months.length} months tracked</div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="dot"></span> This Month (${current.month||'—'})</div>
+      <div class="stat-value ${currentTotal>monthlyAvg?'coral':'green'}">${fmt(currentTotal)}</div>
+      ${changeHtml}
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="dot"></span> Monthly Average</div>
+      <div class="stat-value purple">${fmt(monthlyAvg)}</div>
+      <div class="stat-label">${fmt(monthlyAvg*12)}/year run rate</div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="dot"></span> Budget Status</div>
+      <div class="stat-value ${overCount>2?'coral':'green'}">${overCount} over</div>
+      <div class="stat-label">${Object.keys(DATA.budget).length - overCount} within budget</div>
+    </div>
+  `;
+}
+
+// ── Donut ────────────────────────────────────────────────
+function renderDonut(){
+  const ctx = document.getElementById('donutChart').getContext('2d');
+  const source = donutMode==='current'
+    ? getCategoryBreakdown(DATA.monthly_breakdown[DATA.monthly_breakdown.length-1])
+    : getCategoryBreakdown(DATA.category_totals);
+
+  const labels = source.map(s=>s.cat);
+  const values = source.map(s=>s.val);
+  const colors = source.map(s=>catColor(s.cat));
+  const total = values.reduce((a,b)=>a+b,0);
+
+  document.getElementById('donutTotal').textContent = fmt(total);
+  document.getElementById('donutLabel').textContent = donutMode==='current'?'this month':'all time';
+
+  if(donutChart) donutChart.destroy();
+  donutChart = new Chart(ctx,{
+    type:'doughnut',
+    data:{labels, datasets:[{data:values, backgroundColor:colors, borderWidth:0, hoverOffset:8}]},
+    options:{
+      responsive:true, maintainAspectRatio:true, cutout:'72%',
+      plugins:{
+        legend:{display:false},
+        tooltip:{
+          backgroundColor:'#1e293b', titleColor:'#e2e8f0', bodyColor:'#94a3b8',
+          borderColor:'#334155', borderWidth:1, padding:10,
+          callbacks:{ label: ctx => `${ctx.label}: ${fmt(ctx.parsed)}` }
+        }
+      }
+    }
+  });
+}
+
+function getCategoryBreakdown(obj){
+  if(!obj) return [];
+  const cats = DATA.categories.filter(c=> (obj[c]||0) > 0);
+  return cats.map(c=>({cat:c, val:obj[c]||0})).sort((a,b)=>b.val-a.val);
+}
+
+function setupDonutToggle(){
+  document.querySelectorAll('#donutToggle .toggle-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('#donutToggle .toggle-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      donutMode = btn.dataset.mode;
+      renderDonut();
+    });
+  });
+}
+
+// ── Monthly Stacked Bar ─────────────────────────────────
+function renderMonthly(){
+  const ctx = document.getElementById('monthlyChart').getContext('2d');
+  const topCats = DATA.categories.slice(0,8);
+  const datasets = topCats.map(cat=>({
+    label:cat,
+    data: DATA.monthly_breakdown.map(m=>m[cat]||0),
+    backgroundColor: catColor(cat)+'cc',
+    borderRadius:3, borderSkipped:false,
+  }));
+
+  monthlyChart = new Chart(ctx,{
+    type:'bar',
+    data:{ labels: DATA.months, datasets },
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      scales:{
+        x:{stacked:true, grid:{display:false}, ticks:{color:'#475569',font:{size:10,family:'IBM Plex Mono'}}},
+        y:{stacked:true, grid:{color:'rgba(30,41,59,.5)'}, ticks:{color:'#475569',
+          callback:v=>v>=1000?(v/1000)+'k':v, font:{size:10,family:'IBM Plex Mono'}}}
+      },
+      plugins:{
+        legend:{
+          position:'bottom', labels:{
+            color:'#94a3b8', font:{size:10,family:'IBM Plex Mono'},
+            boxWidth:10,boxHeight:10,borderRadius:2, padding:12, usePointStyle:true, pointStyle:'rectRounded'
+          }
+        },
+        tooltip:{
+          mode:'index', backgroundColor:'#1e293b', titleColor:'#e2e8f0', bodyColor:'#94a3b8',
+          borderColor:'#334155', borderWidth:1,
+          callbacks:{ label: ctx => `${ctx.dataset.label}: ${fmt(ctx.parsed.y)}` }
+        }
+      }
+    }
+  });
+}
+
+// ── Budget vs Actual ────────────────────────────────────
+function renderBudget(){
+  const current = DATA.monthly_breakdown[DATA.monthly_breakdown.length-1] || {};
+  document.getElementById('budgetMonth').textContent = current.month || '—';
+  const container = document.getElementById('budgetBars');
+
+  const entries = Object.entries(DATA.budget)
+    .map(([cat,budget])=>({cat, budget, actual:current[cat]||0}))
+    .sort((a,b)=>b.actual-a.actual);
+
+  const maxVal = Math.max(...entries.map(e=>Math.max(e.actual, e.budget)));
+
+  container.innerHTML = entries.map(e=>{
+    const pct = Math.min((e.actual/maxVal)*100, 100);
+    const ratio = e.budget>0 ? e.actual/e.budget : 0;
+    const cls = ratio>1.2?'over': ratio>0.8?'warn':'ok';
+    return `
+      <div class="budget-row">
+        <div class="budget-cat">${e.cat}</div>
+        <div class="budget-track">
+          <div class="budget-fill ${cls}" style="width:${pct}%"></div>
+        </div>
+        <div class="budget-nums"><strong>${fmt(e.actual)}</strong> / ${fmt(e.budget)}</div>
+      </div>`;
+  }).join('');
+}
+
+// ── Top Merchants ───────────────────────────────────────
+function renderMerchants(){
+  const container = document.getElementById('merchantBars');
+  const top = DATA.top_merchants.slice(0,15);
+  const maxVal = top[0]?.total || 1;
+
+  container.innerHTML = top.map(m=>{
+    const pct = (m.total/maxVal)*100;
+    return `
+      <div class="merchant-row">
+        <div class="merchant-name" title="${m.name}">${m.name}</div>
+        <div class="merchant-bar"><div class="merchant-bar-fill" style="width:${pct}%"></div></div>
+        <div class="merchant-val">${fmt(m.total)}</div>
+      </div>`;
+  }).join('');
+}
+
+// ── Category Trend Lines ────────────────────────────────
+function renderTrends(){
+  const ctx = document.getElementById('trendChart').getContext('2d');
+  const topCats = DATA.categories.slice(0,6);
+
+  const datasets = topCats.map(cat=>({
+    label:cat,
+    data: DATA.monthly_breakdown.map(m=>m[cat]||0),
+    borderColor: catColor(cat),
+    backgroundColor: catColor(cat)+'22',
+    tension:.4, fill:true, pointRadius:4, pointHoverRadius:6,
+    borderWidth:2, pointBackgroundColor:catColor(cat),
+  }));
+
+  trendChart = new Chart(ctx,{
+    type:'line',
+    data:{ labels: DATA.months, datasets },
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      interaction:{mode:'index',intersect:false},
+      scales:{
+        x:{grid:{display:false},ticks:{color:'#475569',font:{size:10,family:'IBM Plex Mono'}}},
+        y:{grid:{color:'rgba(30,41,59,.5)'},ticks:{color:'#475569',
+          callback:v=>v>=1000?(v/1000)+'k':v,font:{size:10,family:'IBM Plex Mono'}}}
+      },
+      plugins:{
+        legend:{
+          position:'bottom',labels:{
+            color:'#94a3b8',font:{size:10,family:'IBM Plex Mono'},
+            boxWidth:14,boxHeight:2,padding:16, usePointStyle:false
+          }
+        },
+        tooltip:{
+          backgroundColor:'#1e293b',titleColor:'#e2e8f0',bodyColor:'#94a3b8',
+          borderColor:'#334155',borderWidth:1,
+          callbacks:{ label: ctx=>`${ctx.dataset.label}: ${fmt(ctx.parsed.y)}` }
+        }
+      }
+    }
+  });
+}
+
+// ── Transaction Table ───────────────────────────────────
+function renderTable(filter=''){
+  const tbody = document.getElementById('txnBody');
+  const q = filter.toLowerCase();
+  const txns = DATA.transactions
+    .filter(t=> !q || t.merchant.toLowerCase().includes(q) || t.category.toLowerCase().includes(q) || t.date.includes(q))
+    .sort((a,b)=> b.date.localeCompare(a.date));
+
+  tbody.innerHTML = txns.slice(0,200).map(t=>`
+    <tr>
+      <td style="white-space:nowrap;color:var(--text-muted)">${t.date}</td>
+      <td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${t.merchant}">${t.merchant}</td>
+      <td><span class="chip ${chipClass(t.category)}">${t.category}</span></td>
+      <td style="color:var(--text-muted)">${t.mode}</td>
+      <td class="amount-cell">${fmt(t.amount)}</td>
+    </tr>
+  `).join('');
+
+  if(txns.length>200){
+    tbody.innerHTML += `<tr><td colspan="5" style="text-align:center;color:var(--text-muted);padding:1rem">
+      Showing 200 of ${txns.length} — refine your search</td></tr>`;
+  }
+}
+
+function setupSearch(){
+  let timeout;
+  document.getElementById('txnSearch').addEventListener('input', e=>{
+    clearTimeout(timeout);
+    timeout = setTimeout(()=> renderTable(e.target.value), 200);
+  });
+}
+</script>
+</body>
+</html>
