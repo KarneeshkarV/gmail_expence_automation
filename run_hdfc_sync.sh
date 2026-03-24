@@ -70,11 +70,19 @@ if ((CPU_USAGE < CPU_THRESHOLD && RAM_USAGE < RAM_THRESHOLD)); then
   {
     printf '%s Starting sync (CPU=%s%% RAM=%s%%).\n' "$(date --iso-8601=seconds)" "$CPU_USAGE" "$RAM_USAGE"
     if command -v "$UV_BIN" >/dev/null 2>&1; then
-      "$UV_BIN" run "$SCRIPT_DIR/sync_hdfc_expenses.py"
+      RUN="$UV_BIN run"
     else
-      "$PYTHON_BIN" "$SCRIPT_DIR/sync_hdfc_expenses.py"
+      RUN="$PYTHON_BIN"
     fi
+
+    $RUN "$SCRIPT_DIR/sync_hdfc_expenses.py"
     printf '%s Sync complete.\n' "$(date --iso-8601=seconds)"
+
+    printf '%s Running retag...\n' "$(date --iso-8601=seconds)"
+    $RUN "$SCRIPT_DIR/sync_hdfc_expenses.py" --retag
+
+    printf '%s Generating report...\n' "$(date --iso-8601=seconds)"
+    $RUN "$SCRIPT_DIR/sync_hdfc_expenses.py" --report
   } >> "$LOG_FILE" 2>&1
 else
   printf '%s Skipped: CPU=%s%% RAM=%s%% (thresholds: CPU<%s%% RAM<%s%%).\n' \

@@ -10,6 +10,7 @@ import os
 import re
 import subprocess
 import sys
+from collections import Counter
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -19,6 +20,115 @@ from typing import Any, Dict, List, Optional
 DEFAULT_STATE_FILE = ".hdfc_sync_state.json"
 DEFAULT_TAB = "Transactions"
 DEFAULT_LOOKBACK_DAYS = 90
+
+# ── Auto-categorisation rules ────────────────────────────────────────────────
+# Each rule is (category, [keywords]).  First match wins (order matters).
+CATEGORY_RULES: List[tuple] = [
+    ("Food", [
+        "zomato", "swiggy", "eatclub", "blinkit", "dominos", "pizza", "burger",
+        "hotel", "restaurant", "navarasa", "udupi", "bhavan", "dharthi",
+        "corner house", "sampoorna", "food", "bakery", "cafe", "coffee",
+        "indicafe", "grounded", "chai", "taco bell", "nagercoil catering",
+        "nutberry", "paati veedu", "ristara", "samosaparty", "curefoods",
+        "grub group", "my bake", "bistro", "lemon tree", "munchmart",
+        "naidu garu", "discover food", "royal feast", "annalakshmi",
+        "bae and chill", "boho", "lillys", "eatalios", "organic creamery",
+        "t3 chat",
+    ]),
+    ("Transport", [
+        "redbus", "rapido", "uber", "ola", "metro", "bmtc", "bus",
+        "fuel", "petro", "petroleum", "hpcl", "iocl", "bpcl",
+        "filling station", "makemytrip", "balasubramanian auto",
+        "roppen transport", "toll",
+    ]),
+    ("Medical", [
+        "medic", "venus medic", "krishna medic", "pharma", "hospital",
+        "clinic", "apollo", "health",
+    ]),
+    ("Subscriptions", [
+        "x corp", "claude.ai", "openai", "chatgpt", "google play",
+        "google india digital", "google india service", "google cloud",
+        "stripe-z.ai", "eversub", "soic", "raz*soic", "linkedin",
+        "airtel", "jio", "netflix", "spotify", "amazon prime",
+    ]),
+    ("Rent", [
+        "rentok", "eazyapp", "eazypg", "sandhya p g", "sandhyapg",
+        "eqaro",
+    ]),
+    ("Investment", [
+        "wint wealth", "wintwealth", "zerodha", "groww", "mutual fund",
+        "association of mutual", "national institute of", "nism",
+    ]),
+    ("Entertainment", [
+        "bookmyshow", "amoeba", "pvr", "inox",
+    ]),
+    ("Shopping", [
+        "amazon", "flipkart", "myntra", "meesho", "reliance",
+        "sri kumaran", "silks", "van heusen", "vishal mega",
+        "maharaja mens", "merin shopping", "duty free", "lulu",
+        "sobana", "alamelu", "kavithaa", "chandra agency",
+        "sai enterprise", "skb agency", "smt agencies",
+        "ranjith", "geetham", "veera siva", "lakshmi computer",
+        "elayaraja", "reliance digital", "datosmind", "minetech",
+        "vendolite", "dhanush store", "neels super",
+    ]),
+    ("Groceries", [
+        "kpn farm", "kpn ff", "thefarmer", "farm fresh",
+        "sowbhagya", "sri jayadurga",
+    ]),
+    ("Fuel", [
+        "aboorva glo", "srinivasa service", "platinum petro",
+    ]),
+    ("Personal Transfer", [
+        "veera020204", "vel murugan", "somasundaram",
+        "avneesh kumar", "deepak prakash", "jayanth srinivasan",
+        "jeeva svithra", "avish vijay", "anirudh raman",
+        "achyut narayan", "md sajjad", "nitheesh bharadwaj",
+        "nadimpalli nitya", "shivani balasubra", "shivani narayan",
+        "sairam b", "m prasanna venkat", "nithya r", "tarun b",
+        "nabeel m", "prince kumar", "ashish ram",
+        "sandhya pg", "sandhyapg", "mr m deepak", "bharath k",
+        "fidusachatesvit", "venkatesh r", "suriyamoorthi",
+        "r aadithya", "abdul rahim", "nasurutheen",
+    ]),
+    ("Food", [
+        "sri matha vaibhava", "sri guru raghavendra", "mc donalds",
+        "saurav ventures", "dotpe",
+    ]),
+    ("Shopping", [
+        "selvin store", "sgp shriiwisdom", "vm group", "asspl",
+        "cred club",
+    ]),
+    ("Transport", [
+        "cmrl", "chennai metro",
+    ]),
+    ("Subscriptions", [
+        "tamizkumaran", "corequest",
+    ]),
+]
+
+MONTHLY_BUDGET: Dict[str, float] = {
+    "Food": 3500,
+    "Shopping": 3000,
+    "Transport": 1500,
+    "Subscriptions": 800,
+    "Medical": 500,
+    "Entertainment": 500,
+    "Groceries": 1000,
+    "Fuel": 1500,
+    "Rent": 13000,
+    "Investment": 20000,
+    "Personal Transfer": 5000,
+}
+
+
+def categorize_merchant(merchant: str, snippet: str = "") -> str:
+    """Return a category tag for *merchant* using keyword rules."""
+    text = f"{merchant} {snippet}".lower()
+    for category, keywords in CATEGORY_RULES:
+        if any(kw in text for kw in keywords):
+            return category
+    return ""
 
 
 @dataclass
@@ -311,6 +421,7 @@ def ensure_sheet(config: Config, state: Dict[str, Any]) -> str:
             "message_id",
             "snippet",
             "synced_at",
+            "tag",
         ]
     ]
 
@@ -319,7 +430,7 @@ def ensure_sheet(config: Config, state: Dict[str, Any]) -> str:
             "sheets",
             "update",
             spreadsheet_id,
-            f"{config.tab_name}!A1:J1",
+            f"{config.tab_name}!A1:K1",
             "--values-json",
             json.dumps(headers),
             "--input",
@@ -360,6 +471,7 @@ def ensure_header_row(config: Config, spreadsheet_id: str, tab_name: str) -> Non
             "message_id",
             "snippet",
             "synced_at",
+            "tag",
         ]
     ]
 
@@ -368,7 +480,7 @@ def ensure_header_row(config: Config, spreadsheet_id: str, tab_name: str) -> Non
             "sheets",
             "update",
             spreadsheet_id,
-            f"{tab_name}!A1:J1",
+            f"{tab_name}!A1:K1",
             "--values-json",
             json.dumps(headers),
             "--input",
@@ -378,18 +490,40 @@ def ensure_header_row(config: Config, spreadsheet_id: str, tab_name: str) -> Non
     )
 
 
-def append_rows(
+def read_sheet_values(config: Config, spreadsheet_id: str, tab_name: str) -> List[List[str]]:
+    """Read all values from the sheet (header + data rows)."""
+    try:
+        payload = run_gog(
+            ["sheets", "get", spreadsheet_id, f"{tab_name}!A:K"],
+            config.gog_account,
+        )
+        return payload.get("values", [])
+    except RuntimeError:
+        return []
+
+
+def build_merchant_tag_map(rows: List[List[str]]) -> Dict[str, str]:
+    """Return merchant -> most-used tag from existing sheet rows (skips header)."""
+    merchant_tags: Dict[str, Counter] = {}
+    for row in rows[1:]:  # skip header
+        merchant = row[3].strip() if len(row) > 3 else ""
+        tag = row[10].strip() if len(row) > 10 else ""
+        if merchant and tag:
+            merchant_tags.setdefault(merchant, Counter())[tag] += 1
+    return {m: c.most_common(1)[0][0] for m, c in merchant_tags.items()}
+
+
+def write_transactions(
     config: Config,
     spreadsheet_id: str,
     tab_name: str,
-    transactions: List[Dict[str, Any]],
+    new_transactions: List[Dict[str, Any]],
+    existing_rows: List[List[str]],
 ) -> None:
-    if not transactions:
-        return
-
-    values = []
-    for t in transactions:
-        values.append(
+    """Merge new transactions with existing rows, sort by date desc, rewrite sheet."""
+    new_rows = []
+    for t in new_transactions:
+        new_rows.append(
             [
                 to_sheet_txn_date(t.get("txn_date", "")),
                 t.get("amount", ""),
@@ -401,28 +535,219 @@ def append_rows(
                 t.get("message_id", ""),
                 t.get("snippet", ""),
                 t.get("synced_at", ""),
+                t.get("tag", ""),
             ]
         )
 
     if config.dry_run:
-        print(json.dumps(values, indent=2))
+        print(json.dumps(new_rows, indent=2))
+        return
+
+    data_rows = existing_rows[1:] if len(existing_rows) > 1 else []
+    all_rows = new_rows + data_rows
+
+    def sort_key(row: List) -> str:
+        return str(row[0]).lstrip("'").strip() if row else ""
+
+    all_rows.sort(key=sort_key, reverse=True)
+
+    run_gog(
+        ["sheets", "clear", spreadsheet_id, f"{tab_name}!A2:K"],
+        config.gog_account,
+    )
+
+    if not all_rows:
         return
 
     run_gog(
         [
             "sheets",
-            "append",
+            "update",
             spreadsheet_id,
-            f"{tab_name}!A:J",
+            f"{tab_name}!A2:K{len(all_rows) + 1}",
             "--values-json",
-            json.dumps(values),
+            json.dumps(all_rows),
             "--input",
             "USER_ENTERED",
-            "--insert",
-            "INSERT_ROWS",
         ],
         config.gog_account,
     )
+
+
+def retag_sheet(config: Config) -> int:
+    """Re-categorise every untagged row in the sheet using the rules engine."""
+    state = load_state(config.state_file)
+    spreadsheet_id = config.spreadsheet_id or state.get("spreadsheet_id")
+    if not spreadsheet_id:
+        print("No spreadsheet ID configured.", file=sys.stderr)
+        return 1
+
+    tab_name = resolve_tab_name(config, spreadsheet_id)
+    rows = read_sheet_values(config, spreadsheet_id, tab_name)
+    if len(rows) < 2:
+        print("Sheet has no data rows.")
+        return 0
+
+    updated = 0
+    for row in rows[1:]:
+        merchant = row[3].strip() if len(row) > 3 else ""
+        snippet = row[8].strip() if len(row) > 8 else ""
+        existing_tag = row[10].strip() if len(row) > 10 else ""
+        if existing_tag:
+            continue
+        new_tag = categorize_merchant(merchant, snippet)
+        if new_tag:
+            while len(row) < 11:
+                row.append("")
+            row[10] = new_tag
+            updated += 1
+
+    if updated and not config.dry_run:
+        run_gog(
+            ["sheets", "clear", spreadsheet_id, f"{tab_name}!A2:K"],
+            config.gog_account,
+        )
+        data_rows = rows[1:]
+        run_gog(
+            [
+                "sheets",
+                "update",
+                spreadsheet_id,
+                f"{tab_name}!A2:K{len(data_rows) + 1}",
+                "--values-json",
+                json.dumps(data_rows),
+                "--input",
+                "USER_ENTERED",
+            ],
+            config.gog_account,
+        )
+
+    print(f"Re-tagged {updated} rows (of {len(rows) - 1} total).")
+    return 0
+
+
+def generate_report(config: Config) -> int:
+    """Read the sheet and print a monthly spending report with budget comparison."""
+    state = load_state(config.state_file)
+    spreadsheet_id = config.spreadsheet_id or state.get("spreadsheet_id")
+    if not spreadsheet_id:
+        print("No spreadsheet ID configured.", file=sys.stderr)
+        return 1
+
+    tab_name = resolve_tab_name(config, spreadsheet_id)
+    rows = read_sheet_values(config, spreadsheet_id, tab_name)
+    if len(rows) < 2:
+        print("Sheet has no data rows.")
+        return 0
+
+    # Parse rows into structured data
+    monthly: Dict[str, Dict[str, float]] = {}  # "2026-01" -> {"Food": 1234, ...}
+    category_totals: Dict[str, float] = {}
+    untagged_count = 0
+    total_spend = 0.0
+
+    for row in rows[1:]:
+        raw_date = str(row[0]).lstrip("'").strip() if row else ""
+        try:
+            amount = float(str(row[1]).replace(",", "")) if len(row) > 1 else 0.0
+        except ValueError:
+            continue
+        tag = row[10].strip() if len(row) > 10 else ""
+        merchant = row[3].strip() if len(row) > 3 else ""
+
+        if not tag:
+            snippet = row[8].strip() if len(row) > 8 else ""
+            tag = categorize_merchant(merchant, snippet)
+        if not tag:
+            tag = "Uncategorized"
+            untagged_count += 1
+
+        # Extract month key from date (handles "2026-01-15", "2026-01-15 10:30:00")
+        month_key = raw_date[:7] if len(raw_date) >= 7 else "unknown"
+
+        monthly.setdefault(month_key, {})
+        monthly[month_key][tag] = monthly[month_key].get(tag, 0) + amount
+        category_totals[tag] = category_totals.get(tag, 0) + amount
+        total_spend += amount
+
+    months_sorted = sorted(monthly.keys())
+    num_months = max(len(months_sorted), 1)
+    all_cats = sorted(category_totals.keys(), key=lambda c: -category_totals[c])
+
+    # ── Overall summary ──────────────────────────────────────────────────────
+    print("=" * 80)
+    print(f"  EXPENSE REPORT  |  {months_sorted[0] if months_sorted else '?'} to {months_sorted[-1] if months_sorted else '?'}  |  {len(rows)-1} transactions")
+    print("=" * 80)
+
+    print(f"\n{'Category':<22} {'Total':>10} {'Monthly Avg':>12} {'Budget':>8} {'Status':>10}")
+    print(f"{'─'*22} {'─'*10} {'─'*12} {'─'*8} {'─'*10}")
+
+    for cat in all_cats:
+        total = category_totals[cat]
+        avg = total / num_months
+        budget = MONTHLY_BUDGET.get(cat, 0)
+        if budget:
+            pct = avg / budget * 100
+            status = f"{pct:.0f}%" if pct <= 100 else f"OVER {pct:.0f}%"
+        else:
+            status = "no budget"
+        print(f"{cat:<22} {total:>10,.0f} {avg:>12,.0f} {budget:>8,.0f} {status:>10}")
+
+    print(f"{'─'*22} {'─'*10} {'─'*12}")
+    print(f"{'TOTAL':<22} {total_spend:>10,.0f} {total_spend/num_months:>12,.0f}")
+    if untagged_count:
+        print(f"\n  ({untagged_count} transactions uncategorized — run --retag to fix)")
+
+    # ── Month-by-month ───────────────────────────────────────────────────────
+    print(f"\n{'─'*80}")
+    print("MONTH-BY-MONTH BREAKDOWN")
+    print(f"{'─'*80}")
+
+    # Header row
+    top_cats = all_cats[:8]  # show top 8 categories in the grid
+    header = f"{'Month':<10}"
+    for cat in top_cats:
+        header += f" {cat[:9]:>9}"
+    header += f" {'TOTAL':>9}"
+    print(header)
+    print(f"{'─'*10}" + f" {'─'*9}" * (len(top_cats) + 1))
+
+    for month in months_sorted:
+        line = f"{month:<10}"
+        month_total = 0.0
+        for cat in top_cats:
+            val = monthly[month].get(cat, 0)
+            month_total += val
+            line += f" {val:>9,.0f}"
+        # Add remaining categories to total
+        for cat in all_cats:
+            if cat not in top_cats:
+                month_total += monthly[month].get(cat, 0)
+        line += f" {month_total:>9,.0f}"
+        print(line)
+
+    # ── Budget alerts ────────────────────────────────────────────────────────
+    latest_month = months_sorted[-1] if months_sorted else None
+    if latest_month and latest_month in monthly:
+        print(f"\n{'─'*80}")
+        print(f"BUDGET ALERTS — {latest_month}")
+        print(f"{'─'*80}")
+        alerts = []
+        for cat, spent in sorted(monthly[latest_month].items(), key=lambda x: -x[1]):
+            budget = MONTHLY_BUDGET.get(cat, 0)
+            if budget and spent > budget:
+                over = spent - budget
+                alerts.append((cat, spent, budget, over))
+
+        if alerts:
+            for cat, spent, budget, over in alerts:
+                bar_len = min(int(spent / budget * 20), 40)
+                bar = "█" * min(20, bar_len) + "▓" * max(0, bar_len - 20)
+                print(f"  {cat:<20} {bar} {spent:>8,.0f} / {budget:>6,.0f}  (+{over:,.0f} over)")
+        else:
+            print("  All categories within budget!")
+
+    return 0
 
 
 def build_config(args: argparse.Namespace) -> Config:
@@ -451,9 +776,22 @@ def main() -> int:
     parser.add_argument(
         "--debug", action="store_true", help="Print per-message parse details"
     )
+    parser.add_argument(
+        "--report", action="store_true",
+        help="Print monthly spending report from the sheet (no sync)",
+    )
+    parser.add_argument(
+        "--retag", action="store_true",
+        help="Re-categorise untagged rows in the sheet using rules engine",
+    )
     args = parser.parse_args()
 
     config = build_config(args)
+
+    if args.report:
+        return generate_report(config)
+    if args.retag:
+        return retag_sheet(config)
     state = load_state(config.state_file)
     processed_ids = set(state.get("processed_message_ids", []))
     newly_seen_ids: set[str] = set()
@@ -492,12 +830,22 @@ def main() -> int:
     spreadsheet_id = ensure_sheet(config, state)
     tab_name = config.tab_name
 
+    existing_rows: List[List[str]] = []
     if spreadsheet_id != "DRY_RUN_SPREADSHEET_ID":
         tab_name = resolve_tab_name(config, spreadsheet_id)
         if not config.dry_run:
             ensure_header_row(config, spreadsheet_id, tab_name)
+            existing_rows = read_sheet_values(config, spreadsheet_id, tab_name)
 
-    append_rows(config, spreadsheet_id, tab_name, transactions)
+    merchant_tag_map = build_merchant_tag_map(existing_rows)
+    for txn in transactions:
+        merchant = txn.get("merchant_or_payee", "")
+        tag = merchant_tag_map.get(merchant, "")
+        if not tag:
+            tag = categorize_merchant(merchant, txn.get("snippet", ""))
+        txn["tag"] = tag
+
+    write_transactions(config, spreadsheet_id, tab_name, transactions, existing_rows)
 
     if not config.dry_run:
         processed_ids.update(newly_seen_ids)
