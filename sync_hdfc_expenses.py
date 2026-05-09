@@ -235,6 +235,8 @@ def normalize_txn_date(value: str) -> str:
         ("%d-%m-%Y", "%Y-%m-%d"),
         ("%d %b, %Y %H:%M:%S", "%Y-%m-%d %H:%M:%S"),
         ("%d %b %Y %H:%M:%S", "%Y-%m-%d %H:%M:%S"),
+        ("%d %b, %Y %H:%M", "%Y-%m-%d %H:%M:%S"),
+        ("%d %b %Y %H:%M", "%Y-%m-%d %H:%M:%S"),
         ("%d %b, %Y", "%Y-%m-%d"),
         ("%d %b %Y", "%Y-%m-%d"),
     ]

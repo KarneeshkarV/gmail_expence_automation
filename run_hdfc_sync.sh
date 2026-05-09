@@ -57,6 +57,24 @@ ram_usage_percent() {
   echo "$usage"
 }
 
+notify_oauth_error() {
+  local msg="HDFC Sync: Gmail OAuth token expired (invalid_grant). Re-authenticate with: gog auth karneeshkar68@gmail.com"
+  # Resolve DBUS session so notify-send works from cron/systemd
+  local uid
+  uid=$(id -u)
+  local bus
+  bus=$(find /run/user/"$uid"/ -name "bus" 2>/dev/null | head -1)
+  if [[ -n "$bus" ]]; then
+    DBUS_SESSION_BUS_ADDRESS="unix:path=$bus" notify-send \
+      --urgency=critical \
+      --icon=dialog-error \
+      --app-name="HDFC Sync" \
+      "OAuth Token Expired" \
+      "$msg" 2>/dev/null || true
+  fi
+  printf '%s %s\n' "$(date --iso-8601=seconds)" "$msg" >> "$LOG_FILE"
+}
+
 exec 200>"$LOCK_FILE"
 if ! flock -n 200; then
   printf '%s Another sync process is running. Skipping.\n' "$(date --iso-8601=seconds)" >> "$LOG_FILE"
@@ -75,7 +93,14 @@ if ((CPU_USAGE < CPU_THRESHOLD && RAM_USAGE < RAM_THRESHOLD)); then
       RUN="$PYTHON_BIN"
     fi
 
-    $RUN "$SCRIPT_DIR/sync_hdfc_expenses.py"
+    SYNC_ERR=$( { $RUN "$SCRIPT_DIR/sync_hdfc_expenses.py" 2>&1; } )
+    SYNC_EXIT=$?
+    printf '%s\n' "$SYNC_ERR"
+    if echo "$SYNC_ERR" | grep -q "invalid_grant"; then
+      notify_oauth_error
+      exit 1
+    fi
+    [[ $SYNC_EXIT -eq 0 ]] || exit $SYNC_EXIT
     printf '%s Sync complete.\n' "$(date --iso-8601=seconds)"
 
     printf '%s Running retag...\n' "$(date --iso-8601=seconds)"
