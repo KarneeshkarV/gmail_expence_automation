@@ -3,3 +3,4 @@
 .hdfc_sync.lock
 logs/
 __pycache__/
+dashboard_data.json

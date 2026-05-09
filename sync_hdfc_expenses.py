@@ -27,7 +27,7 @@ CATEGORY_RULES: List[tuple] = [
     ("Food", [
         "zomato", "swiggy", "eatclub", "blinkit", "dominos", "pizza", "burger",
         "hotel", "restaurant", "navarasa", "udupi", "bhavan", "dharthi",
-        "corner house", "sampoorna", "food", "bakery", "cafe", "coffee",
+        "corner house", "sampoorna", "food", "bakery", "cafe", "coffee", "nabeel m",
         "indicafe", "grounded", "chai", "taco bell", "nagercoil catering",
         "nutberry", "paati veedu", "ristara", "samosaparty", "curefoods",
         "grub group", "my bake", "bistro", "lemon tree", "munchmart",
@@ -86,7 +86,7 @@ CATEGORY_RULES: List[tuple] = [
         "achyut narayan", "md sajjad", "nitheesh bharadwaj",
         "nadimpalli nitya", "shivani balasubra", "shivani narayan",
         "sairam b", "m prasanna venkat", "nithya r", "tarun b",
-        "nabeel m", "prince kumar", "ashish ram",
+        "prince kumar", "ashish ram",
         "sandhya pg", "sandhyapg", "mr m deepak", "bharath k",
         "fidusachatesvit", "venkatesh r", "suriyamoorthi",
         "r aadithya", "abdul rahim", "nasurutheen",
@@ -576,8 +576,11 @@ def write_transactions(
     )
 
 
-def retag_sheet(config: Config) -> int:
-    """Re-categorise every untagged row in the sheet using the rules engine."""
+def retag_sheet(config: Config, force: bool = False) -> int:
+    """Re-categorise rows in the sheet using the rules engine.
+
+    When force=True, overwrites existing tags too (not just blank ones).
+    """
     state = load_state(config.state_file)
     spreadsheet_id = config.spreadsheet_id or state.get("spreadsheet_id")
     if not spreadsheet_id:
@@ -595,10 +598,10 @@ def retag_sheet(config: Config) -> int:
         merchant = row[3].strip() if len(row) > 3 else ""
         snippet = row[8].strip() if len(row) > 8 else ""
         existing_tag = row[10].strip() if len(row) > 10 else ""
-        if existing_tag:
+        if existing_tag and not force:
             continue
         new_tag = categorize_merchant(merchant, snippet)
-        if new_tag:
+        if new_tag and new_tag != existing_tag:
             while len(row) < 11:
                 row.append("")
             row[10] = new_tag
@@ -786,6 +789,10 @@ def main() -> int:
         "--retag", action="store_true",
         help="Re-categorise untagged rows in the sheet using rules engine",
     )
+    parser.add_argument(
+        "--force-retag", action="store_true",
+        help="Re-categorise ALL rows (including already-tagged) using rules engine",
+    )
     args = parser.parse_args()
 
     config = build_config(args)
@@ -794,6 +801,8 @@ def main() -> int:
         return generate_report(config)
     if args.retag:
         return retag_sheet(config)
+    if args.force_retag:
+        return retag_sheet(config, force=True)
     state = load_state(config.state_file)
     processed_ids = set(state.get("processed_message_ids", []))
     newly_seen_ids: set[str] = set()
