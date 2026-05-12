@@ -1,2364 +1,1915 @@
 {
-  "generated_at": "2026-03-24T22:41:38.238231",
-  "transaction_count": 321,
+  "generated_at": "2026-05-12T17:51:04.794601",
+  "transaction_count": 242,
   "transactions": [
     {
-      "date": "2026-03-21",
-      "amount": 666.0,
-      "mode": "upi",
-      "merchant": "TAMIZKUMARAN SO MURUGAVEL",
-      "category": "Subscriptions"
-    },
-    {
-      "date": "2026-03-21",
-      "amount": 1074.88,
-      "mode": "upi",
-      "merchant": "ACHYUT NARAYAN H",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2026-03-21",
-      "amount": 148.0,
-      "mode": "upi",
-      "merchant": "KARTHIGAI SELVAN R",
-      "category": "Uncategorized"
-    },
-    {
-      "date": "2026-03-20 20:25:19",
-      "amount": 639.45,
-      "mode": "credit_card",
-      "merchant": "DOMINOS PIZZA",
-      "category": "Food"
-    },
-    {
-      "date": "2026-03-20",
-      "amount": 24.0,
-      "mode": "upi",
-      "merchant": "Rapido",
-      "category": "Transport"
-    },
-    {
-      "date": "2026-03-20",
-      "amount": 24.0,
-      "mode": "upi",
-      "merchant": "Rapido",
-      "category": "Transport"
-    },
-    {
-      "date": "2026-03-20",
-      "amount": 6.0,
-      "mode": "upi",
-      "merchant": "CMRL STTHOMAS MOUNT",
-      "category": "Transport"
-    },
-    {
-      "date": "2026-03-20",
-      "amount": 143.0,
-      "mode": "upi",
-      "merchant": "Mr M DEEPAK",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2026-03-18 21:24:57",
-      "amount": 366.95,
+      "date": "2026-05-06 20:30:46",
+      "amount": 428.22,
       "mode": "credit_card",
       "merchant": "ZOMATO LIMITED",
       "category": "Food"
     },
     {
-      "date": "2026-03-17",
-      "amount": 180.0,
+      "date": "2026-05-06",
+      "amount": 23.0,
       "mode": "upi",
       "merchant": "KARTHIGAI SELVAN R",
-      "category": "Uncategorized"
+      "category": "Entertainment"
     },
     {
-      "date": "2026-03-17",
-      "amount": 124.0,
+      "date": "2026-05-05",
+      "amount": 170.0,
       "mode": "upi",
-      "merchant": "Lemon Tree",
-      "category": "Food"
-    },
-    {
-      "date": "2026-03-17",
-      "amount": 40.0,
-      "mode": "upi",
-      "merchant": "KARTHIGAI SELVAN R",
-      "category": "Uncategorized"
-    },
-    {
-      "date": "2026-03-16",
-      "amount": 566.67,
-      "mode": "upi",
-      "merchant": "R AADITHYA NIRANJAN",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2026-03-15",
-      "amount": 30213.0,
-      "mode": "upi",
-      "merchant": "CRED Club",
+      "merchant": "NEELS SUPER MARKET",
       "category": "Shopping"
     },
     {
-      "date": "2026-03-15",
-      "amount": 132.0,
+      "date": "2026-05-05",
+      "amount": 10.0,
       "mode": "upi",
-      "merchant": "SURIYAMOORTHI M",
-      "category": "Personal Transfer"
+      "merchant": "KATHIRVEL JANAKIRAMAN",
+      "category": "Groceries"
     },
     {
-      "date": "2026-03-15",
-      "amount": 159.0,
+      "date": "2026-05-05",
+      "amount": 37.0,
+      "mode": "upi",
+      "merchant": "KARTHIGAI SELVAN R",
+      "category": "Groceries"
+    },
+    {
+      "date": "2026-05-05",
+      "amount": 15.0,
+      "mode": "upi",
+      "merchant": "KARTHIGAI SELVAN R",
+      "category": "Groceries"
+    },
+    {
+      "date": "2026-05-04",
+      "amount": 10108.06,
+      "mode": "upi",
+      "merchant": "Wint Wealth",
+      "category": "Investment"
+    },
+    {
+      "date": "2026-05-04",
+      "amount": 179.0,
       "mode": "upi",
       "merchant": "Lemon Tree",
       "category": "Food"
     },
     {
-      "date": "2026-03-15",
-      "amount": 712.0,
+      "date": "2026-05-03 10:33:00",
+      "amount": 307.08,
+      "mode": "credit_card",
+      "merchant": "TECHMASH SOLUTIONS PRI",
+      "category": "Fitness / Self Improvement"
+    },
+    {
+      "date": "2026-05-03",
+      "amount": 46.0,
       "mode": "upi",
-      "merchant": "SHIVANI NARAYAN L",
+      "merchant": "NEELS SUPER MARKET",
+      "category": "Shopping"
+    },
+    {
+      "date": "2026-05-03",
+      "amount": 3556.84,
+      "mode": "upi",
+      "merchant": "ACHYUT NARAYAN H",
       "category": "Personal Transfer"
     },
     {
-      "date": "2026-03-12 21:11:05",
-      "amount": 515.0,
+      "date": "2026-05-02",
+      "amount": 135.0,
+      "mode": "upi",
+      "merchant": "DIVYANSH S",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2026-05-02",
+      "amount": 1590.0,
       "mode": "credit_card",
-      "merchant": "RISTARA FOODS PRIVATE",
+      "merchant": "JAS DELICACIES PVT LTD",
       "category": "Food"
     },
     {
-      "date": "2026-03-12 20:58:40",
-      "amount": 125.0,
-      "mode": "credit_card",
-      "merchant": "RISTARA FOODS PRIVATE",
-      "category": "Food"
-    },
-    {
-      "date": "2026-03-12 15:04:26",
-      "amount": 461.0,
-      "mode": "credit_card",
-      "merchant": "Redbus India Private L",
+      "date": "2026-05-01",
+      "amount": 24.0,
+      "mode": "upi",
+      "merchant": "Rapido",
       "category": "Transport"
     },
     {
-      "date": "2026-03-12",
-      "amount": 100.0,
+      "date": "2026-05-01",
+      "amount": 40.0,
       "mode": "upi",
-      "merchant": "PRINCE KUMAR",
+      "merchant": "Master SUBASH MANIKANDAN",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2026-04-30 10:56:15",
+      "amount": 495.95,
+      "mode": "credit_card",
+      "merchant": "ZOMATO LIMITED",
+      "category": "Food"
+    },
+    {
+      "date": "2026-04-29 12:54:00",
+      "amount": 809.0,
+      "mode": "credit_card",
+      "merchant": "REDBUS INDIA PRIVATE L",
+      "category": "Transport"
+    },
+    {
+      "date": "2026-04-29 08:59:34",
+      "amount": 482.17,
+      "mode": "credit_card",
+      "merchant": "ZOMATO LIMITED",
+      "category": "Food"
+    },
+    {
+      "date": "2026-04-29",
+      "amount": 1012.6,
+      "mode": "credit_card",
+      "merchant": "SGP SHRIIWISDOM AGENCY",
+      "category": "Shopping"
+    },
+    {
+      "date": "2026-04-29",
+      "amount": 287.5,
+      "mode": "upi",
+      "merchant": "TARUN B",
       "category": "Personal Transfer"
     },
     {
-      "date": "2026-03-12",
-      "amount": 193.0,
+      "date": "2026-04-29",
+      "amount": 106.67,
       "mode": "upi",
-      "merchant": "PRINCE KUMAR PANDEY",
+      "merchant": "ACHYUT NARAYAN H",
       "category": "Personal Transfer"
     },
     {
-      "date": "2026-03-12",
-      "amount": 190.0,
+      "date": "2026-04-29",
+      "amount": 120.0,
       "mode": "upi",
-      "merchant": "VENKATESH R",
+      "merchant": "NEELS SUPER MARKET",
+      "category": "Shopping"
+    },
+    {
+      "date": "2026-04-29",
+      "amount": 461.0,
+      "mode": "upi",
+      "merchant": "NABEEL M",
+      "category": "Food"
+    },
+    {
+      "date": "2026-04-28 16:54:58",
+      "amount": 2749.54,
+      "mode": "credit_card",
+      "merchant": "MC AGENCIES",
+      "category": "Fuel"
+    },
+    {
+      "date": "2026-04-28",
+      "amount": 285.0,
+      "mode": "upi",
+      "merchant": "Thiruvasantham",
+      "category": "Food"
+    },
+    {
+      "date": "2026-04-28",
+      "amount": 150.0,
+      "mode": "upi",
+      "merchant": "Sgp Shriiwisdomagency",
+      "category": "Shopping"
+    },
+    {
+      "date": "2026-04-27",
+      "amount": 466.0,
+      "mode": "upi",
+      "merchant": "NABEEL M",
+      "category": "Food"
+    },
+    {
+      "date": "2026-04-26",
+      "amount": 208.0,
+      "mode": "upi",
+      "merchant": "Lemon Tree",
+      "category": "Food"
+    },
+    {
+      "date": "2026-04-26",
+      "amount": 70.0,
+      "mode": "upi",
+      "merchant": "EVERSUB INDIA PRIVATE LIMITED",
+      "category": "Subscriptions"
+    },
+    {
+      "date": "2026-04-25",
+      "amount": 1995.0,
+      "mode": "upi",
+      "merchant": "TARUN B",
       "category": "Personal Transfer"
     },
     {
-      "date": "2026-03-12",
+      "date": "2026-04-25",
+      "amount": 1257.9,
+      "mode": "credit_card",
+      "merchant": "REDBUS INDIA PRIVATE L",
+      "category": "Transport"
+    },
+    {
+      "date": "2026-04-23",
+      "amount": 150.0,
+      "mode": "upi",
+      "merchant": "SEETHAPATHI V",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2026-04-21",
+      "amount": 13581.5,
+      "mode": "credit_card",
+      "merchant": "DEPARTMENT OF HOME AFF",
+      "category": "Misc"
+    },
+    {
+      "date": "2026-04-19 20:42:41",
+      "amount": 450.86,
+      "mode": "credit_card",
+      "merchant": "ETERNAL LIMITED",
+      "category": "Food"
+    },
+    {
+      "date": "2026-04-19",
+      "amount": 95.0,
+      "mode": "upi",
+      "merchant": "P MADHU",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2026-04-19",
+      "amount": 665.12,
+      "mode": "upi",
+      "merchant": "eruptacus245@okaxis",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2026-04-19",
+      "amount": 106.0,
+      "mode": "upi",
+      "merchant": "Rodda Upendra",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2026-04-19",
+      "amount": 44.0,
+      "mode": "upi",
+      "merchant": "PATEL TRADING AND PROVISSION STORES",
+      "category": "Groceries"
+    },
+    {
+      "date": "2026-04-18",
+      "amount": 1048.95,
+      "mode": "credit_card",
+      "merchant": "REDBUS INDIA PRIVATE L",
+      "category": "Transport"
+    },
+    {
+      "date": "2026-04-18",
+      "amount": 91.0,
+      "mode": "upi",
+      "merchant": "RAMKUMAR V",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2026-04-18",
+      "amount": 135.0,
+      "mode": "upi",
+      "merchant": "MAHADEVISBA",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2026-04-18",
       "amount": 307.0,
       "mode": "upi",
       "merchant": "BISTRO",
       "category": "Food"
     },
     {
-      "date": "2026-03-12",
-      "amount": 50.91,
+      "date": "2026-04-18",
+      "amount": 550.0,
       "mode": "upi",
-      "merchant": "Nitheesh Bharadwaj S",
-      "category": "Personal Transfer"
+      "merchant": "LAIJU SUNNY",
+      "category": "Uncategorized"
     },
     {
-      "date": "2026-03-11",
-      "amount": 60.0,
+      "date": "2026-04-18",
+      "amount": 310.0,
       "mode": "upi",
-      "merchant": "NASURUTHEEN ABDUL RAHUMAN",
-      "category": "Personal Transfer"
+      "merchant": "D ANANDA",
+      "category": "Uncategorized"
     },
     {
-      "date": "2026-03-11",
-      "amount": 10000.0,
-      "mode": "upi",
-      "merchant": "Avneesh Kumar",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2026-03-10 21:01:02",
-      "amount": 377.0,
+      "date": "2026-04-17 11:15:00",
+      "amount": 312.0,
       "mode": "credit_card",
       "merchant": "RAZ*Makemytrip India P",
       "category": "Transport"
     },
     {
-      "date": "2026-03-10 20:56:02",
-      "amount": 576.0,
-      "mode": "credit_card",
-      "merchant": "REDBUS",
-      "category": "Transport"
+      "date": "2026-04-16",
+      "amount": 285.0,
+      "mode": "upi",
+      "merchant": "Thiruvasantham",
+      "category": "Food"
     },
     {
-      "date": "2026-03-07",
-      "amount": 165.0,
+      "date": "2026-04-16",
+      "amount": 184.0,
       "mode": "upi",
-      "merchant": "ASHISH RAM JA",
-      "category": "Personal Transfer"
+      "merchant": "NABEEL M",
+      "category": "Food"
     },
     {
-      "date": "2026-03-07",
-      "amount": 20000.0,
+      "date": "2026-04-16",
+      "amount": 9940.03,
       "mode": "upi",
-      "merchant": "ZERODHA BROKING LIMITED",
+      "merchant": "Wint Wealth",
       "category": "Investment"
     },
     {
-      "date": "2026-03-07",
-      "amount": 20000.0,
+      "date": "2026-04-16",
+      "amount": 30000.0,
       "mode": "upi",
       "merchant": "S VEL MURUGAN",
       "category": "Personal Transfer"
     },
     {
-      "date": "2026-03-06 22:42:16",
-      "amount": 1022.72,
-      "mode": "credit_card",
-      "merchant": "GROUNDED",
+      "date": "2026-04-15",
+      "amount": 377.0,
+      "mode": "upi",
+      "merchant": "NABEEL M",
       "category": "Food"
     },
     {
-      "date": "2026-03-06 15:05:23",
-      "amount": 1000.0,
-      "mode": "credit_card",
-      "merchant": "BALASUBRAMANIAN AUTO D",
-      "category": "Transport"
-    },
-    {
-      "date": "2026-03-06",
-      "amount": 230.0,
+      "date": "2026-04-15",
+      "amount": 33.0,
       "mode": "upi",
-      "merchant": "BHARATH K",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2026-03-06",
-      "amount": 119.0,
-      "mode": "upi",
-      "merchant": "NABEEL M",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2026-03-06",
-      "amount": 30.0,
-      "mode": "upi",
-      "merchant": "S VEL MURUGAN",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2026-03-06",
-      "amount": 30.0,
-      "mode": "upi",
-      "merchant": "S VEL MURUGAN",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2026-03-05 21:08:41",
-      "amount": 1004.0,
-      "mode": "credit_card",
-      "merchant": "ASSPL",
+      "merchant": "DHANUSH STORE",
       "category": "Shopping"
     },
     {
-      "date": "2026-03-05 20:45:15",
-      "amount": 555.0,
-      "mode": "credit_card",
-      "merchant": "DHARTHI",
+      "date": "2025-11-27",
+      "amount": 20228.95,
+      "mode": "upi",
+      "merchant": "FOURDEGREEWATER SERVICES PRIVATE LIMITED",
+      "category": "Investment"
+    },
+    {
+      "date": "2025-11-26",
+      "amount": 268.0,
+      "mode": "upi",
+      "merchant": "The food plaza",
       "category": "Food"
     },
     {
-      "date": "2026-03-05",
-      "amount": 52.0,
+      "date": "2025-11-23",
+      "amount": 3467.0,
+      "mode": "upi",
+      "merchant": "SANDHYA PG",
+      "category": "Personal Transfer"
+    },
+    {
+      "date": "2025-11-24",
+      "amount": 3300.0,
+      "mode": "upi",
+      "merchant": "ASHA A",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-11-24",
+      "amount": 250.0,
+      "mode": "upi",
+      "merchant": "IndiCafe AMR Tech Park C2",
+      "category": "Food"
+    },
+    {
+      "date": "2025-11-24",
+      "amount": 245.0,
+      "mode": "upi",
+      "merchant": "Avneesh Kumar",
+      "category": "Personal Transfer"
+    },
+    {
+      "date": "2025-11-24",
+      "amount": 65.15,
+      "mode": "upi",
+      "merchant": "KPN FARM FRESH PRIVATE LIMITED",
+      "category": "Groceries"
+    },
+    {
+      "date": "2025-11-24",
+      "amount": 2500.0,
+      "mode": "upi",
+      "merchant": "DEVA__DARTS",
+      "category": "Entertainment"
+    },
+    {
+      "date": "2025-11-24",
+      "amount": 1000.0,
+      "mode": "upi",
+      "merchant": "REDDY FILLING STATION",
+      "category": "Transport"
+    },
+    {
+      "date": "2025-11-21",
+      "amount": 7000.0,
+      "mode": "upi",
+      "merchant": "SANDHYA PG",
+      "category": "Personal Transfer"
+    },
+    {
+      "date": "2025-11-19",
+      "amount": 127.0,
       "mode": "upi",
       "merchant": "NEELS SUPER MARKET",
       "category": "Shopping"
     },
     {
-      "date": "2026-03-05",
-      "amount": 219.0,
+      "date": "2025-11-11",
+      "amount": 213.0,
       "mode": "upi",
-      "merchant": "NABEEL M",
-      "category": "Personal Transfer"
+      "merchant": "Rapido",
+      "category": "Transport"
     },
     {
-      "date": "2026-03-04 10:23:40",
-      "amount": 306.65,
-      "mode": "credit_card",
-      "merchant": "ZOMATO LIMITED",
-      "category": "Food"
-    },
-    {
-      "date": "2026-03-04",
-      "amount": 99.0,
+      "date": "2025-11-11",
+      "amount": 32.0,
       "mode": "upi",
-      "merchant": "Lemon Tree",
-      "category": "Food"
+      "merchant": "CHENNAI METRO RAIL LTD",
+      "category": "Transport"
     },
     {
-      "date": "2026-03-04",
-      "amount": 826.4,
+      "date": "2025-11-11",
+      "amount": 156.0,
       "mode": "upi",
-      "merchant": "ACHYUT NARAYAN H",
-      "category": "Personal Transfer"
+      "merchant": "Ms Marykumari Y",
+      "category": "Uncategorized"
     },
     {
-      "date": "2026-03-04",
-      "amount": 143.0,
-      "mode": "upi",
-      "merchant": "DHARTHI",
-      "category": "Food"
-    },
-    {
-      "date": "2026-03-03 17:55:33",
-      "amount": 454.05,
-      "mode": "credit_card",
-      "merchant": "ZOMATO LIMITED",
-      "category": "Food"
-    },
-    {
-      "date": "2026-03-03 09:14:21",
-      "amount": 1524.25,
-      "mode": "credit_card",
-      "merchant": "NATIONAL INSTITUTE OF",
-      "category": "Investment"
-    },
-    {
-      "date": "2026-03-03 08:40:48",
-      "amount": 1095.0,
-      "mode": "credit_card",
-      "merchant": "AMAZONIN",
-      "category": "Shopping"
-    },
-    {
-      "date": "2026-03-02 16:50:53",
-      "amount": 2000.0,
-      "mode": "credit_card",
-      "merchant": "CHANDRA AGENCY",
-      "category": "Shopping"
-    },
-    {
-      "date": "2026-03-02",
+      "date": "2025-11-09",
       "amount": 10.0,
       "mode": "upi",
       "merchant": "KATHIRVEL JANAKIRAMAN",
       "category": "Uncategorized"
     },
     {
-      "date": "2026-03-02",
-      "amount": 130.0,
+      "date": "2025-11-07",
+      "amount": 50.0,
       "mode": "upi",
-      "merchant": "KARTHIGAI SELVAN R",
-      "category": "Uncategorized"
-    },
-    {
-      "date": "2026-03-01 10:34:10",
-      "amount": 11500.0,
-      "mode": "credit_card",
-      "merchant": "SRI KUMARAN SILKS",
+      "merchant": "Durga Leather Bags",
       "category": "Shopping"
     },
     {
-      "date": "2026-03-01",
-      "amount": 90.0,
+      "date": "2025-11-07",
+      "amount": 1.0,
       "mode": "upi",
-      "merchant": "ABDUL RAHIM SH",
+      "merchant": "Brokentusk Technologies Private Limited",
+      "category": "Misc"
+    },
+    {
+      "date": "2025-11-07",
+      "amount": 1025.99,
+      "mode": "upi",
+      "merchant": "Wintwealth",
+      "category": "Investment"
+    },
+    {
+      "date": "2025-11-06",
+      "amount": 49.0,
+      "mode": "upi",
+      "merchant": "Google India Service",
+      "category": "Subscriptions"
+    },
+    {
+      "date": "2025-11-04",
+      "amount": 15000.0,
+      "mode": "upi",
+      "merchant": "S VEL MURUGAN",
       "category": "Personal Transfer"
     },
     {
-      "date": "2026-03-01",
-      "amount": 125.0,
+      "date": "2025-11-04",
+      "amount": 1.0,
       "mode": "upi",
-      "merchant": "VM GROUP",
-      "category": "Shopping"
-    },
-    {
-      "date": "2026-02-26 20:19:48",
-      "amount": 2998.0,
-      "mode": "credit_card",
-      "merchant": "RELIANCE TRENDS",
-      "category": "Shopping"
-    },
-    {
-      "date": "2026-02-26",
-      "amount": 978.59,
-      "mode": "upi",
-      "merchant": "Google Cloud India Private Limited",
+      "merchant": "OpenAI LLC",
       "category": "Subscriptions"
     },
     {
-      "date": "2026-02-25 18:57:42",
-      "amount": 354.43,
-      "mode": "credit_card",
-      "merchant": "ZOMATO",
-      "category": "Food"
-    },
-    {
-      "date": "2026-02-25 17:46:45",
-      "amount": 1000.0,
-      "mode": "credit_card",
-      "merchant": "ALAMELU AGENCIES",
-      "category": "Shopping"
-    },
-    {
-      "date": "2026-02-24 18:03:33",
-      "amount": 1000.0,
-      "mode": "credit_card",
-      "merchant": "SOBANA AGENCIES",
-      "category": "Shopping"
-    },
-    {
-      "date": "2026-02-23 08:08:29",
-      "amount": 1000.0,
-      "mode": "credit_card",
-      "merchant": "FOR MS KAVITHAA AGENCY",
-      "category": "Shopping"
-    },
-    {
-      "date": "2026-02-23",
-      "amount": 25.0,
+      "date": "2025-11-03",
+      "amount": 666.0,
       "mode": "upi",
-      "merchant": "CHAI WAALE",
-      "category": "Food"
-    },
-    {
-      "date": "2026-02-22 08:42:26",
-      "amount": 500.0,
-      "mode": "credit_card",
-      "merchant": "SGP SHRIIWISDOMAGENCY",
-      "category": "Shopping"
-    },
-    {
-      "date": "2026-02-22",
-      "amount": 24.0,
-      "mode": "upi",
-      "merchant": "Rapido",
-      "category": "Transport"
-    },
-    {
-      "date": "2026-02-22",
-      "amount": 14.0,
-      "mode": "upi",
-      "merchant": "Rapido",
-      "category": "Transport"
-    },
-    {
-      "date": "2026-02-21 17:13:21",
-      "amount": 1000.0,
-      "mode": "credit_card",
-      "merchant": "SAI ENTERPRISES",
-      "category": "Shopping"
-    },
-    {
-      "date": "2026-02-20",
-      "amount": 64.0,
-      "mode": "upi",
-      "merchant": "Rapido",
-      "category": "Transport"
-    },
-    {
-      "date": "2026-02-19 23:02:34",
-      "amount": 370.0,
-      "mode": "credit_card",
-      "merchant": "RS Business Ventures L",
-      "category": "Transport"
-    },
-    {
-      "date": "2026-02-19 20:14:27",
-      "amount": 238.95,
-      "mode": "credit_card",
-      "merchant": "ZOMATO",
-      "category": "Food"
-    },
-    {
-      "date": "2026-02-19 09:14:12",
-      "amount": 935.54,
-      "mode": "credit_card",
-      "merchant": "PLATINUM PETRO PARK",
-      "category": "Transport"
-    },
-    {
-      "date": "2026-02-19 00:33:06",
-      "amount": 555.0,
-      "mode": "credit_card",
-      "merchant": "REDBUS INDIA PRIVATE L",
-      "category": "Transport"
-    },
-    {
-      "date": "2026-02-19",
-      "amount": 204.0,
-      "mode": "upi",
-      "merchant": "BISTRO",
-      "category": "Food"
-    },
-    {
-      "date": "2026-02-19",
-      "amount": 20.0,
-      "mode": "upi",
-      "merchant": "SRI MATHA VAIBHAVA",
-      "category": "Food"
-    },
-    {
-      "date": "2026-02-19",
-      "amount": 20.0,
-      "mode": "upi",
-      "merchant": "SRI MATHA VAIBHAVA",
-      "category": "Food"
-    },
-    {
-      "date": "2026-02-18 19:59:11",
-      "amount": 362.0,
-      "mode": "credit_card",
-      "merchant": "CORNER HOUSE ICE CREAM",
-      "category": "Food"
-    },
-    {
-      "date": "2026-02-18 11:55:55",
-      "amount": 290.9,
-      "mode": "credit_card",
-      "merchant": "ZOMATO",
-      "category": "Food"
-    },
-    {
-      "date": "2026-02-18",
-      "amount": 25.0,
-      "mode": "upi",
-      "merchant": "BAE AND CHILL",
-      "category": "Food"
-    },
-    {
-      "date": "2026-02-18",
-      "amount": 90.0,
-      "mode": "upi",
-      "merchant": "BAE AND CHILL",
-      "category": "Food"
-    },
-    {
-      "date": "2026-02-17 22:41:47",
-      "amount": 2552.09,
-      "mode": "credit_card",
-      "merchant": "RAZ*SOIC",
+      "merchant": "TAMIZKUMARAN SO MURUGAVEL",
       "category": "Subscriptions"
     },
     {
-      "date": "2026-02-17",
-      "amount": 154.0,
+      "date": "2025-10-31",
+      "amount": 3360.0,
       "mode": "upi",
-      "merchant": "BISTRO",
-      "category": "Food"
+      "merchant": "SRINIVASAN KANNAN",
+      "category": "Uncategorized"
     },
     {
-      "date": "2026-02-17",
-      "amount": 1000.0,
+      "date": "2025-10-29",
+      "amount": 49.0,
       "mode": "upi",
-      "merchant": "COREQUEST TECHNOLOGIES PRIVATE LIMITED",
+      "merchant": "Google India Digital Services Private Limited",
       "category": "Subscriptions"
     },
     {
-      "date": "2026-02-17",
-      "amount": 253.0,
+      "date": "2025-10-29",
+      "amount": 460.0,
       "mode": "upi",
-      "merchant": "BISTRO",
+      "merchant": "KRISHNA MEDICALS",
+      "category": "Medical"
+    },
+    {
+      "date": "2025-10-27",
+      "amount": 1500.0,
+      "mode": "upi",
+      "merchant": "NATIONAL INSTITUTE OF SECURITIES MARKETS",
+      "category": "Investment"
+    },
+    {
+      "date": "2025-10-26",
+      "amount": 30.0,
+      "mode": "upi",
+      "merchant": "ESWARI V",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-10-21",
+      "amount": 700.0,
+      "mode": "upi",
+      "merchant": "Mr DHANUSH S",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-10-20",
+      "amount": 20000.0,
+      "mode": "upi",
+      "merchant": "S SOMASUNDARAM",
+      "category": "Personal Transfer"
+    },
+    {
+      "date": "2025-10-20",
+      "amount": 168.0,
+      "mode": "upi",
+      "merchant": "EatClub",
       "category": "Food"
     },
     {
-      "date": "2026-02-17",
-      "amount": 902.0,
+      "date": "2025-10-20",
+      "amount": 413.0,
+      "mode": "upi",
+      "merchant": "anirbanhazra031102@okaxis",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-10-20",
+      "amount": 396.0,
+      "mode": "upi",
+      "merchant": "ANIRBAN HAZRA",
+      "category": "Food"
+    },
+    {
+      "date": "2025-10-18",
+      "amount": 2300.0,
+      "mode": "upi",
+      "merchant": "APARAJITH L",
+      "category": "Misc"
+    },
+    {
+      "date": "2025-10-08",
+      "amount": 330.0,
+      "mode": "upi",
+      "merchant": "EatClub",
+      "category": "Food"
+    },
+    {
+      "date": "2025-10-08",
+      "amount": 50.0,
+      "mode": "upi",
+      "merchant": "KARUNAKARA R",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-10-07",
+      "amount": 554.4,
+      "mode": "upi",
+      "merchant": "Burger King",
+      "category": "Food"
+    },
+    {
+      "date": "2025-10-07",
+      "amount": 2557.2,
+      "mode": "upi",
+      "merchant": "VAN HEUSEN",
+      "category": "Shopping"
+    },
+    {
+      "date": "2025-10-04",
+      "amount": 10000.0,
+      "mode": "upi",
+      "merchant": "DEEPAK PRAKASH",
+      "category": "Personal Transfer"
+    },
+    {
+      "date": "2025-10-04",
+      "amount": 700.0,
+      "mode": "upi",
+      "merchant": "ANTONY KINGS AS",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-10-02",
+      "amount": 1197.0,
       "mode": "upi",
       "merchant": "redbus",
       "category": "Transport"
     },
     {
-      "date": "2026-02-17",
-      "amount": 40.0,
-      "mode": "upi",
-      "merchant": "BHARATH E",
-      "category": "Uncategorized"
-    },
-    {
-      "date": "2026-02-16",
-      "amount": 40.0,
-      "mode": "upi",
-      "merchant": "BHARATH E",
-      "category": "Uncategorized"
-    },
-    {
-      "date": "2026-02-15 19:17:10",
-      "amount": 221.0,
-      "mode": "credit_card",
-      "merchant": "CORNER HOUSE",
-      "category": "Food"
-    },
-    {
-      "date": "2026-02-15 00:25:07",
-      "amount": 733.64,
-      "mode": "credit_card",
-      "merchant": "MC DONALDS",
-      "category": "Food"
-    },
-    {
-      "date": "2026-02-15",
-      "amount": 84.0,
-      "mode": "upi",
-      "merchant": "SUZAIN KHAN S",
-      "category": "Uncategorized"
-    },
-    {
-      "date": "2026-02-15",
-      "amount": 154.0,
-      "mode": "upi",
-      "merchant": "BISTRO",
-      "category": "Food"
-    },
-    {
-      "date": "2026-02-14 12:35:00",
-      "amount": 157.1,
-      "mode": "credit_card",
-      "merchant": "ZOMATO",
-      "category": "Food"
-    },
-    {
-      "date": "2026-02-14",
-      "amount": 156.37,
-      "mode": "upi",
-      "merchant": "NADIMPALLI NITYA RAJI",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2026-02-14",
-      "amount": 130.0,
-      "mode": "upi",
-      "merchant": "fidusachatesvit@okaxis",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2026-02-14",
-      "amount": 527.0,
-      "mode": "upi",
-      "merchant": "BISTRO",
-      "category": "Food"
-    },
-    {
-      "date": "2026-02-13",
-      "amount": 28.0,
-      "mode": "upi",
-      "merchant": "SRI GURU RAGHAVENDRA JUICE AND CONDI",
-      "category": "Food"
-    },
-    {
-      "date": "2026-02-12 21:55:53",
-      "amount": 352.12,
-      "mode": "credit_card",
-      "merchant": "ZOMATO",
-      "category": "Food"
-    },
-    {
-      "date": "2026-02-12",
-      "amount": 223.0,
-      "mode": "upi",
-      "merchant": "Bistro",
-      "category": "Food"
-    },
-    {
-      "date": "2026-02-11 22:51:37",
-      "amount": 3536.7,
-      "mode": "credit_card",
-      "merchant": "Amazon.ae",
-      "category": "Shopping"
-    },
-    {
-      "date": "2026-02-11 13:16:12",
-      "amount": 393.0,
-      "mode": "credit_card",
-      "merchant": "Blinkit Foods Limit",
-      "category": "Food"
-    },
-    {
-      "date": "2026-02-11 11:36:36",
-      "amount": 1000.0,
-      "mode": "credit_card",
-      "merchant": "SOBANA AGENCIES",
-      "category": "Shopping"
-    },
-    {
-      "date": "2026-02-11",
-      "amount": 50.0,
-      "mode": "upi",
-      "merchant": "MY BAKE",
-      "category": "Food"
-    },
-    {
-      "date": "2026-02-10",
-      "amount": 200.0,
-      "mode": "upi",
-      "merchant": "SAURAV VENTURES PRIVATE LIMITED",
-      "category": "Food"
-    },
-    {
-      "date": "2026-02-09 19:44:19",
-      "amount": 1596.0,
-      "mode": "credit_card",
-      "merchant": "KRISHNA MEDICALS",
-      "category": "Medical"
-    },
-    {
-      "date": "2026-02-09 11:17:32",
-      "amount": 235.0,
-      "mode": "credit_card",
-      "merchant": "EATCLUB BRANDS PRIVATE",
-      "category": "Food"
-    },
-    {
-      "date": "2026-02-09",
-      "amount": 107.2,
-      "mode": "upi",
-      "merchant": "JAYANTH SRINIVASAN R",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2026-02-09",
-      "amount": 212.0,
-      "mode": "upi",
-      "merchant": "Bistro",
-      "category": "Food"
-    },
-    {
-      "date": "2026-02-08",
-      "amount": 460.5,
-      "mode": "upi",
-      "merchant": "ACHYUT NARAYAN H",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2026-02-07 08:51:36",
-      "amount": 1143.0,
-      "mode": "credit_card",
-      "merchant": "Ing*REDBUS INDIA PVT L",
-      "category": "Transport"
-    },
-    {
-      "date": "2026-02-06",
-      "amount": 45000.0,
-      "mode": "upi",
-      "merchant": "S VEL MURUGAN",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2026-02-05",
-      "amount": 522.92,
-      "mode": "upi",
-      "merchant": "DOTPE",
-      "category": "Food"
-    },
-    {
-      "date": "2026-02-05",
-      "amount": 10026.42,
-      "mode": "upi",
-      "merchant": "Wint Wealth",
-      "category": "Investment"
-    },
-    {
-      "date": "2026-02-04",
-      "amount": 7800.0,
-      "mode": "upi",
-      "merchant": "sandhya.pg17-4@okaxis",
-      "category": "Uncategorized"
-    },
-    {
-      "date": "2026-02-03",
-      "amount": 525.0,
-      "mode": "upi",
-      "merchant": "DHARTHI",
-      "category": "Food"
-    },
-    {
-      "date": "2026-02-02 18:26:51",
-      "amount": 115.0,
-      "mode": "credit_card",
-      "merchant": "MERIN SHOPPING MALL",
-      "category": "Shopping"
-    },
-    {
-      "date": "2026-01-31",
-      "amount": 15.0,
-      "mode": "upi",
-      "merchant": "K SRIDHAR",
-      "category": "Uncategorized"
-    },
-    {
-      "date": "2026-01-30",
-      "amount": 10.0,
-      "mode": "upi",
-      "merchant": "EBENESER CARDS PRINTERS",
-      "category": "Uncategorized"
-    },
-    {
-      "date": "2026-01-30",
-      "amount": 105.0,
-      "mode": "upi",
-      "merchant": "NABEEL M",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2026-01-28 11:46:03",
-      "amount": 230.0,
-      "mode": "credit_card",
-      "merchant": "HOTEL SRI SAMPOORNA",
-      "category": "Food"
-    },
-    {
-      "date": "2026-01-28",
-      "amount": 741.0,
-      "mode": "upi",
-      "merchant": "SHIVANI BALASUBRAMANIAN",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2026-01-28",
-      "amount": 450.0,
-      "mode": "upi",
-      "merchant": "SAIRAM B",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2026-01-28",
-      "amount": 440.0,
-      "mode": "upi",
-      "merchant": "Nitheesh Bharadwaj S",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2026-01-28",
-      "amount": 107.5,
-      "mode": "upi",
-      "merchant": "NADIMPALLI NITYA RAJI",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2026-01-28",
-      "amount": 54.0,
-      "mode": "upi",
-      "merchant": "M PRASANNA VENKATESH",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2026-01-27 15:10:47",
-      "amount": 2210.0,
-      "mode": "credit_card",
-      "merchant": "ADYAR ANANDA BHAVAN SW",
-      "category": "Food"
-    },
-    {
-      "date": "2026-01-27",
-      "amount": 1200.0,
-      "mode": "upi",
-      "merchant": "JAYANTH SRINIVASAN R",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2026-01-26 19:32:42",
-      "amount": 1110.0,
-      "mode": "credit_card",
-      "merchant": "NUTBERRY VENTURE",
-      "category": "Food"
-    },
-    {
-      "date": "2026-01-26 17:06:47",
-      "amount": 3276.0,
-      "mode": "credit_card",
-      "merchant": "CAS*REDBUS INDIA PRIVA",
-      "category": "Transport"
-    },
-    {
-      "date": "2026-01-26",
-      "amount": 65.0,
-      "mode": "upi",
-      "merchant": "M KANCHANA MURUGAN",
-      "category": "Uncategorized"
-    },
-    {
-      "date": "2026-01-25 20:49:15",
-      "amount": 454.57,
-      "mode": "credit_card",
-      "merchant": "ZOMATO",
-      "category": "Food"
-    },
-    {
-      "date": "2026-01-25 20:46:37",
-      "amount": 997.5,
-      "mode": "credit_card",
-      "merchant": "CAS*REDBUS INDIA PRIVA",
-      "category": "Transport"
-    },
-    {
-      "date": "2026-01-25 05:16:53",
-      "amount": 1000.0,
-      "mode": "credit_card",
-      "merchant": "Srinivasa Service Stat",
-      "category": "Fuel"
-    },
-    {
-      "date": "2026-01-25",
-      "amount": 70.0,
-      "mode": "upi",
-      "merchant": "HB Devaraju",
-      "category": "Uncategorized"
-    },
-    {
-      "date": "2026-01-25",
-      "amount": 225.0,
-      "mode": "upi",
-      "merchant": "Avneesh Kumar",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2026-01-25",
-      "amount": 249.0,
-      "mode": "upi",
-      "merchant": "Bistro",
-      "category": "Food"
-    },
-    {
-      "date": "2026-01-25",
-      "amount": 376.0,
-      "mode": "upi",
-      "merchant": "Google India Digital Services Pvt Ltd",
-      "category": "Transport"
-    },
-    {
-      "date": "2026-01-24",
-      "amount": 310.0,
-      "mode": "upi",
-      "merchant": "New Udupi NavarasaC",
-      "category": "Food"
-    },
-    {
-      "date": "2026-01-24",
-      "amount": 4900.0,
-      "mode": "upi",
-      "merchant": "MINETECH IT SOLUTIONS",
-      "category": "Shopping"
-    },
-    {
-      "date": "2026-01-24",
-      "amount": 407.0,
-      "mode": "upi",
-      "merchant": "BISTRO",
-      "category": "Food"
-    },
-    {
-      "date": "2026-01-24",
-      "amount": 1000.0,
-      "mode": "upi",
-      "merchant": "Vishal S",
-      "category": "Uncategorized"
-    },
-    {
-      "date": "2026-01-23",
-      "amount": 363.0,
-      "mode": "upi",
-      "merchant": "BISTRO",
-      "category": "Food"
-    },
-    {
-      "date": "2026-01-23",
-      "amount": 36.03,
-      "mode": "upi",
-      "merchant": "Amazon Pay",
-      "category": "Shopping"
-    },
-    {
-      "date": "2026-01-22 13:22:32",
-      "amount": 335.0,
-      "mode": "credit_card",
-      "merchant": "NEW UDUPI NAVARASA",
-      "category": "Food"
-    },
-    {
-      "date": "2026-01-22",
-      "amount": 100.0,
-      "mode": "upi",
-      "merchant": "BHARATH D",
-      "category": "Uncategorized"
-    },
-    {
-      "date": "2026-01-21",
-      "amount": 286.5,
-      "mode": "upi",
-      "merchant": "MD SAJJAD",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2026-01-21",
-      "amount": 100.0,
-      "mode": "upi",
-      "merchant": "INDIRAMANI SINGH",
-      "category": "Uncategorized"
-    },
-    {
-      "date": "2026-01-21",
-      "amount": 353.0,
-      "mode": "upi",
-      "merchant": "BISTRO",
-      "category": "Food"
-    },
-    {
-      "date": "2026-01-20 18:18:41",
-      "amount": 1831.0,
-      "mode": "credit_card",
-      "merchant": "AMOEBA",
-      "category": "Entertainment"
-    },
-    {
-      "date": "2026-01-20",
-      "amount": 7500.0,
-      "mode": "upi",
-      "merchant": "DEEPAK PRAKASH",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2026-01-20",
-      "amount": 175.0,
-      "mode": "upi",
-      "merchant": "Avneesh Kumar",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2026-01-20",
-      "amount": 267.0,
-      "mode": "upi",
-      "merchant": "Krishna Gowda",
-      "category": "Uncategorized"
-    },
-    {
-      "date": "2026-01-20",
-      "amount": 231.5,
-      "mode": "upi",
-      "merchant": "M PRASANNA VENKATESH",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2026-01-20",
-      "amount": 567.0,
-      "mode": "upi",
-      "merchant": "kavyamala.sakthi-3@okaxis",
-      "category": "Uncategorized"
-    },
-    {
-      "date": "2026-01-19 22:19:07",
-      "amount": 272.7,
-      "mode": "credit_card",
-      "merchant": "STRIPE-Z.AI",
-      "category": "Subscriptions"
-    },
-    {
-      "date": "2026-01-19 19:35:59",
-      "amount": 235.0,
-      "mode": "credit_card",
-      "merchant": "NEW UDUPI NAVARASA",
-      "category": "Food"
-    },
-    {
-      "date": "2026-01-19",
-      "amount": 330.0,
-      "mode": "upi",
-      "merchant": "YASH PARASHAR",
-      "category": "Uncategorized"
-    },
-    {
-      "date": "2026-01-19",
-      "amount": 140.0,
-      "mode": "upi",
-      "merchant": "NITHYA R",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2026-01-19",
-      "amount": 175.0,
-      "mode": "upi",
-      "merchant": "MD SAJJAD",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2026-01-19",
-      "amount": 135.5,
-      "mode": "upi",
-      "merchant": "Avish Vijay Shetty",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2026-01-18 12:22:14",
-      "amount": 404.0,
-      "mode": "credit_card",
-      "merchant": "EATCLUB BRANDS PRIVATE",
-      "category": "Food"
-    },
-    {
-      "date": "2026-01-18 09:11:45",
-      "amount": 690.0,
-      "mode": "credit_card",
-      "merchant": "NAGERCOIL CATERING PRI",
-      "category": "Food"
-    },
-    {
-      "date": "2026-01-18",
-      "amount": 73.0,
-      "mode": "upi",
-      "merchant": "ALTAF AHMED S",
-      "category": "Uncategorized"
-    },
-    {
-      "date": "2026-01-18",
-      "amount": 178.0,
-      "mode": "upi",
-      "merchant": "N VIVEK",
-      "category": "Uncategorized"
-    },
-    {
-      "date": "2026-01-17 22:11:49",
-      "amount": 490.0,
-      "mode": "credit_card",
-      "merchant": "BOHO",
-      "category": "Food"
-    },
-    {
-      "date": "2026-01-17 22:04:40",
-      "amount": 2000.0,
-      "mode": "credit_card",
-      "merchant": "BOHO",
-      "category": "Food"
-    },
-    {
-      "date": "2026-01-17",
-      "amount": 156.0,
-      "mode": "upi",
-      "merchant": "SHRIDHAR PENTA",
-      "category": "Uncategorized"
-    },
-    {
-      "date": "2026-01-17",
-      "amount": 100.0,
-      "mode": "upi",
-      "merchant": "K CHIRANJIVI",
-      "category": "Uncategorized"
-    },
-    {
-      "date": "2026-01-17",
-      "amount": 325.0,
-      "mode": "upi",
-      "merchant": "MANAS KUMAR DAS",
-      "category": "Uncategorized"
-    },
-    {
-      "date": "2026-01-17",
-      "amount": 284.0,
-      "mode": "upi",
-      "merchant": "SUNDAR",
-      "category": "Uncategorized"
-    },
-    {
-      "date": "2026-01-17",
-      "amount": 189.0,
-      "mode": "upi",
-      "merchant": "TERA BITES",
-      "category": "Uncategorized"
-    },
-    {
-      "date": "2026-01-16",
-      "amount": 200.0,
-      "mode": "upi",
-      "merchant": "TheFarmer",
-      "category": "Subscriptions"
-    },
-    {
-      "date": "2026-01-16",
-      "amount": 75.0,
-      "mode": "upi",
-      "merchant": "New Udupi Navarasa",
-      "category": "Food"
-    },
-    {
-      "date": "2026-01-16",
-      "amount": 76.0,
-      "mode": "upi",
-      "merchant": "Naturals HSR Layout",
-      "category": "Uncategorized"
-    },
-    {
-      "date": "2026-01-15 11:38:29",
-      "amount": 301.0,
-      "mode": "credit_card",
-      "merchant": "EATCLUB BRANDS PRIVATE",
-      "category": "Food"
-    },
-    {
-      "date": "2026-01-15",
-      "amount": 260.0,
-      "mode": "upi",
-      "merchant": "NITHYA R",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2026-01-15",
-      "amount": 12.0,
-      "mode": "upi",
-      "merchant": "PS PANCHAMI",
-      "category": "Uncategorized"
-    },
-    {
-      "date": "2026-01-14",
-      "amount": 75.0,
-      "mode": "upi",
-      "merchant": "Shobha A Shetty",
-      "category": "Uncategorized"
-    },
-    {
-      "date": "2026-01-14",
-      "amount": 160.0,
-      "mode": "upi",
-      "merchant": "MD SAJJAD",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2026-01-13",
-      "amount": 10000.0,
-      "mode": "upi",
-      "merchant": "veera020204@okicici",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2026-01-13",
-      "amount": 165.0,
-      "mode": "upi",
-      "merchant": "IndiCafe AMR Tech Park C2",
-      "category": "Food"
-    },
-    {
-      "date": "2026-01-13",
-      "amount": 68.83,
-      "mode": "upi",
-      "merchant": "KPN FARM FRESH",
-      "category": "Groceries"
-    },
-    {
-      "date": "2026-01-13",
-      "amount": 160.0,
-      "mode": "upi",
-      "merchant": "The food plaza",
-      "category": "Food"
-    },
-    {
-      "date": "2026-01-12 18:41:43",
-      "amount": 2000.0,
-      "mode": "credit_card",
-      "merchant": "SMT AGENCIES",
-      "category": "Shopping"
-    },
-    {
-      "date": "2026-01-12 18:15:48",
-      "amount": 1215.0,
-      "mode": "credit_card",
-      "merchant": "Venus Medicals",
-      "category": "Medical"
-    },
-    {
-      "date": "2026-01-12",
-      "amount": 8700.0,
-      "mode": "upi",
-      "merchant": "JAYANTH SRINIVASAN R",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2026-01-11",
-      "amount": 2.0,
-      "mode": "upi",
-      "merchant": "Google Play",
-      "category": "Subscriptions"
-    },
-    {
-      "date": "2026-01-10 15:41:27",
-      "amount": 2291.52,
-      "mode": "credit_card",
-      "merchant": "BOOKMYSHOW",
-      "category": "Entertainment"
-    },
-    {
-      "date": "2026-01-10 13:47:30",
-      "amount": 3000.0,
-      "mode": "credit_card",
-      "merchant": "HPCL MMG PETROLEUM",
-      "category": "Transport"
-    },
-    {
-      "date": "2026-01-10",
-      "amount": 150.0,
-      "mode": "upi",
-      "merchant": "RR beardo mens salon",
-      "category": "Uncategorized"
-    },
-    {
-      "date": "2026-01-10",
-      "amount": 60.0,
-      "mode": "upi",
-      "merchant": "Nitheesh Bharadwaj S",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2026-01-09 11:24:23",
-      "amount": 1000.0,
-      "mode": "credit_card",
-      "merchant": "AMAZON GIFT CARD",
-      "category": "Shopping"
-    },
-    {
-      "date": "2026-01-09",
-      "amount": 7500.0,
-      "mode": "upi",
-      "merchant": "DEEPAK PRAKASH",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2026-01-09",
-      "amount": 1.0,
-      "mode": "upi",
-      "merchant": "Priyanshu Partha Mazumdar",
-      "category": "Uncategorized"
-    },
-    {
-      "date": "2026-01-09",
-      "amount": 120.0,
-      "mode": "upi",
-      "merchant": "Avneesh Kumar",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2026-01-09",
-      "amount": 105.0,
-      "mode": "upi",
-      "merchant": "SADATH",
-      "category": "Uncategorized"
-    },
-    {
-      "date": "2026-01-08",
-      "amount": 200.0,
-      "mode": "upi",
-      "merchant": "MD SAJJAD",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2026-01-07 20:15:34",
-      "amount": 389.6,
-      "mode": "credit_card",
-      "merchant": "ZOMATO",
-      "category": "Food"
-    },
-    {
-      "date": "2026-01-07",
-      "amount": 70.0,
-      "mode": "upi",
-      "merchant": "IndiCafe AMR Tech Park C2",
-      "category": "Food"
-    },
-    {
-      "date": "2026-01-07",
-      "amount": 60.04,
-      "mode": "upi",
-      "merchant": "KPN FARM FRESH",
-      "category": "Groceries"
-    },
-    {
-      "date": "2026-01-07",
-      "amount": 90.0,
-      "mode": "upi",
-      "merchant": "The food plaza",
-      "category": "Food"
-    },
-    {
-      "date": "2026-01-06 14:07:19",
-      "amount": 1990.0,
-      "mode": "credit_card",
-      "merchant": "RELIANCE DIGITAL",
-      "category": "Shopping"
-    },
-    {
-      "date": "2026-01-06 13:32:24",
-      "amount": 310.0,
-      "mode": "credit_card",
-      "merchant": "NEW UDUPI NAVARASA",
-      "category": "Food"
-    },
-    {
-      "date": "2026-01-06 08:17:29",
-      "amount": 4103.0,
-      "mode": "credit_card",
-      "merchant": "AMAZONIN",
-      "category": "Shopping"
-    },
-    {
-      "date": "2026-01-06",
-      "amount": 60.0,
-      "mode": "upi",
-      "merchant": "AVINASH DR",
-      "category": "Uncategorized"
-    },
-    {
-      "date": "2026-01-04 17:43:41",
-      "amount": 1039.5,
-      "mode": "credit_card",
-      "merchant": "CAS*REDBUS INDIA PRIVA",
-      "category": "Transport"
-    },
-    {
-      "date": "2026-01-04",
-      "amount": 44.0,
-      "mode": "upi",
-      "merchant": "ROPPEN TRANSPORTATION SERVICES PRIVATE LIMITED",
-      "category": "Transport"
-    },
-    {
-      "date": "2026-01-04",
-      "amount": 202.0,
-      "mode": "upi",
-      "merchant": "Mr Arokia Lurthu Xavier Michael",
-      "category": "Uncategorized"
-    },
-    {
-      "date": "2026-01-03",
-      "amount": 763.12,
-      "mode": "upi",
-      "merchant": "TARUN B",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2026-01-03",
-      "amount": 184.78,
-      "mode": "upi",
-      "merchant": "ACHYUT NARAYAN H",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2026-01-03",
-      "amount": 45.0,
-      "mode": "upi",
-      "merchant": "SELVIN STORE",
-      "category": "Shopping"
-    },
-    {
-      "date": "2026-01-03",
-      "amount": 60.0,
-      "mode": "upi",
-      "merchant": "SELVIN STORE",
-      "category": "Shopping"
-    },
-    {
-      "date": "2026-01-03",
-      "amount": 20.0,
-      "mode": "upi",
-      "merchant": "SELVIN STORE",
-      "category": "Shopping"
-    },
-    {
-      "date": "2026-01-03",
-      "amount": 23.0,
-      "mode": "upi",
-      "merchant": "NEELS SUPER MARKET",
-      "category": "Shopping"
-    },
-    {
-      "date": "2026-01-02 19:59:24",
-      "amount": 2263.0,
-      "mode": "credit_card",
-      "merchant": "KRISHNA MEDICALS",
-      "category": "Medical"
-    },
-    {
-      "date": "2026-01-02 15:45:28",
-      "amount": 2888.76,
-      "mode": "credit_card",
-      "merchant": "CHANDRA AGENCY",
-      "category": "Shopping"
-    },
-    {
-      "date": "2026-01-02 13:11:02",
-      "amount": 200.0,
-      "mode": "credit_card",
-      "merchant": "SKB AGENCY",
-      "category": "Shopping"
-    },
-    {
-      "date": "2026-01-02",
-      "amount": 50.0,
+      "date": "2025-10-02",
+      "amount": 170.0,
       "mode": "upi",
       "merchant": "MOHD ARSHAD",
       "category": "Uncategorized"
     },
     {
-      "date": "2026-01-02",
-      "amount": 36.0,
-      "mode": "upi",
-      "merchant": "SELVIN STORE",
-      "category": "Shopping"
-    },
-    {
-      "date": "2026-01-02",
-      "amount": 13000.0,
-      "mode": "upi",
-      "merchant": "SANDHYA PG",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2026-01-01",
-      "amount": 117.0,
-      "mode": "upi",
-      "merchant": "Meesho",
-      "category": "Shopping"
-    },
-    {
-      "date": "2025-12-31",
-      "amount": 2000.0,
-      "mode": "upi",
-      "merchant": "INDIA1 PAYMENTS LIMITED",
-      "category": "Uncategorized"
-    },
-    {
-      "date": "2025-12-30 15:47:04",
-      "amount": 719.98,
-      "mode": "credit_card",
-      "merchant": "T3 CHAT",
-      "category": "Food"
-    },
-    {
-      "date": "2025-12-30",
-      "amount": 4000.0,
-      "mode": "upi",
-      "merchant": "S VEL MURUGAN",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2025-12-30",
-      "amount": 25.0,
-      "mode": "upi",
-      "merchant": "NELLAI KARUPATTI COFFEE",
-      "category": "Food"
-    },
-    {
-      "date": "2025-12-30",
-      "amount": 115.0,
-      "mode": "upi",
-      "merchant": "Lemon Tree",
-      "category": "Food"
-    },
-    {
-      "date": "2025-12-29 20:13:10",
-      "amount": 246.0,
-      "mode": "credit_card",
-      "merchant": "DHARTHI",
-      "category": "Food"
-    },
-    {
-      "date": "2025-12-29 12:31:15",
-      "amount": 317.15,
-      "mode": "credit_card",
-      "merchant": "ZOMATO LIMITED",
-      "category": "Food"
-    },
-    {
-      "date": "2025-12-29",
-      "amount": 223.16,
-      "mode": "upi",
-      "merchant": "ETERNAL LIMITED",
-      "category": "Food"
-    },
-    {
-      "date": "2025-12-28 15:23:55",
-      "amount": 167.81,
-      "mode": "credit_card",
-      "merchant": "ZOMATO LIMITED",
-      "category": "Food"
-    },
-    {
-      "date": "2025-12-28 12:18:13",
-      "amount": 272.0,
-      "mode": "credit_card",
-      "merchant": "EVERSUB INDIA PRIVATE",
-      "category": "Subscriptions"
-    },
-    {
-      "date": "2025-12-28",
-      "amount": 210.0,
-      "mode": "upi",
-      "merchant": "CHAI KINGS CHROMEPET SB",
-      "category": "Food"
-    },
-    {
-      "date": "2025-12-28",
-      "amount": 20.0,
-      "mode": "upi",
-      "merchant": "Lemon Tree",
-      "category": "Food"
-    },
-    {
-      "date": "2025-12-28",
-      "amount": 1.0,
-      "mode": "upi",
-      "merchant": "ZOMATO LIMITED",
-      "category": "Food"
-    },
-    {
-      "date": "2025-12-28",
-      "amount": 1075.87,
-      "mode": "upi",
-      "merchant": "ACHYUT NARAYAN H",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2025-12-28",
-      "amount": 200.5,
-      "mode": "upi",
-      "merchant": "Hariharan Ganesh S",
-      "category": "Uncategorized"
-    },
-    {
-      "date": "2025-12-28",
-      "amount": 140.5,
-      "mode": "upi",
-      "merchant": "SHIVANI BALASUBRAMANIAN",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2025-12-28",
-      "amount": 79.02,
-      "mode": "upi",
-      "merchant": "TARUN B",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2025-12-27 22:35:35",
-      "amount": 3706.53,
-      "mode": "credit_card",
-      "merchant": "RANJITH AGENCIES",
-      "category": "Shopping"
-    },
-    {
-      "date": "2025-12-27",
-      "amount": 287.0,
-      "mode": "upi",
-      "merchant": "VIJAY N",
-      "category": "Uncategorized"
-    },
-    {
-      "date": "2025-12-26",
-      "amount": 70.0,
-      "mode": "upi",
-      "merchant": "VETRI FOODS HYDERABADI IRANI C",
-      "category": "Food"
-    },
-    {
-      "date": "2025-12-25",
-      "amount": 45.0,
-      "mode": "upi",
-      "merchant": "THANUSULAS R",
-      "category": "Uncategorized"
-    },
-    {
-      "date": "2025-12-25",
-      "amount": 50.0,
-      "mode": "upi",
-      "merchant": "NEELS SUPER MARKET",
-      "category": "Shopping"
-    },
-    {
-      "date": "2025-12-24",
-      "amount": 100.0,
-      "mode": "upi",
-      "merchant": "Avish Vijay Shetty",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2025-12-24",
-      "amount": 1900.0,
-      "mode": "upi",
-      "merchant": "Avish Vijay Shetty",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2025-12-24",
-      "amount": 220.0,
-      "mode": "upi",
-      "merchant": "NABEEL M",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2025-12-23",
-      "amount": 19.0,
-      "mode": "upi",
-      "merchant": "NEELS SUPER MARKET",
-      "category": "Shopping"
-    },
-    {
-      "date": "2025-12-22",
-      "amount": 100.0,
-      "mode": "upi",
-      "merchant": "KRISHNAMOORTHY",
-      "category": "Uncategorized"
-    },
-    {
-      "date": "2025-12-22",
-      "amount": 143.0,
-      "mode": "upi",
-      "merchant": "ANBUSELVAN A",
-      "category": "Transport"
-    },
-    {
-      "date": "2025-12-21 16:23:15",
-      "amount": 3048.5,
-      "mode": "credit_card",
-      "merchant": "NATIONAL INSTITUTE OF",
-      "category": "Investment"
-    },
-    {
-      "date": "2025-12-21 15:51:40",
-      "amount": 661.5,
-      "mode": "credit_card",
-      "merchant": "REDBUS",
-      "category": "Transport"
-    },
-    {
-      "date": "2025-12-21 10:46:48",
-      "amount": 1000.0,
-      "mode": "credit_card",
-      "merchant": "BALASUBRAMANIAN AUTO D",
-      "category": "Transport"
-    },
-    {
-      "date": "2025-12-21",
-      "amount": 15.0,
-      "mode": "upi",
-      "merchant": "TEJASH P",
-      "category": "Uncategorized"
-    },
-    {
-      "date": "2025-12-21",
-      "amount": 140.0,
-      "mode": "upi",
-      "merchant": "Master ADVAITH R1",
-      "category": "Uncategorized"
-    },
-    {
-      "date": "2025-12-21",
-      "amount": 111.0,
-      "mode": "upi",
-      "merchant": "KPN FARM FRESH",
-      "category": "Groceries"
-    },
-    {
-      "date": "2025-12-21",
-      "amount": 109.0,
-      "mode": "upi",
-      "merchant": "KPN FARM FRESH",
-      "category": "Groceries"
-    },
-    {
-      "date": "2025-12-20",
-      "amount": 130.0,
-      "mode": "upi",
-      "merchant": "The food plaza",
-      "category": "Food"
-    },
-    {
-      "date": "2025-12-19 16:40:14",
-      "amount": 359.0,
-      "mode": "credit_card",
-      "merchant": "EATCLUB BRANDS PRIVATE",
-      "category": "Food"
-    },
-    {
-      "date": "2025-12-19",
-      "amount": 26.5,
-      "mode": "upi",
-      "merchant": "KPN FARM FRESH",
-      "category": "Groceries"
-    },
-    {
-      "date": "2025-12-19",
-      "amount": 100.0,
-      "mode": "upi",
-      "merchant": "IndiCafe AMR Tech Park C2",
-      "category": "Food"
-    },
-    {
-      "date": "2025-12-19",
-      "amount": 95.0,
-      "mode": "upi",
-      "merchant": "IndiCafe AMR Tech Park C2",
-      "category": "Food"
-    },
-    {
-      "date": "2025-12-18",
-      "amount": 90.28,
-      "mode": "upi",
-      "merchant": "KPN FARM FRESH",
-      "category": "Groceries"
-    },
-    {
-      "date": "2025-12-18",
-      "amount": 70.0,
-      "mode": "upi",
-      "merchant": "IndiCafe AMR Tech Park C2",
-      "category": "Food"
-    },
-    {
-      "date": "2025-12-18",
-      "amount": 45.0,
-      "mode": "upi",
-      "merchant": "Avneesh Kumar",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2025-12-18",
-      "amount": 116.5,
-      "mode": "upi",
-      "merchant": "KPN FARM FRESH",
-      "category": "Groceries"
-    },
-    {
-      "date": "2025-12-17",
-      "amount": 60.0,
-      "mode": "upi",
-      "merchant": "IndiCafe AMR Tech Park C2",
-      "category": "Food"
-    },
-    {
-      "date": "2025-12-17",
-      "amount": 45.0,
-      "mode": "upi",
-      "merchant": "Avneesh Kumar",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2025-12-17",
-      "amount": 140.0,
-      "mode": "upi",
-      "merchant": "The food plaza",
-      "category": "Food"
-    },
-    {
-      "date": "2025-12-17",
-      "amount": 117.0,
-      "mode": "upi",
-      "merchant": "SURESH B",
-      "category": "Uncategorized"
-    },
-    {
-      "date": "2025-12-16",
-      "amount": 145.0,
-      "mode": "upi",
-      "merchant": "IndiCafe AMR Tech Park C2",
-      "category": "Food"
-    },
-    {
-      "date": "2025-12-16",
-      "amount": 53.85,
-      "mode": "upi",
-      "merchant": "ANIRUDH RAMAN",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2025-12-16",
-      "amount": 201.0,
-      "mode": "upi",
-      "merchant": "BISTRO",
-      "category": "Food"
-    },
-    {
-      "date": "2025-12-15 20:39:35",
-      "amount": 3615.18,
-      "mode": "credit_card",
-      "merchant": "Association of Mutual",
-      "category": "Investment"
-    },
-    {
-      "date": "2025-12-15 09:00:25",
-      "amount": 2266.46,
-      "mode": "credit_card",
-      "merchant": "Google Play",
-      "category": "Subscriptions"
-    },
-    {
-      "date": "2025-12-15",
-      "amount": 152.0,
-      "mode": "upi",
-      "merchant": "IndiCafe AMR Tech Park C2",
-      "category": "Food"
-    },
-    {
-      "date": "2025-12-15",
-      "amount": 80.0,
-      "mode": "upi",
-      "merchant": "The food plaza",
-      "category": "Food"
-    },
-    {
-      "date": "2025-12-14 10:26:33",
-      "amount": 279.0,
-      "mode": "credit_card",
-      "merchant": "EATCLUB BRANDS PRIVATE",
-      "category": "Food"
-    },
-    {
-      "date": "2025-12-13",
-      "amount": 525.0,
-      "mode": "upi",
-      "merchant": "Avneesh Kumar",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2025-12-12 22:40:56",
-      "amount": 3022.0,
-      "mode": "credit_card",
-      "merchant": "DATOSMIND PRIVATE LIMI",
-      "category": "Shopping"
-    },
-    {
-      "date": "2025-12-12 20:15:15",
-      "amount": 869.0,
-      "mode": "credit_card",
-      "merchant": "THE PIZZA BAKERY",
-      "category": "Food"
-    },
-    {
-      "date": "2025-12-12",
-      "amount": 85.0,
-      "mode": "upi",
-      "merchant": "IndiCafe AMR Tech Park C2",
-      "category": "Food"
-    },
-    {
-      "date": "2025-12-12",
-      "amount": 60.0,
-      "mode": "upi",
-      "merchant": "THE THALAKAAVERI CAFEE",
-      "category": "Food"
-    },
-    {
-      "date": "2025-12-12",
-      "amount": 93.0,
-      "mode": "upi",
-      "merchant": "ARBAZ SR",
-      "category": "Uncategorized"
-    },
-    {
-      "date": "2025-12-11 20:55:36",
-      "amount": 520.0,
-      "mode": "credit_card",
-      "merchant": "EATCLUB BRANDS PRIVATE",
-      "category": "Food"
-    },
-    {
-      "date": "2025-12-11",
-      "amount": 45.0,
-      "mode": "upi",
-      "merchant": "IndiCafe AMR Tech Park C2",
-      "category": "Food"
-    },
-    {
-      "date": "2025-12-11",
-      "amount": 27.0,
-      "mode": "upi",
-      "merchant": "Vendolite 4",
-      "category": "Shopping"
-    },
-    {
-      "date": "2025-12-11",
-      "amount": 70.0,
-      "mode": "upi",
-      "merchant": "IndiCafe AMR Tech Park C2",
-      "category": "Food"
-    },
-    {
-      "date": "2025-12-11",
+      "date": "2025-10-02",
       "amount": 18.0,
       "mode": "upi",
-      "merchant": "Vendolite 4",
-      "category": "Shopping"
-    },
-    {
-      "date": "2025-12-10 07:28:48",
-      "amount": 748.0,
-      "mode": "credit_card",
-      "merchant": "AMAZON PAY INDIA PRIVA",
-      "category": "Shopping"
-    },
-    {
-      "date": "2025-12-10",
-      "amount": 45.0,
-      "mode": "upi",
-      "merchant": "Vendolite 4",
-      "category": "Shopping"
-    },
-    {
-      "date": "2025-12-10",
-      "amount": 36.37,
-      "mode": "upi",
-      "merchant": "ANIRUDH RAMAN",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2025-12-10",
-      "amount": 70.73,
-      "mode": "upi",
-      "merchant": "ANIRUDH RAMAN",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2025-12-10",
-      "amount": 74.47,
-      "mode": "upi",
-      "merchant": "DEEPAK VENKATESWARAN",
+      "merchant": "Mr GUNASEELAN KUMARAVEL",
       "category": "Uncategorized"
     },
     {
-      "date": "2025-12-10",
-      "amount": 120.0,
+      "date": "2025-09-28",
+      "amount": 551.0,
       "mode": "upi",
-      "merchant": "IndiCafe AMR Tech Park C2",
+      "merchant": "TVK CASUAL DINE 1",
       "category": "Food"
     },
     {
-      "date": "2025-12-09 19:49:20",
-      "amount": 290.0,
-      "mode": "credit_card",
-      "merchant": "EATCLUB BRANDS PRIVATE",
-      "category": "Food"
-    },
-    {
-      "date": "2025-12-09",
-      "amount": 235.0,
+      "date": "2025-09-26",
+      "amount": 212.0,
       "mode": "upi",
-      "merchant": "IndiCafe AMR Tech Park C2",
-      "category": "Food"
-    },
-    {
-      "date": "2025-12-08 18:12:05",
-      "amount": 28.88,
-      "mode": "credit_card",
-      "merchant": "KPN FF 3047 Bommanahal",
-      "category": "Groceries"
-    },
-    {
-      "date": "2025-12-08",
-      "amount": 70.0,
-      "mode": "upi",
-      "merchant": "MD SAJJAD",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2025-12-08",
-      "amount": 85.0,
-      "mode": "upi",
-      "merchant": "MY BAKE",
-      "category": "Food"
-    },
-    {
-      "date": "2025-12-07",
-      "amount": 80.0,
-      "mode": "upi",
-      "merchant": "CHANDRASHEKAR SHETTY",
+      "merchant": "ANIRBAN HAZRA",
       "category": "Uncategorized"
     },
     {
-      "date": "2025-12-07",
-      "amount": 140.0,
+      "date": "2025-09-26",
+      "amount": 182.0,
       "mode": "upi",
-      "merchant": "Mr MOHAMMED SAFWAN",
-      "category": "Uncategorized"
-    },
-    {
-      "date": "2025-12-06 22:23:38",
-      "amount": 1307.0,
-      "mode": "credit_card",
-      "merchant": "EATCLUB BRANDS PRIVATE",
+      "merchant": "EatClub",
       "category": "Food"
     },
     {
-      "date": "2025-12-06 13:35:02",
-      "amount": 290.0,
-      "mode": "credit_card",
-      "merchant": "EATCLUB BRANDS PRIVATE",
+      "date": "2025-09-26",
+      "amount": 437.0,
+      "mode": "upi",
+      "merchant": "ORGANIC CREAMERY BANGALORE",
       "category": "Food"
     },
     {
-      "date": "2025-12-06 11:05:33",
-      "amount": 2125.92,
-      "mode": "credit_card",
-      "merchant": "CLAUDE.AI SUBSCRIPTION",
+      "date": "2025-09-27",
+      "amount": 77.0,
+      "mode": "upi",
+      "merchant": "Google India Service",
       "category": "Subscriptions"
     },
     {
-      "date": "2025-12-06",
-      "amount": 83.0,
+      "date": "2025-09-27",
+      "amount": 100.0,
+      "mode": "upi",
+      "merchant": "REDDY FILLING STATION",
+      "category": "Transport"
+    },
+    {
+      "date": "2025-09-27",
+      "amount": 131.0,
+      "mode": "upi",
+      "merchant": "BHAVANI VELMURUGAN",
+      "category": "Food"
+    },
+    {
+      "date": "2025-09-27",
+      "amount": 20000.0,
+      "mode": "upi",
+      "merchant": "S SOMASUNDARAM",
+      "category": "Personal Transfer"
+    },
+    {
+      "date": "2025-09-27",
+      "amount": 404.0,
+      "mode": "upi",
+      "merchant": "EatClub",
+      "category": "Food"
+    },
+    {
+      "date": "2025-09-27",
+      "amount": 13099.0,
+      "mode": "upi",
+      "merchant": "EazyApp Tech Private Limited",
+      "category": "Rent"
+    },
+    {
+      "date": "2025-09-27",
+      "amount": 563.85,
+      "mode": "upi",
+      "merchant": "The Hosteller",
+      "category": "Travel"
+    },
+    {
+      "date": "2025-09-25",
+      "amount": 38.0,
       "mode": "upi",
       "merchant": "Vendolite 4",
       "category": "Shopping"
     },
     {
-      "date": "2025-12-06",
-      "amount": 20000.0,
+      "date": "2025-09-25",
+      "amount": 40.0,
       "mode": "upi",
-      "merchant": "6386834357@ptyes",
-      "category": "Uncategorized"
+      "merchant": "IndiCafe AMR Tech Park C2",
+      "category": "Food"
     },
     {
-      "date": "2025-12-05 20:03:57",
-      "amount": 23.8,
-      "mode": "credit_card",
-      "merchant": "KPN FF 3047 Bommanahal",
-      "category": "Groceries"
-    },
-    {
-      "date": "2025-12-05",
-      "amount": 131.2,
+      "date": "2025-09-25",
+      "amount": 359.0,
       "mode": "upi",
-      "merchant": "ANIRUDH RAMAN",
-      "category": "Personal Transfer"
+      "merchant": "EatClub",
+      "category": "Food"
     },
     {
-      "date": "2025-12-05",
-      "amount": 100.0,
-      "mode": "upi",
-      "merchant": "ANIRUDH RAMAN",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2025-12-05",
-      "amount": 80.75,
+      "date": "2025-09-22",
+      "amount": 63.75,
       "mode": "upi",
       "merchant": "SAIRAM B",
       "category": "Personal Transfer"
     },
     {
-      "date": "2025-12-05",
-      "amount": 75.0,
+      "date": "2025-09-22",
+      "amount": 181.67,
       "mode": "upi",
-      "merchant": "Mr Ramakrishnappa Prakash",
+      "merchant": "Master ADVAITH R1",
       "category": "Uncategorized"
     },
     {
-      "date": "2025-12-05",
-      "amount": 80.0,
+      "date": "2025-09-22",
+      "amount": 58.75,
       "mode": "upi",
-      "merchant": "MITHUN",
+      "merchant": "eruptacus245@okaxis",
       "category": "Uncategorized"
     },
     {
-      "date": "2025-12-04",
-      "amount": 325.0,
+      "date": "2025-09-22",
+      "amount": 100.0,
       "mode": "upi",
-      "merchant": "New Udupi NavarasaC",
+      "merchant": "GRUB GROUP",
       "category": "Food"
     },
     {
-      "date": "2025-12-04",
-      "amount": 19000.0,
+      "date": "2025-09-23",
+      "amount": 208.0,
       "mode": "upi",
-      "merchant": "S VEL MURUGAN",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2025-12-04",
-      "amount": 13000.0,
-      "mode": "upi",
-      "merchant": "SANDHYA PG",
-      "category": "Personal Transfer"
-    },
-    {
-      "date": "2025-12-03 16:29:19",
-      "amount": 290.0,
-      "mode": "credit_card",
-      "merchant": "EATCLUB BRANDS PRIVATE",
+      "merchant": "Swiggy Limited",
       "category": "Food"
     },
     {
-      "date": "2025-12-02",
-      "amount": 70.0,
+      "date": "2025-09-20",
+      "amount": 77.0,
       "mode": "upi",
-      "merchant": "Avneesh Kumar",
+      "merchant": "Google India Digital Services Pvt Ltd",
+      "category": "Subscriptions"
+    },
+    {
+      "date": "2025-09-20",
+      "amount": 87.0,
+      "mode": "upi",
+      "merchant": "SHIVARAJ",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-09-20",
+      "amount": 666.0,
+      "mode": "upi",
+      "merchant": "M PRASANNA VENKATESH",
       "category": "Personal Transfer"
     },
     {
-      "date": "2025-11-30",
+      "date": "2025-09-19",
+      "amount": 60.0,
+      "mode": "upi",
+      "merchant": "GRUB GROUP",
+      "category": "Food"
+    },
+    {
+      "date": "2025-09-18",
+      "amount": 241.0,
+      "mode": "upi",
+      "merchant": "ANIRBAN HAZRA",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-09-17",
+      "amount": 122.0,
+      "mode": "upi",
+      "merchant": "Master ADVAITH R1",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-09-17",
+      "amount": 613.0,
+      "mode": "upi",
+      "merchant": "EatClub",
+      "category": "Food"
+    },
+    {
+      "date": "2025-09-16",
+      "amount": 300.0,
+      "mode": "upi",
+      "merchant": "MAHARAJA MENS WEAR",
+      "category": "Shopping"
+    },
+    {
+      "date": "2025-09-16",
       "amount": 359.0,
       "mode": "upi",
       "merchant": "EatClub",
       "category": "Food"
     },
     {
-      "date": "2025-11-30",
-      "amount": 45.54,
+      "date": "2025-09-14",
+      "amount": 30.0,
       "mode": "upi",
-      "merchant": "KPN FARM FRESH",
-      "category": "Groceries"
+      "merchant": "BMTC BUS KA01F9110",
+      "category": "Transport"
     },
     {
-      "date": "2025-11-29",
-      "amount": 430.0,
+      "date": "2025-09-12",
+      "amount": 71.0,
       "mode": "upi",
-      "merchant": "ANIRUDH RAMAN",
-      "category": "Personal Transfer"
+      "merchant": "S REHAN KUMAR MALHOTRA",
+      "category": "Uncategorized"
     },
     {
-      "date": "2025-11-29",
-      "amount": 242.0,
+      "date": "2025-09-12",
+      "amount": 85.0,
+      "mode": "upi",
+      "merchant": "IndiCafe AMR Tech Park C2",
+      "category": "Food"
+    },
+    {
+      "date": "2025-09-12",
+      "amount": 60.0,
+      "mode": "upi",
+      "merchant": "Brida Home Appliances",
+      "category": "Shopping"
+    },
+    {
+      "date": "2025-09-12",
+      "amount": 303.0,
       "mode": "upi",
       "merchant": "EatClub",
       "category": "Food"
     },
     {
-      "date": "2025-11-29",
-      "amount": 60.0,
+      "date": "2025-09-12",
+      "amount": 137.29,
       "mode": "upi",
-      "merchant": "GIRISH NAIK G",
+      "merchant": "VENKAT K UDITYA",
       "category": "Uncategorized"
     },
     {
-      "date": "2025-11-28",
-      "amount": 586.0,
+      "date": "2025-09-12",
+      "amount": 221.43,
       "mode": "upi",
-      "merchant": "Amazon Pay on Delivery",
+      "merchant": "Master ADVAITH R1",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-09-12",
+      "amount": 117.0,
+      "mode": "upi",
+      "merchant": "SAIRAM B",
+      "category": "Personal Transfer"
+    },
+    {
+      "date": "2025-09-13",
+      "amount": 70.0,
+      "mode": "upi",
+      "merchant": "Vendolite 4",
       "category": "Shopping"
     },
     {
-      "date": "2025-11-28",
-      "amount": 170.0,
+      "date": "2025-09-13",
+      "amount": 265.5,
+      "mode": "upi",
+      "merchant": "AIRPLAZA RETAIL HOLDINGS PRIVATE LIMITED",
+      "category": "Misc"
+    },
+    {
+      "date": "2025-09-13",
+      "amount": 147.0,
+      "mode": "upi",
+      "merchant": "Prajwal K",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-09-13",
+      "amount": 260.0,
+      "mode": "upi",
+      "merchant": "NAGESH V",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-09-11",
+      "amount": 20.0,
+      "mode": "upi",
+      "merchant": "Mr Bharath K",
+      "category": "Personal Transfer"
+    },
+    {
+      "date": "2025-09-10",
+      "amount": 40.0,
+      "mode": "upi",
+      "merchant": "VendoliteIndia03",
+      "category": "Shopping"
+    },
+    {
+      "date": "2025-09-10",
+      "amount": 49.0,
+      "mode": "upi",
+      "merchant": "Google India Service",
+      "category": "Subscriptions"
+    },
+    {
+      "date": "2025-09-10",
+      "amount": 310.0,
+      "mode": "upi",
+      "merchant": "anirbanhazra031102@okaxis",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-09-08",
+      "amount": 70.0,
       "mode": "upi",
       "merchant": "IndiCafe AMR Tech Park C2",
       "category": "Food"
+    },
+    {
+      "date": "2025-09-08",
+      "amount": 275.0,
+      "mode": "upi",
+      "merchant": "GRUB GROUP",
+      "category": "Food"
+    },
+    {
+      "date": "2025-09-06",
+      "amount": 20.0,
+      "mode": "upi",
+      "merchant": "JUST TRIM SALOON",
+      "category": "Grooming"
+    },
+    {
+      "date": "2025-09-06",
+      "amount": 250.0,
+      "mode": "upi",
+      "merchant": "SAMBANTHAMPILLAI VIRUTHAGIRI",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-09-07",
+      "amount": 50.0,
+      "mode": "upi",
+      "merchant": "ACHYUT NARAYAN H",
+      "category": "Personal Transfer"
+    },
+    {
+      "date": "2025-09-07",
+      "amount": 64.29,
+      "mode": "upi",
+      "merchant": "ACHYUT NARAYAN H",
+      "category": "Personal Transfer"
+    },
+    {
+      "date": "2025-08-29",
+      "amount": 50.0,
+      "mode": "upi",
+      "merchant": "ACHYUT NARAYAN H",
+      "category": "Personal Transfer"
+    },
+    {
+      "date": "2025-08-29",
+      "amount": 311.72,
+      "mode": "upi",
+      "merchant": "ACHYUT NARAYAN H",
+      "category": "Personal Transfer"
+    },
+    {
+      "date": "2025-08-29",
+      "amount": 85.15,
+      "mode": "upi",
+      "merchant": "ASHISH RAM JA",
+      "category": "Personal Transfer"
+    },
+    {
+      "date": "2025-08-16",
+      "amount": 42.5,
+      "mode": "upi",
+      "merchant": "SAIRAM B",
+      "category": "Personal Transfer"
+    },
+    {
+      "date": "2025-08-16",
+      "amount": 66.0,
+      "mode": "upi",
+      "merchant": "SAIRAM B",
+      "category": "Personal Transfer"
+    },
+    {
+      "date": "2025-08-16",
+      "amount": 256.6,
+      "mode": "upi",
+      "merchant": "deepakvishnu2003-1@okaxis",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-08-16",
+      "amount": 20.0,
+      "mode": "upi",
+      "merchant": "TERA BITES",
+      "category": "Food"
+    },
+    {
+      "date": "2025-08-16",
+      "amount": 860.0,
+      "mode": "upi",
+      "merchant": "anirbanhazra031102@okaxis",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-08-16",
+      "amount": 101.4,
+      "mode": "upi",
+      "merchant": "SAIRAM B",
+      "category": "Personal Transfer"
+    },
+    {
+      "date": "2025-08-16",
+      "amount": 91.75,
+      "mode": "upi",
+      "merchant": "SAIRAM B",
+      "category": "Personal Transfer"
+    },
+    {
+      "date": "2025-08-15",
+      "amount": 77.0,
+      "mode": "upi",
+      "merchant": "Google India Digital Services Pvt Ltd",
+      "category": "Subscriptions"
+    },
+    {
+      "date": "2025-08-12",
+      "amount": 313.0,
+      "mode": "upi",
+      "merchant": "MUNCHMART TECHNOLOGIES PRIVATE Limited",
+      "category": "Food"
+    },
+    {
+      "date": "2025-08-09",
+      "amount": 268.0,
+      "mode": "upi",
+      "merchant": "ANIRBAN HAZRA",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-08-08",
+      "amount": 60.0,
+      "mode": "upi",
+      "merchant": "IndiCafe AMR Tech Park C2",
+      "category": "Food"
+    },
+    {
+      "date": "2025-08-06",
+      "amount": 20.0,
+      "mode": "upi",
+      "merchant": "Vendolite 4",
+      "category": "Shopping"
+    },
+    {
+      "date": "2025-08-06",
+      "amount": 511.35,
+      "mode": "upi",
+      "merchant": "DOMINOS PIZZA",
+      "category": "Food"
+    },
+    {
+      "date": "2025-08-04",
+      "amount": 40.0,
+      "mode": "upi",
+      "merchant": "IndiCafe AMR Tech Park C2",
+      "category": "Food"
+    },
+    {
+      "date": "2025-08-04",
+      "amount": 40.0,
+      "mode": "upi",
+      "merchant": "SURIYANANDAN V",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-08-03",
+      "amount": 85.0,
+      "mode": "upi",
+      "merchant": "Sri Udupi Food Hub",
+      "category": "Food"
+    },
+    {
+      "date": "2025-08-03",
+      "amount": 56.0,
+      "mode": "upi",
+      "merchant": "M YAASH ASHWIN",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-08-03",
+      "amount": 200.0,
+      "mode": "upi",
+      "merchant": "SUHITHA RENUKA SV",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-08-01",
+      "amount": 1380.6,
+      "mode": "upi",
+      "merchant": "Eqaro Guarantees",
+      "category": "Rent"
+    },
+    {
+      "date": "2025-08-01",
+      "amount": 60.0,
+      "mode": "upi",
+      "merchant": "IndiCafe AMR Tech Park C2",
+      "category": "Food"
+    },
+    {
+      "date": "2025-08-01",
+      "amount": 77.0,
+      "mode": "upi",
+      "merchant": "Google India Digital Services Pvt Ltd",
+      "category": "Subscriptions"
+    },
+    {
+      "date": "2025-07-31",
+      "amount": 433.0,
+      "mode": "upi",
+      "merchant": "EAZYAPP",
+      "category": "Rent"
+    },
+    {
+      "date": "2025-07-31",
+      "amount": 2000.0,
+      "mode": "upi",
+      "merchant": "EazyApp Tech Private Limited",
+      "category": "Rent"
+    },
+    {
+      "date": "2025-07-27",
+      "amount": 319.84,
+      "mode": "upi",
+      "merchant": "KAVYAMALA S",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-07-21",
+      "amount": 22.0,
+      "mode": "upi",
+      "merchant": "Thachamurthy",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-07-15",
+      "amount": 250.0,
+      "mode": "upi",
+      "merchant": "VARSHA DHARANI RAJAGOPALAN",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-07-10",
+      "amount": 140.0,
+      "mode": "upi",
+      "merchant": "ADULA SIVAKUMAR",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-07-10",
+      "amount": 567.0,
+      "mode": "upi",
+      "merchant": "redbus",
+      "category": "Transport"
+    },
+    {
+      "date": "2025-07-06",
+      "amount": 22.0,
+      "mode": "upi",
+      "merchant": "WWW AIRTEL IN",
+      "category": "Subscriptions"
+    },
+    {
+      "date": "2025-07-04",
+      "amount": 320.0,
+      "mode": "upi",
+      "merchant": "SATHIYA G",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-07-03",
+      "amount": 833.0,
+      "mode": "upi",
+      "merchant": "SHAHUL HAMEED MOHAMED ISHMAIL",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-07-03",
+      "amount": 200.0,
+      "mode": "upi",
+      "merchant": "KUMAR K",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-06-26",
+      "amount": 199.0,
+      "mode": "upi",
+      "merchant": "CUREFOODS INDIA PRIVATE LIMITED",
+      "category": "Food"
+    },
+    {
+      "date": "2025-06-20",
+      "amount": 24.0,
+      "mode": "upi",
+      "merchant": "PRAGATHEESH M",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-06-20",
+      "amount": 36.0,
+      "mode": "upi",
+      "merchant": "PRAGATHEESH M",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-06-20",
+      "amount": 46.0,
+      "mode": "upi",
+      "merchant": "SELVIN SANTHIYAGU",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-06-14",
+      "amount": 116.0,
+      "mode": "upi",
+      "merchant": "KARTHIGAI SELVAN R",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-06-14",
+      "amount": 100.0,
+      "mode": "upi",
+      "merchant": "JUST TRIM SALOON",
+      "category": "Grooming"
+    },
+    {
+      "date": "2025-06-14",
+      "amount": 259.0,
+      "mode": "upi",
+      "merchant": "NEELS SUPER MARKET",
+      "category": "Shopping"
+    },
+    {
+      "date": "2025-06-13",
+      "amount": 70.0,
+      "mode": "upi",
+      "merchant": "VENKATESWARA FOODS",
+      "category": "Food"
+    },
+    {
+      "date": "2025-06-09",
+      "amount": 50.0,
+      "mode": "upi",
+      "merchant": "KAMALA NARAYANAN",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-06-03",
+      "amount": 59.9,
+      "mode": "upi",
+      "merchant": "VENKAT K UDITYA",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-06-03",
+      "amount": 25.0,
+      "mode": "upi",
+      "merchant": "Dharanidharan SI",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-06-03",
+      "amount": 175.45,
+      "mode": "upi",
+      "merchant": "VENKAT K UDITYA",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-06-03",
+      "amount": 473.19,
+      "mode": "upi",
+      "merchant": "ESWAR VARUN S",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-06-03",
+      "amount": 185.72,
+      "mode": "upi",
+      "merchant": "ESWAR VARUN S",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-06-03",
+      "amount": 72.73,
+      "mode": "upi",
+      "merchant": "ESWAR VARUN S",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-06-03",
+      "amount": 166.67,
+      "mode": "upi",
+      "merchant": "S Yuvanshankar",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-06-03",
+      "amount": 135.0,
+      "mode": "upi",
+      "merchant": "S Yuvanshankar",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-06-03",
+      "amount": 42.5,
+      "mode": "upi",
+      "merchant": "S Yuvanshankar",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-06-03",
+      "amount": 10.0,
+      "mode": "upi",
+      "merchant": "Dharanidharan SI",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-06-03",
+      "amount": 226.78,
+      "mode": "upi",
+      "merchant": "MRIDHULA SAISESHAN",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-06-03",
+      "amount": 305.37,
+      "mode": "upi",
+      "merchant": "MRIDHULA SAISESHAN",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-06-03",
+      "amount": 18.19,
+      "mode": "upi",
+      "merchant": "SUHITHA RENUKA SV",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-06-03",
+      "amount": 20.0,
+      "mode": "upi",
+      "merchant": "SUHITHA RENUKA SV",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-06-03",
+      "amount": 46.67,
+      "mode": "upi",
+      "merchant": "S Yuvanshankar",
+      "category": "Entertainment"
+    },
+    {
+      "date": "2025-06-02",
+      "amount": 212.8,
+      "mode": "upi",
+      "merchant": "MRIDHULA SAISESHAN",
+      "category": "Entertainment"
+    },
+    {
+      "date": "2025-06-02",
+      "amount": 212.8,
+      "mode": "upi",
+      "merchant": "ESWAR VARUN S",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-06-02",
+      "amount": 212.8,
+      "mode": "upi",
+      "merchant": "NIRANJAN S",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-06-02",
+      "amount": 212.8,
+      "mode": "upi",
+      "merchant": "ESWAR VARUN S",
+      "category": "Entertainment"
+    },
+    {
+      "date": "2025-06-02",
+      "amount": 30.0,
+      "mode": "upi",
+      "merchant": "AIRPORT METRO TOM 1",
+      "category": "Transport"
+    },
+    {
+      "date": "2025-06-02",
+      "amount": 690.0,
+      "mode": "upi",
+      "merchant": "Taco Bell Forum Chennai",
+      "category": "Food"
+    },
+    {
+      "date": "2025-06-02",
+      "amount": 229.0,
+      "mode": "upi",
+      "merchant": "MAS FORUM SJB",
+      "category": "Misc"
+    },
+    {
+      "date": "2025-06-01",
+      "amount": 25.0,
+      "mode": "upi",
+      "merchant": "Dharanidharan SI",
+      "category": "Entertainment"
+    },
+    {
+      "date": "2025-06-01",
+      "amount": 4242.0,
+      "mode": "upi",
+      "merchant": "ESWAR VARUN S",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-06-01",
+      "amount": 120.0,
+      "mode": "upi",
+      "merchant": "OVENLY STORE INDIA",
+      "category": "Food"
+    },
+    {
+      "date": "2025-06-01",
+      "amount": 120.0,
+      "mode": "upi",
+      "merchant": "VICTORIOUS",
+      "category": "Misc"
+    },
+    {
+      "date": "2025-05-31",
+      "amount": 228.0,
+      "mode": "upi",
+      "merchant": "SAMOSAPARTY FOODS PRIVATE LIMITED",
+      "category": "Food"
+    },
+    {
+      "date": "2025-05-26",
+      "amount": 20.0,
+      "mode": "upi",
+      "merchant": "SELVIN SANTHIYAGU",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-05-26",
+      "amount": 110.0,
+      "mode": "upi",
+      "merchant": "SELVIN SANTHIYAGU",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-05-26",
+      "amount": 2000.0,
+      "mode": "upi",
+      "merchant": "Mr NITHYA SHREE R",
+      "category": "Misc"
+    },
+    {
+      "date": "2025-05-27",
+      "amount": 1500.0,
+      "mode": "upi",
+      "merchant": "S VEL MURUGAN",
+      "category": "Personal Transfer"
+    },
+    {
+      "date": "2025-05-27",
+      "amount": 30.0,
+      "mode": "upi",
+      "merchant": "SELVIN SANTHIYAGU",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-05-24",
+      "amount": 1057.0,
+      "mode": "upi",
+      "merchant": "PIZZA HUT",
+      "category": "Food"
+    },
+    {
+      "date": "2025-05-23",
+      "amount": 45.0,
+      "mode": "upi",
+      "merchant": "AK FOOD WORKS",
+      "category": "Food"
+    },
+    {
+      "date": "2025-05-15 15:10:05",
+      "amount": 19999.0,
+      "mode": "credit_card",
+      "merchant": "",
+      "category": "Rent"
+    },
+    {
+      "date": "2025-05-14",
+      "amount": 10.0,
+      "mode": "upi",
+      "merchant": "LAVANYA ENTERPRISES",
+      "category": "Misc"
+    },
+    {
+      "date": "2025-05-11",
+      "amount": 320.0,
+      "mode": "upi",
+      "merchant": "NEELS SUPER MARKET",
+      "category": "Shopping"
+    },
+    {
+      "date": "2025-05-11",
+      "amount": 2.0,
+      "mode": "upi",
+      "merchant": "LinkedIn",
+      "category": "Subscriptions"
+    },
+    {
+      "date": "2025-05-08",
+      "amount": 700.0,
+      "mode": "upi",
+      "merchant": "Balasubramanian Auto Diesel Centre",
+      "category": "Transport"
+    },
+    {
+      "date": "2025-05-08",
+      "amount": 240.0,
+      "mode": "upi",
+      "merchant": "Mrs R NEELAVENI",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-05-08",
+      "amount": 100.0,
+      "mode": "upi",
+      "merchant": "Mrs R NEELAVENI",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-05-07",
+      "amount": 113.0,
+      "mode": "upi",
+      "merchant": "KAMALA NARAYANAN",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-05-05",
+      "amount": 46.0,
+      "mode": "upi",
+      "merchant": "MARIYA ALWIN D",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-05-03",
+      "amount": 46.0,
+      "mode": "upi",
+      "merchant": "K DHASARATHAN",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-05-03",
+      "amount": 1083.0,
+      "mode": "upi",
+      "merchant": "ERODE SHREE AMMAN ME",
+      "category": "Food"
+    },
+    {
+      "date": "2025-05-03",
+      "amount": 27.15,
+      "mode": "upi",
+      "merchant": "PRAGATHEESH M",
+      "category": "Misc"
+    },
+    {
+      "date": "2025-05-03",
+      "amount": 17.15,
+      "mode": "upi",
+      "merchant": "PRAGATHEESH M",
+      "category": "Misc"
+    },
+    {
+      "date": "2025-05-03",
+      "amount": 135.0,
+      "mode": "upi",
+      "merchant": "S Yuvanshankar",
+      "category": "Misc"
+    },
+    {
+      "date": "2025-04-29",
+      "amount": 225.4,
+      "mode": "upi",
+      "merchant": "SURAKSHA DO RAJKUMAR",
+      "category": "Entertainment"
+    },
+    {
+      "date": "2025-04-26",
+      "amount": 48.0,
+      "mode": "upi",
+      "merchant": "B KOKILAMANI",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2025-04-25",
+      "amount": 10.0,
+      "mode": "upi",
+      "merchant": "AK FOOD WORKS",
+      "category": "Food"
+    },
+    {
+      "date": "2025-04-19",
+      "amount": 46.0,
+      "mode": "upi",
+      "merchant": "DHANUSH STORE",
+      "category": "Shopping"
+    },
+    {
+      "date": "2025-04-19",
+      "amount": 84.0,
+      "mode": "upi",
+      "merchant": "AARDRA HARIDAS",
+      "category": "Personal Transfer"
+    },
+    {
+      "date": "2025-04-19",
+      "amount": 140.0,
+      "mode": "upi",
+      "merchant": "AARDRA HARIDAS",
+      "category": "Personal Transfer"
+    },
+    {
+      "date": "2026-05-11 11:46:00",
+      "amount": 472.5,
+      "mode": "credit_card",
+      "merchant": "REDBUS INDIA PRIVATE L",
+      "category": "Transport"
     }
   ],
   "categories": [
     "Personal Transfer",
-    "Shopping",
-    "Investment",
     "Uncategorized",
+    "Investment",
+    "Misc",
     "Food",
+    "Rent",
     "Transport",
+    "Shopping",
     "Subscriptions",
-    "Medical",
-    "Entertainment",
     "Fuel",
+    "Entertainment",
+    "Medical",
     "Groceries"
   ],
   "category_totals": {
-    "Subscriptions": 10335.76,
-    "Personal Transfer": 174873.12,
-    "Uncategorized": 36538.97,
-    "Food": 32077.15,
-    "Transport": 17013.04,
-    "Shopping": 83862.01999999999,
-    "Investment": 38214.35,
-    "Medical": 5074.0,
-    "Fuel": 1000.0,
-    "Entertainment": 4122.52,
-    "Groceries": 680.3699999999999
+    "Food": 14202.09,
+    "Entertainment": 745.67,
+    "Shopping": 5308.799999999999,
+    "Groceries": 127.15,
+    "Investment": 42803.03,
+    "Uncategorized": 51859.08999999999,
+    "Personal Transfer": 115111.56999999999,
+    "Transport": 7793.35,
+    "Fuel": 2749.54,
+    "Subscriptions": 4596.6,
+    "Misc": 18060.800000000003,
+    "Medical": 460.0,
+    "Rent": 13532.0
   },
   "monthly_breakdown": [
     {
-      "month": "2025-11",
-      "total": 1892.54,
-      "Personal Transfer": 430.0,
-      "Shopping": 586.0,
+      "month": "2025-04",
+      "total": 553.4,
+      "Personal Transfer": 224.0,
+      "Uncategorized": 48.0,
       "Investment": 0,
-      "Uncategorized": 60.0,
-      "Food": 771.0,
+      "Misc": 0,
+      "Food": 10.0,
+      "Rent": 0,
       "Transport": 0,
+      "Shopping": 46.0,
       "Subscriptions": 0,
-      "Medical": 0,
-      "Entertainment": 0,
       "Fuel": 0,
-      "Groceries": 45.54
+      "Entertainment": 225.4,
+      "Medical": 0,
+      "Groceries": 0
     },
     {
-      "month": "2025-12",
-      "total": 94064.41,
-      "Personal Transfer": 40743.29,
-      "Shopping": 7718.530000000001,
-      "Investment": 6663.68,
-      "Uncategorized": 23446.97,
-      "Food": 8517.1,
-      "Transport": 1804.5,
-      "Subscriptions": 4664.38,
-      "Medical": 0,
-      "Entertainment": 0,
-      "Fuel": 0,
-      "Groceries": 505.96
-    },
-    {
-      "month": "2026-01",
-      "total": 104230.94999999998,
-      "Personal Transfer": 52913.9,
-      "Shopping": 17418.79,
+      "month": "2025-05",
+      "total": 27828.300000000003,
+      "Personal Transfer": 1500.0,
+      "Uncategorized": 20714.0,
       "Investment": 0,
-      "Uncategorized": 4560.0,
-      "Food": 11401.17,
-      "Transport": 8733.0,
-      "Subscriptions": 474.7,
-      "Medical": 3478.0,
-      "Entertainment": 4122.52,
-      "Fuel": 1000.0,
-      "Groceries": 128.87
-    },
-    {
-      "month": "2026-02",
-      "total": 92699.47,
-      "Personal Transfer": 45854.07,
-      "Shopping": 12149.7,
-      "Investment": 10026.42,
-      "Uncategorized": 7964.0,
-      "Food": 6571.06,
-      "Transport": 4007.54,
-      "Subscriptions": 4530.68,
-      "Medical": 1596.0,
-      "Entertainment": 0,
+      "Misc": 2179.3,
+      "Food": 2413.0,
+      "Rent": 0,
+      "Transport": 700.0,
+      "Shopping": 320.0,
+      "Subscriptions": 2.0,
       "Fuel": 0,
-      "Groceries": 0
-    },
-    {
-      "month": "2026-03",
-      "total": 110903.93,
-      "Personal Transfer": 34931.86,
-      "Shopping": 45989.0,
-      "Investment": 21524.25,
-      "Uncategorized": 508.0,
-      "Food": 4816.82,
-      "Transport": 2468.0,
-      "Subscriptions": 666.0,
+      "Entertainment": 0,
       "Medical": 0,
-      "Entertainment": 0,
-      "Fuel": 0,
       "Groceries": 0
+    },
+    {
+      "month": "2025-06",
+      "total": 9170.37,
+      "Personal Transfer": 0,
+      "Uncategorized": 7425.1,
+      "Investment": 0,
+      "Misc": 0,
+      "Food": 959.0,
+      "Rent": 0,
+      "Transport": 30.0,
+      "Shopping": 259.0,
+      "Subscriptions": 0,
+      "Fuel": 0,
+      "Entertainment": 497.27000000000004,
+      "Medical": 0,
+      "Groceries": 0
+    },
+    {
+      "month": "2025-07",
+      "total": 5106.84,
+      "Personal Transfer": 0,
+      "Uncategorized": 2084.84,
+      "Investment": 0,
+      "Misc": 0,
+      "Food": 0,
+      "Rent": 433.0,
+      "Transport": 567.0,
+      "Shopping": 0,
+      "Subscriptions": 2022.0,
+      "Fuel": 0,
+      "Entertainment": 0,
+      "Medical": 0,
+      "Groceries": 0
+    },
+    {
+      "month": "2025-08",
+      "total": 5073.07,
+      "Personal Transfer": 748.52,
+      "Uncategorized": 1700.6,
+      "Investment": 0,
+      "Misc": 0,
+      "Food": 1069.35,
+      "Rent": 0,
+      "Transport": 0,
+      "Shopping": 20.0,
+      "Subscriptions": 1534.6,
+      "Fuel": 0,
+      "Entertainment": 0,
+      "Medical": 0,
+      "Groceries": 0
+    },
+    {
+      "month": "2025-09",
+      "total": 42246.53,
+      "Personal Transfer": 20981.04,
+      "Uncategorized": 3759.49,
+      "Investment": 0,
+      "Misc": 0,
+      "Food": 3626.0,
+      "Rent": 13099.0,
+      "Transport": 130.0,
+      "Shopping": 448.0,
+      "Subscriptions": 203.0,
+      "Fuel": 0,
+      "Entertainment": 0,
+      "Medical": 0,
+      "Groceries": 0
+    },
+    {
+      "month": "2025-10",
+      "total": 44952.6,
+      "Personal Transfer": 30000.0,
+      "Uncategorized": 5441.0,
+      "Investment": 1500.0,
+      "Misc": 2300.0,
+      "Food": 1448.4,
+      "Rent": 0,
+      "Transport": 1197.0,
+      "Shopping": 2557.2,
+      "Subscriptions": 49.0,
+      "Fuel": 0,
+      "Entertainment": 0,
+      "Medical": 460.0,
+      "Groceries": 0
+    },
+    {
+      "month": "2025-11",
+      "total": 55655.090000000004,
+      "Personal Transfer": 25712.0,
+      "Uncategorized": 6017.0,
+      "Investment": 21254.940000000002,
+      "Misc": 0,
+      "Food": 518.0,
+      "Rent": 0,
+      "Transport": 1245.0,
+      "Shopping": 127.0,
+      "Subscriptions": 716.0,
+      "Fuel": 0,
+      "Entertainment": 0,
+      "Medical": 0,
+      "Groceries": 65.15
+    },
+    {
+      "month": "2026-04",
+      "total": 69621.79000000001,
+      "Personal Transfer": 32389.17,
+      "Uncategorized": 2596.98,
+      "Investment": 9940.03,
+      "Misc": 13581.5,
+      "Food": 3551.12,
+      "Rent": 0,
+      "Transport": 3427.8500000000004,
+      "Shopping": 1315.6,
+      "Subscriptions": 70.0,
+      "Fuel": 2749.54,
+      "Entertainment": 0,
+      "Medical": 0,
+      "Groceries": 0
+    },
+    {
+      "month": "2026-05",
+      "total": 17141.699999999997,
+      "Personal Transfer": 3556.84,
+      "Uncategorized": 2072.08,
+      "Investment": 10108.06,
+      "Misc": 0,
+      "Food": 607.22,
+      "Rent": 0,
+      "Transport": 496.5,
+      "Shopping": 216.0,
+      "Subscriptions": 0,
+      "Fuel": 0,
+      "Entertainment": 23.0,
+      "Medical": 0,
+      "Groceries": 62.0
     }
   ],
   "months": [
+    "2025-04",
+    "2025-05",
+    "2025-06",
+    "2025-07",
+    "2025-08",
+    "2025-09",
+    "2025-10",
     "2025-11",
-    "2025-12",
-    "2026-01",
-    "2026-02",
-    "2026-03"
+    "2026-04",
+    "2026-05"
   ],
   "budget": {
     "Food": 3500,
@@ -2376,83 +1927,83 @@
   "top_merchants": [
     {
       "name": "S VEL MURUGAN",
-      "total": 88060.0
+      "total": 46500.0
     },
     {
-      "name": "CRED Club",
-      "total": 30213.0
+      "name": "S SOMASUNDARAM",
+      "total": 40000.0
     },
     {
-      "name": "SANDHYA PG",
-      "total": 26000.0
-    },
-    {
-      "name": "ZERODHA BROKING LIMITED",
-      "total": 20000.0
-    },
-    {
-      "name": "6386834357@ptyes",
-      "total": 20000.0
-    },
-    {
-      "name": "DEEPAK PRAKASH",
-      "total": 15000.0
-    },
-    {
-      "name": "SRI KUMARAN SILKS",
-      "total": 11500.0
-    },
-    {
-      "name": "Avneesh Kumar",
-      "total": 11205.0
+      "name": "FOURDEGREEWATER SERVICES PRIVATE LIMITED",
+      "total": 20228.95
     },
     {
       "name": "Wint Wealth",
-      "total": 10026.42
+      "total": 20048.09
     },
     {
-      "name": "JAYANTH SRINIVASAN R",
-      "total": 10007.2
+      "name": "EazyApp Tech Private Limited",
+      "total": 15099.0
     },
     {
-      "name": "veera020204@okicici",
+      "name": "DEPARTMENT OF HOME AFF",
+      "total": 13581.5
+    },
+    {
+      "name": "SANDHYA PG",
+      "total": 10467.0
+    },
+    {
+      "name": "DEEPAK PRAKASH",
       "total": 10000.0
     },
     {
-      "name": "sandhya.pg17-4@okaxis",
-      "total": 7800.0
+      "name": "ESWAR VARUN S",
+      "total": 5399.24
     },
     {
-      "name": "CAS*REDBUS INDIA PRIVA",
-      "total": 5313.0
+      "name": "ACHYUT NARAYAN H",
+      "total": 4139.52
     },
     {
-      "name": "AMAZONIN",
-      "total": 5198.0
+      "name": "REDBUS INDIA PRIVATE L",
+      "total": 3588.3500000000004
     },
     {
-      "name": "MINETECH IT SOLUTIONS",
-      "total": 4900.0
+      "name": "SRINIVASAN KANNAN",
+      "total": 3360.0
     },
     {
-      "name": "CHANDRA AGENCY",
-      "total": 4888.76
+      "name": "ASHA A",
+      "total": 3300.0
     },
     {
-      "name": "NATIONAL INSTITUTE OF",
-      "total": 4572.75
+      "name": "MC AGENCIES",
+      "total": 2749.54
     },
     {
-      "name": "EATCLUB BRANDS PRIVATE",
-      "total": 4275.0
+      "name": "EatClub",
+      "total": 2718.0
     },
     {
-      "name": "KRISHNA MEDICALS",
-      "total": 3859.0
+      "name": "VAN HEUSEN",
+      "total": 2557.2
     },
     {
-      "name": "RANJITH AGENCIES",
-      "total": 3706.53
+      "name": "DEVA__DARTS",
+      "total": 2500.0
+    },
+    {
+      "name": "APARAJITH L",
+      "total": 2300.0
+    },
+    {
+      "name": "TARUN B",
+      "total": 2282.5
+    },
+    {
+      "name": "Mr NITHYA SHREE R",
+      "total": 2000.0
     }
   ]
 }

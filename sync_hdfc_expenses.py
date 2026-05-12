@@ -34,6 +34,8 @@ CATEGORY_RULES: List[tuple] = [
         "naidu garu", "discover food", "royal feast", "annalakshmi",
         "bae and chill", "boho", "lillys", "eatalios", "organic creamery",
         "t3 chat",
+        "jas delicacies", "eternal limited", "ovenly", "tera bites",
+        "tvk casual dine",
     ]),
     ("Transport", [
         "redbus", "rapido", "uber", "ola", "metro", "bmtc", "bus",
@@ -61,6 +63,13 @@ CATEGORY_RULES: List[tuple] = [
     ]),
     ("Entertainment", [
         "bookmyshow", "amoeba", "pvr", "inox",
+        "deva__darts", "deva_darts",
+    ]),
+    ("Fitness / Self Improvement", [
+        "cult.fit", "cultfit", "cure.fit", "curefit",
+        "gym", "fitness", "yoga", "decathlon",
+        "udemy", "coursera", "skillshare",
+        "techmash", "badminton",
     ]),
     ("Shopping", [
         "amazon", "flipkart", "myntra", "meesho", "reliance",
@@ -71,10 +80,12 @@ CATEGORY_RULES: List[tuple] = [
         "ranjith", "geetham", "veera siva", "lakshmi computer",
         "elayaraja", "reliance digital", "datosmind", "minetech",
         "vendolite", "dhanush store", "neels super",
+        "brida home", "durga leather",
     ]),
     ("Groceries", [
         "kpn farm", "kpn ff", "thefarmer", "farm fresh",
         "sowbhagya", "sri jayadurga",
+        "patel trading", "provission store", "provision store",
     ]),
     ("Fuel", [
         "aboorva glo", "srinivasa service", "platinum petro",
@@ -105,6 +116,16 @@ CATEGORY_RULES: List[tuple] = [
     ("Subscriptions", [
         "tamizkumaran", "corequest",
     ]),
+    ("Grooming", [
+        "saloon", "salon", "just trim", "barber",
+    ]),
+    ("Travel", [
+        "hosteller", "hostel", "oyo", "airbnb", "treebo", "fabhotels",
+    ]),
+    ("Misc", [
+        "airplaza retail", "brokentusk", "lavanya enterprises",
+        "mas forum", "victorious",
+    ]),
 ]
 
 MONTHLY_BUDGET: Dict[str, float] = {
@@ -119,6 +140,9 @@ MONTHLY_BUDGET: Dict[str, float] = {
     "Rent": 13000,
     "Investment": 20000,
     "Personal Transfer": 5000,
+    "Grooming": 500,
+    "Travel": 2000,
+    "Misc": 500,
 }
 
 
@@ -278,9 +302,9 @@ def parse_credit_card(subject: str, snippet: str) -> Optional[Dict[str, Any]]:
     text = f"{subject} {snippet}"
 
     amount_match = re.search(r"Rs\.?\s*([0-9,]+(?:\.[0-9]{1,2})?)", text, re.IGNORECASE)
-    card_match = re.search(r"(?:ending|\*\*)(\d{2,4})", text, re.IGNORECASE)
+    card_match = re.search(r"(?:ending\s+|\*\*)(\d{2,4})", text, re.IGNORECASE)
     merchant_match = re.search(
-        r"(?:towards|at)\s+(.+?)\s+on\s+", snippet, re.IGNORECASE
+        r"\b(?:towards|at)\b\s+(.+?)\s+on\s+", snippet, re.IGNORECASE
     )
     date_match = re.search(
         r"on\s+([0-9]{1,2}\s+[A-Za-z]{3},\s*[0-9]{4})(?:\s+at\s+([0-9:]{5,8}))?",
@@ -378,7 +402,7 @@ def search_threads(config: Config) -> List[Dict[str, Any]]:
         '("Credit Card" OR "UPI txn" OR debited OR transaction) '
         f"newer_than:{config.lookback_days}d"
     )
-    payload = run_gog(["gmail", "search", query, "--max", "200"], config.gog_account)
+    payload = run_gog(["gmail", "search", query, "--max", "1000"], config.gog_account)
     return payload.get("threads") or []
 
 
@@ -504,6 +528,124 @@ def read_sheet_values(config: Config, spreadsheet_id: str, tab_name: str) -> Lis
         return []
 
 
+TAGGING_TAB = "Tagging"
+
+
+def read_tagging_tab(config: Config, spreadsheet_id: str) -> List[List[str]]:
+    try:
+        payload = run_gog(
+            ["sheets", "get", spreadsheet_id, f"{TAGGING_TAB}!A:E"],
+            config.gog_account,
+        )
+        return payload.get("values", [])
+    except RuntimeError:
+        return []
+
+
+def pull_tags_from_tagging(
+    config: Config, spreadsheet_id: str, tab_name: str
+) -> int:
+    """Apply user-edited tags from Tagging back to Sheet1 (matched by message_id).
+
+    Incremental: only column K is rewritten; other columns untouched.
+    """
+    tagging_rows = read_tagging_tab(config, spreadsheet_id)
+    if len(tagging_rows) < 2:
+        return 0
+
+    user_tags: Dict[str, str] = {}
+    for row in tagging_rows[1:]:
+        if len(row) < 5:
+            continue
+        mid = row[4].strip()
+        tag = row[3].strip()
+        if mid and tag:
+            user_tags[mid] = tag
+    if not user_tags:
+        return 0
+
+    sheet_rows = read_sheet_values(config, spreadsheet_id, tab_name)
+    if len(sheet_rows) < 2:
+        return 0
+
+    updated = 0
+    new_col_k: List[List[str]] = []
+    for row in sheet_rows[1:]:
+        while len(row) < 11:
+            row.append("")
+        mid = row[7].strip()
+        existing_tag = row[10].strip()
+        if mid in user_tags and user_tags[mid] != existing_tag:
+            new_col_k.append([user_tags[mid]])
+            updated += 1
+        else:
+            new_col_k.append([existing_tag])
+
+    if updated and not config.dry_run:
+        last = len(sheet_rows)
+        run_gog(
+            [
+                "sheets", "update", spreadsheet_id,
+                f"{tab_name}!K2:K{last}",
+                "--values-json", json.dumps(new_col_k),
+                "--input", "USER_ENTERED",
+            ],
+            config.gog_account,
+        )
+    return updated
+
+
+def push_to_tagging(config: Config, spreadsheet_id: str, tab_name: str) -> int:
+    """Append rows in Sheet1 that aren't yet in Tagging (matched by message_id).
+
+    Incremental: never clears Tagging — preserves any manual tags or notes.
+    """
+    tagging_rows = read_tagging_tab(config, spreadsheet_id)
+    existing_mids = set()
+    for row in tagging_rows[1:] if len(tagging_rows) > 1 else []:
+        if len(row) >= 5 and row[4].strip():
+            existing_mids.add(row[4].strip())
+
+    sheet_rows = read_sheet_values(config, spreadsheet_id, tab_name)
+    if len(sheet_rows) < 2:
+        return 0
+
+    new_rows: List[List[Any]] = []
+    for row in sheet_rows[1:]:
+        while len(row) < 11:
+            row.append("")
+        mid = row[7].strip()
+        if not mid or mid in existing_mids:
+            continue
+        date = str(row[0]).lstrip("'").strip()[:10]
+        merchant = row[3]
+        try:
+            amount: Any = float(str(row[1]).replace(",", ""))
+        except ValueError:
+            amount = row[1]
+        tag = row[10]
+        new_rows.append([date, merchant, amount, tag, mid])
+
+    if not new_rows:
+        return 0
+    if config.dry_run:
+        return len(new_rows)
+
+    try:
+        run_gog(
+            [
+                "sheets", "append", spreadsheet_id, f"{TAGGING_TAB}!A1",
+                "--values-json", json.dumps(new_rows),
+                "--input", "USER_ENTERED",
+            ],
+            config.gog_account,
+        )
+    except RuntimeError as exc:
+        print(f"  (skipped Tagging append: {exc})", file=sys.stderr)
+        return 0
+    return len(new_rows)
+
+
 def build_merchant_tag_map(rows: List[List[str]]) -> Dict[str, str]:
     """Return merchant -> most-used tag from existing sheet rows (skips header)."""
     merchant_tags: Dict[str, Counter] = {}
@@ -522,7 +664,7 @@ def write_transactions(
     new_transactions: List[Dict[str, Any]],
     existing_rows: List[List[str]],
 ) -> None:
-    """Merge new transactions with existing rows, sort by date desc, rewrite sheet."""
+    """Append new transactions to Sheet1. Existing rows are never touched."""
     new_rows = []
     for t in new_transactions:
         new_rows.append(
@@ -544,33 +686,15 @@ def write_transactions(
     if config.dry_run:
         print(json.dumps(new_rows, indent=2))
         return
-
-    data_rows = existing_rows[1:] if len(existing_rows) > 1 else []
-    all_rows = new_rows + data_rows
-
-    def sort_key(row: List) -> str:
-        return str(row[0]).lstrip("'").strip() if row else ""
-
-    all_rows.sort(key=sort_key, reverse=True)
-
-    run_gog(
-        ["sheets", "clear", spreadsheet_id, f"{tab_name}!A2:K"],
-        config.gog_account,
-    )
-
-    if not all_rows:
+    if not new_rows:
         return
 
     run_gog(
         [
-            "sheets",
-            "update",
-            spreadsheet_id,
-            f"{tab_name}!A2:K{len(all_rows) + 1}",
-            "--values-json",
-            json.dumps(all_rows),
-            "--input",
-            "USER_ENTERED",
+            "sheets", "append", spreadsheet_id,
+            f"{tab_name}!A1",
+            "--values-json", json.dumps(new_rows),
+            "--input", "USER_ENTERED",
         ],
         config.gog_account,
     )
@@ -594,35 +718,28 @@ def retag_sheet(config: Config, force: bool = False) -> int:
         return 0
 
     updated = 0
+    new_col_k: List[List[str]] = []
     for row in rows[1:]:
         merchant = row[3].strip() if len(row) > 3 else ""
         snippet = row[8].strip() if len(row) > 8 else ""
         existing_tag = row[10].strip() if len(row) > 10 else ""
         if existing_tag and not force:
+            new_col_k.append([existing_tag])
             continue
         new_tag = categorize_merchant(merchant, snippet)
         if new_tag and new_tag != existing_tag:
-            while len(row) < 11:
-                row.append("")
-            row[10] = new_tag
+            new_col_k.append([new_tag])
             updated += 1
+        else:
+            new_col_k.append([existing_tag])
 
     if updated and not config.dry_run:
         run_gog(
-            ["sheets", "clear", spreadsheet_id, f"{tab_name}!A2:K"],
-            config.gog_account,
-        )
-        data_rows = rows[1:]
-        run_gog(
             [
-                "sheets",
-                "update",
-                spreadsheet_id,
-                f"{tab_name}!A2:K{len(data_rows) + 1}",
-                "--values-json",
-                json.dumps(data_rows),
-                "--input",
-                "USER_ENTERED",
+                "sheets", "update", spreadsheet_id,
+                f"{tab_name}!K2:K{len(rows)}",
+                "--values-json", json.dumps(new_col_k),
+                "--input", "USER_ENTERED",
             ],
             config.gog_account,
         )
@@ -807,6 +924,22 @@ def main() -> int:
     processed_ids = set(state.get("processed_message_ids", []))
     newly_seen_ids: set[str] = set()
 
+    # Resolve sheet first so we can dedup against existing rows (state file
+    # is a cache, sheet is source-of-truth — survives state-file deletion).
+    spreadsheet_id = ensure_sheet(config, state)
+    tab_name = config.tab_name
+    existing_rows: List[List[str]] = []
+    pulled_count = 0
+    if spreadsheet_id != "DRY_RUN_SPREADSHEET_ID":
+        tab_name = resolve_tab_name(config, spreadsheet_id)
+        if not config.dry_run:
+            ensure_header_row(config, spreadsheet_id, tab_name)
+            pulled_count = pull_tags_from_tagging(config, spreadsheet_id, tab_name)
+            existing_rows = read_sheet_values(config, spreadsheet_id, tab_name)
+            for row in existing_rows[1:]:
+                if len(row) > 7 and row[7].strip():
+                    processed_ids.add(row[7].strip())
+
     threads = search_threads(config)
     transactions: List[Dict[str, Any]] = []
 
@@ -838,16 +971,6 @@ def main() -> int:
                 print(f"  subj={subject[:80]}")
                 print(f"  snippet={snippet[:120]}")
 
-    spreadsheet_id = ensure_sheet(config, state)
-    tab_name = config.tab_name
-
-    existing_rows: List[List[str]] = []
-    if spreadsheet_id != "DRY_RUN_SPREADSHEET_ID":
-        tab_name = resolve_tab_name(config, spreadsheet_id)
-        if not config.dry_run:
-            ensure_header_row(config, spreadsheet_id, tab_name)
-            existing_rows = read_sheet_values(config, spreadsheet_id, tab_name)
-
     merchant_tag_map = build_merchant_tag_map(existing_rows)
     for txn in transactions:
         merchant = txn.get("merchant_or_payee", "")
@@ -858,6 +981,10 @@ def main() -> int:
 
     write_transactions(config, spreadsheet_id, tab_name, transactions, existing_rows)
 
+    pushed_count = 0
+    if not config.dry_run and spreadsheet_id and spreadsheet_id != "DRY_RUN_SPREADSHEET_ID":
+        pushed_count = push_to_tagging(config, spreadsheet_id, tab_name)
+
     if not config.dry_run:
         processed_ids.update(newly_seen_ids)
         state["processed_message_ids"] = sorted(processed_ids)[-20000:]
@@ -867,6 +994,7 @@ def main() -> int:
 
     print(
         f"Scanned threads: {len(threads)} | Parsed new expenses: {len(transactions)} | "
+        f"Tagging: pulled {pulled_count} edits, pushed {pushed_count} rows | "
         f"Spreadsheet: {spreadsheet_id} | Tab: {tab_name}"
     )
     return 0
