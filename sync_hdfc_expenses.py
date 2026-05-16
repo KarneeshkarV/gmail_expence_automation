@@ -251,6 +251,9 @@ def as_float(amount_text: str) -> float:
 
 def normalize_txn_date(value: str) -> str:
     raw = value.strip()
+    # Gmail truncates snippets, so a cut-off time can leave a dangling
+    # separator like "14 May, 2026 10:09:" — trim trailing colons/spaces.
+    raw = raw.rstrip(": ")
     if not raw:
         return ""
 
@@ -307,7 +310,8 @@ def parse_credit_card(subject: str, snippet: str) -> Optional[Dict[str, Any]]:
         r"\b(?:towards|at)\b\s+(.+?)\s+on\s+", snippet, re.IGNORECASE
     )
     date_match = re.search(
-        r"on\s+([0-9]{1,2}\s+[A-Za-z]{3},\s*[0-9]{4})(?:\s+at\s+([0-9:]{5,8}))?",
+        r"on\s+([0-9]{1,2}\s+[A-Za-z]{3},\s*[0-9]{4})"
+        r"(?:\s+at\s+([0-9]{1,2}:[0-9]{2}(?::[0-9]{2})?))?",
         snippet,
         re.IGNORECASE,
     )
