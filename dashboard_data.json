@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-05-12T17:51:04.794601",
-  "transaction_count": 242,
+  "generated_at": "2026-05-19T17:47:59.492675",
+  "transaction_count": 244,
   "transactions": [
     {
       "date": "2026-05-06 20:30:46",
@@ -1155,7 +1155,7 @@
       "amount": 1380.6,
       "mode": "upi",
       "merchant": "Eqaro Guarantees",
-      "category": "Rent"
+      "category": "Subscriptions"
     },
     {
       "date": "2025-08-01",
@@ -1183,7 +1183,7 @@
       "amount": 2000.0,
       "mode": "upi",
       "merchant": "EazyApp Tech Private Limited",
-      "category": "Rent"
+      "category": "Subscriptions"
     },
     {
       "date": "2025-07-27",
@@ -1554,7 +1554,7 @@
       "amount": 19999.0,
       "mode": "credit_card",
       "merchant": "",
-      "category": "Rent"
+      "category": "Uncategorized"
     },
     {
       "date": "2025-05-14",
@@ -1695,6 +1695,20 @@
       "mode": "credit_card",
       "merchant": "REDBUS INDIA PRIVATE L",
       "category": "Transport"
+    },
+    {
+      "date": "2026-05-13 17:16:27",
+      "amount": 844.93,
+      "mode": "credit_card",
+      "merchant": "MC AGENCIES",
+      "category": "Fuel"
+    },
+    {
+      "date": "2026-05-14 10:09:00",
+      "amount": 3105.64,
+      "mode": "credit_card",
+      "merchant": "UBER * EATS PENDING",
+      "category": "Transport"
     }
   ],
   "categories": [
@@ -1709,23 +1723,29 @@
     "Subscriptions",
     "Fuel",
     "Entertainment",
+    "Travel",
     "Medical",
-    "Groceries"
+    "Fitness / Self Improvement",
+    "Groceries",
+    "Grooming"
   ],
   "category_totals": {
-    "Food": 14202.09,
-    "Entertainment": 745.67,
-    "Shopping": 5308.799999999999,
-    "Groceries": 127.15,
+    "Food": 16933.949999999997,
+    "Entertainment": 3245.6700000000005,
+    "Shopping": 5418.799999999999,
+    "Groceries": 171.15,
     "Investment": 42803.03,
-    "Uncategorized": 51859.08999999999,
+    "Fitness / Self Improvement": 307.08,
     "Personal Transfer": 115111.56999999999,
-    "Transport": 7793.35,
-    "Fuel": 2749.54,
+    "Uncategorized": 44856.799999999996,
+    "Transport": 10898.99,
+    "Fuel": 3594.47,
     "Subscriptions": 4596.6,
-    "Misc": 18060.800000000003,
+    "Misc": 18686.300000000003,
     "Medical": 460.0,
-    "Rent": 13532.0
+    "Rent": 13532.0,
+    "Travel": 563.85,
+    "Grooming": 120.0
   },
   "monthly_breakdown": [
     {
@@ -1742,16 +1762,19 @@
       "Subscriptions": 0,
       "Fuel": 0,
       "Entertainment": 225.4,
+      "Travel": 0,
       "Medical": 0,
-      "Groceries": 0
+      "Fitness / Self Improvement": 0,
+      "Groceries": 0,
+      "Grooming": 0
     },
     {
       "month": "2025-05",
       "total": 27828.300000000003,
       "Personal Transfer": 1500.0,
-      "Uncategorized": 20714.0,
+      "Uncategorized": 20704.0,
       "Investment": 0,
-      "Misc": 2179.3,
+      "Misc": 2189.3,
       "Food": 2413.0,
       "Rent": 0,
       "Transport": 700.0,
@@ -1759,25 +1782,31 @@
       "Subscriptions": 2.0,
       "Fuel": 0,
       "Entertainment": 0,
+      "Travel": 0,
       "Medical": 0,
-      "Groceries": 0
+      "Fitness / Self Improvement": 0,
+      "Groceries": 0,
+      "Grooming": 0
     },
     {
       "month": "2025-06",
       "total": 9170.37,
       "Personal Transfer": 0,
-      "Uncategorized": 7425.1,
+      "Uncategorized": 6856.1,
       "Investment": 0,
-      "Misc": 0,
-      "Food": 959.0,
+      "Misc": 349.0,
+      "Food": 1079.0,
       "Rent": 0,
       "Transport": 30.0,
       "Shopping": 259.0,
       "Subscriptions": 0,
       "Fuel": 0,
       "Entertainment": 497.27000000000004,
+      "Travel": 0,
       "Medical": 0,
-      "Groceries": 0
+      "Fitness / Self Improvement": 0,
+      "Groceries": 0,
+      "Grooming": 100.0
     },
     {
       "month": "2025-07",
@@ -1793,42 +1822,51 @@
       "Subscriptions": 2022.0,
       "Fuel": 0,
       "Entertainment": 0,
+      "Travel": 0,
       "Medical": 0,
-      "Groceries": 0
+      "Fitness / Self Improvement": 0,
+      "Groceries": 0,
+      "Grooming": 0
     },
     {
       "month": "2025-08",
       "total": 5073.07,
       "Personal Transfer": 748.52,
-      "Uncategorized": 1700.6,
+      "Uncategorized": 1680.6,
       "Investment": 0,
       "Misc": 0,
-      "Food": 1069.35,
+      "Food": 1089.35,
       "Rent": 0,
       "Transport": 0,
       "Shopping": 20.0,
       "Subscriptions": 1534.6,
       "Fuel": 0,
       "Entertainment": 0,
+      "Travel": 0,
       "Medical": 0,
-      "Groceries": 0
+      "Fitness / Self Improvement": 0,
+      "Groceries": 0,
+      "Grooming": 0
     },
     {
       "month": "2025-09",
       "total": 42246.53,
       "Personal Transfer": 20981.04,
-      "Uncategorized": 3759.49,
+      "Uncategorized": 2299.1400000000003,
       "Investment": 0,
-      "Misc": 0,
-      "Food": 3626.0,
+      "Misc": 265.5,
+      "Food": 4177.0,
       "Rent": 13099.0,
       "Transport": 130.0,
-      "Shopping": 448.0,
+      "Shopping": 508.0,
       "Subscriptions": 203.0,
       "Fuel": 0,
       "Entertainment": 0,
+      "Travel": 563.85,
       "Medical": 0,
-      "Groceries": 0
+      "Fitness / Self Improvement": 0,
+      "Groceries": 0,
+      "Grooming": 20.0
     },
     {
       "month": "2025-10",
@@ -1844,59 +1882,71 @@
       "Subscriptions": 49.0,
       "Fuel": 0,
       "Entertainment": 0,
+      "Travel": 0,
       "Medical": 460.0,
-      "Groceries": 0
+      "Fitness / Self Improvement": 0,
+      "Groceries": 0,
+      "Grooming": 0
     },
     {
       "month": "2025-11",
       "total": 55655.090000000004,
       "Personal Transfer": 25712.0,
-      "Uncategorized": 6017.0,
+      "Uncategorized": 3466.0,
       "Investment": 21254.940000000002,
-      "Misc": 0,
+      "Misc": 1.0,
       "Food": 518.0,
       "Rent": 0,
       "Transport": 1245.0,
-      "Shopping": 127.0,
+      "Shopping": 177.0,
       "Subscriptions": 716.0,
       "Fuel": 0,
-      "Entertainment": 0,
+      "Entertainment": 2500.0,
+      "Travel": 0,
       "Medical": 0,
-      "Groceries": 65.15
+      "Fitness / Self Improvement": 0,
+      "Groceries": 65.15,
+      "Grooming": 0
     },
     {
       "month": "2026-04",
       "total": 69621.79000000001,
       "Personal Transfer": 32389.17,
-      "Uncategorized": 2596.98,
+      "Uncategorized": 2102.12,
       "Investment": 9940.03,
       "Misc": 13581.5,
-      "Food": 3551.12,
+      "Food": 4001.98,
       "Rent": 0,
       "Transport": 3427.8500000000004,
       "Shopping": 1315.6,
       "Subscriptions": 70.0,
       "Fuel": 2749.54,
       "Entertainment": 0,
+      "Travel": 0,
       "Medical": 0,
-      "Groceries": 0
+      "Fitness / Self Improvement": 0,
+      "Groceries": 44.0,
+      "Grooming": 0
     },
     {
       "month": "2026-05",
-      "total": 17141.699999999997,
+      "total": 21092.269999999997,
       "Personal Transfer": 3556.84,
-      "Uncategorized": 2072.08,
+      "Uncategorized": 175.0,
       "Investment": 10108.06,
       "Misc": 0,
-      "Food": 607.22,
+      "Food": 2197.2200000000003,
       "Rent": 0,
-      "Transport": 496.5,
+      "Transport": 3602.14,
       "Shopping": 216.0,
       "Subscriptions": 0,
-      "Fuel": 0,
+      "Fuel": 844.93,
       "Entertainment": 23.0,
+      "Travel": 0,
       "Medical": 0,
-      "Groceries": 62.0
+      "Fitness / Self Improvement": 307.08,
+      "Groceries": 62.0,
+      "Grooming": 0
     }
   ],
   "months": [
@@ -1922,7 +1972,10 @@
     "Fuel": 1500,
     "Rent": 13000,
     "Investment": 20000,
-    "Personal Transfer": 5000
+    "Personal Transfer": 5000,
+    "Grooming": 500,
+    "Travel": 2000,
+    "Misc": 500
   },
   "top_merchants": [
     {
@@ -1966,6 +2019,10 @@
       "total": 4139.52
     },
     {
+      "name": "MC AGENCIES",
+      "total": 3594.47
+    },
+    {
       "name": "REDBUS INDIA PRIVATE L",
       "total": 3588.3500000000004
     },
@@ -1978,8 +2035,8 @@
       "total": 3300.0
     },
     {
-      "name": "MC AGENCIES",
-      "total": 2749.54
+      "name": "UBER * EATS PENDING",
+      "total": 3105.64
     },
     {
       "name": "EatClub",
@@ -2000,10 +2057,6 @@
     {
       "name": "TARUN B",
       "total": 2282.5
-    },
-    {
-      "name": "Mr NITHYA SHREE R",
-      "total": 2000.0
     }
   ]
 }

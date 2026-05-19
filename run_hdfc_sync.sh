@@ -57,22 +57,42 @@ ram_usage_percent() {
   echo "$usage"
 }
 
-notify_oauth_error() {
-  local msg="HDFC Sync: Gmail OAuth token expired (invalid_grant). Re-authenticate with: gog auth karneeshkar68@gmail.com"
-  # Resolve DBUS session so notify-send works from cron/systemd
-  local uid
+# Fire a desktop notification (Mako) for any failure, and log it.
+# Resolves the DBUS session bus so it works from cron/systemd too.
+notify_error() {
+  local title="$1" msg="$2"
+  local uid bus
   uid=$(id -u)
-  local bus
   bus=$(find /run/user/"$uid"/ -name "bus" 2>/dev/null | head -1)
   if [[ -n "$bus" ]]; then
     DBUS_SESSION_BUS_ADDRESS="unix:path=$bus" notify-send \
       --urgency=critical \
       --icon=dialog-error \
       --app-name="HDFC Sync" \
-      "OAuth Token Expired" \
+      "$title" \
       "$msg" 2>/dev/null || true
   fi
-  printf '%s %s\n' "$(date --iso-8601=seconds)" "$msg" >> "$LOG_FILE"
+  printf '%s [ERROR] %s: %s\n' "$(date --iso-8601=seconds)" "$title" "$msg" >> "$LOG_FILE"
+}
+
+# Run a pipeline step; on any non-zero exit, fire a notification and abort.
+# Recognises the OAuth invalid_grant case and gives a more actionable message.
+run_step() {
+  local label="$1"; shift
+  local out rc
+  out=$("$@" 2>&1); rc=$?
+  printf '%s\n' "$out"
+  if ((rc != 0)); then
+    if echo "$out" | grep -q "invalid_grant"; then
+      notify_error "OAuth Token Expired" \
+        "HDFC Sync: Gmail OAuth token expired (invalid_grant). Re-authenticate with: gog auth add karneeshkar68@gmail.com"
+    else
+      local snippet
+      snippet=$(printf '%s' "$out" | tail -n 5 | tr '\n' ' ')
+      notify_error "$label failed (exit $rc)" "HDFC Sync: $snippet"
+    fi
+    exit "$rc"
+  fi
 }
 
 exec 200>"$LOCK_FILE"
@@ -93,24 +113,17 @@ if ((CPU_USAGE < CPU_THRESHOLD && RAM_USAGE < RAM_THRESHOLD)); then
       RUN="$PYTHON_BIN"
     fi
 
-    SYNC_ERR=$( { $RUN "$SCRIPT_DIR/sync_hdfc_expenses.py" 2>&1; } )
-    SYNC_EXIT=$?
-    printf '%s\n' "$SYNC_ERR"
-    if echo "$SYNC_ERR" | grep -q "invalid_grant"; then
-      notify_oauth_error
-      exit 1
-    fi
-    [[ $SYNC_EXIT -eq 0 ]] || exit $SYNC_EXIT
+    run_step "Sync" $RUN "$SCRIPT_DIR/sync_hdfc_expenses.py"
     printf '%s Sync complete.\n' "$(date --iso-8601=seconds)"
 
     printf '%s Running retag...\n' "$(date --iso-8601=seconds)"
-    $RUN "$SCRIPT_DIR/sync_hdfc_expenses.py" --retag
+    run_step "Retag" $RUN "$SCRIPT_DIR/sync_hdfc_expenses.py" --retag
 
     printf '%s Generating report...\n' "$(date --iso-8601=seconds)"
-    $RUN "$SCRIPT_DIR/sync_hdfc_expenses.py" --report
+    run_step "Report" $RUN "$SCRIPT_DIR/sync_hdfc_expenses.py" --report
 
     printf '%s Exporting dashboard data...\n' "$(date --iso-8601=seconds)"
-    $RUN "$SCRIPT_DIR/export_dashboard_data.py"
+    run_step "Dashboard export" $RUN "$SCRIPT_DIR/export_dashboard_data.py"
   } >> "$LOG_FILE" 2>&1
 else
   printf '%s Skipped: CPU=%s%% RAM=%s%% (thresholds: CPU<%s%% RAM<%s%%).\n' \
