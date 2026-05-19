@@ -12,7 +12,7 @@ import subprocess
 import sys
 from collections import Counter
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
@@ -20,8 +20,14 @@ from typing import Any, Dict, List, Optional
 DEFAULT_STATE_FILE = ".hdfc_sync_state.json"
 DEFAULT_UNPARSED_FILE = ".hdfc_unparsed.json"
 DEFAULT_DEBUG_UNPARSED_FILE = ".hdfc_unparsed_debug.json"
+DEFAULT_HEALTH_FILE = ".hdfc_health.json"
 DEFAULT_TAB = "Transactions"
 DEFAULT_LOOKBACK_DAYS = 90
+# Re-scan this many days before the last run so a stalled/sparse sync
+# recovers mail instead of letting it age out of the lookback window.
+DEFAULT_SEARCH_BUFFER_DAYS = 3
+# Warn if the newest sheet transaction is older than this (sync likely stalled).
+DEFAULT_STALE_ALERT_DAYS = 10
 
 # Subjects/snippets that look transactional but never represent a real spend.
 # These keep promotional and account-service mail out of the "failed to parse"
@@ -179,9 +185,13 @@ class Config:
     spreadsheet_title: str
     tab_name: str
     lookback_days: int
+    search_buffer_days: int
+    stale_alert_days: int
     state_file: Path
     unparsed_file: Path
     debug_unparsed_file: Path
+    health_file: Path
+    since: Optional[str]
     dry_run: bool
 
 
@@ -307,6 +317,20 @@ def to_sheet_txn_date(value: str) -> str:
     if not cleaned:
         return ""
     return f"'{cleaned}"
+
+
+def latest_sheet_date(values: List[str]) -> Optional[datetime]:
+    """Newest parseable date among raw sheet txn_date cells (col A)."""
+    newest: Optional[datetime] = None
+    for raw in values:
+        cleaned = str(raw).lstrip("'").strip()[:10]
+        try:
+            dt = datetime.strptime(cleaned, "%Y-%m-%d")
+        except ValueError:
+            continue
+        if newest is None or dt > newest:
+            newest = dt
+    return newest
 
 
 def is_expense_candidate(subject: str, snippet: str) -> bool:
@@ -444,11 +468,16 @@ def parse_transaction(message: Dict[str, Any]) -> Optional[Dict[str, Any]]:
     return parsed
 
 
-def search_threads(config: Config) -> List[Dict[str, Any]]:
+def search_threads(
+    config: Config, since: Optional[str] = None
+) -> List[Dict[str, Any]]:
+    window = (
+        f"after:{since}" if since else f"newer_than:{config.lookback_days}d"
+    )
     query = (
         "(from:alerts@hdfcbank.net OR from:alerts@hdfcbank.com OR from:alerts@hdfcbank.bank.in) "
         '("Credit Card" OR "UPI txn" OR debited OR transaction) '
-        f"newer_than:{config.lookback_days}d"
+        f"{window}"
     )
     payload = run_gog(["gmail", "search", query, "--max", "1000"], config.gog_account)
     return payload.get("threads") or []
@@ -996,15 +1025,26 @@ def build_config(args: argparse.Namespace) -> Config:
         .expanduser()
         .resolve()
     )
+    health_path = (
+        Path(os.getenv("HEALTH_FILE", DEFAULT_HEALTH_FILE)).expanduser().resolve()
+    )
     return Config(
         gog_account=os.getenv("GOG_ACCOUNT") or None,
         spreadsheet_id=os.getenv("SPREADSHEET_ID") or None,
         spreadsheet_title=os.getenv("SPREADSHEET_TITLE", "HDFC Expenses"),
         tab_name=os.getenv("TRANSACTIONS_TAB", DEFAULT_TAB),
         lookback_days=int(os.getenv("LOOKBACK_DAYS", str(DEFAULT_LOOKBACK_DAYS))),
+        search_buffer_days=int(
+            os.getenv("SEARCH_BUFFER_DAYS", str(DEFAULT_SEARCH_BUFFER_DAYS))
+        ),
+        stale_alert_days=int(
+            os.getenv("STALE_ALERT_DAYS", str(DEFAULT_STALE_ALERT_DAYS))
+        ),
         state_file=state_path,
         unparsed_file=unparsed_path,
         debug_unparsed_file=debug_unparsed_path,
+        health_file=health_path,
+        since=getattr(args, "since", None) or None,
         dry_run=args.dry_run,
     )
 
@@ -1018,6 +1058,11 @@ def main() -> int:
     )
     parser.add_argument(
         "--debug", action="store_true", help="Print per-message parse details"
+    )
+    parser.add_argument(
+        "--since", metavar="YYYY-MM-DD",
+        help="One-off backfill: search HDFC mail on/after this date instead "
+        "of the rolling lookback window. Dedupes against state and sheet.",
     )
     parser.add_argument(
         "--report", action="store_true",
@@ -1054,6 +1099,25 @@ def main() -> int:
     newly_seen_ids: set[str] = set()
     new_unparsed: List[Dict[str, Any]] = []
 
+    # Decide the Gmail search floor. An explicit --since wins (manual
+    # backfill). Otherwise anchor to the last successful run minus a buffer
+    # so a stalled/sparse sync recovers instead of letting mail age out of
+    # the rolling lookback window. First ever run falls back to lookback.
+    if config.since:
+        search_since = config.since.replace("-", "/")
+    else:
+        last_run = state.get("last_run_date")
+        if last_run:
+            try:
+                floor = datetime.strptime(last_run, "%Y-%m-%d").date() - timedelta(
+                    days=config.search_buffer_days
+                )
+                search_since = floor.strftime("%Y/%m/%d")
+            except ValueError:
+                search_since = None
+        else:
+            search_since = None
+
     unparsed_debug: Dict[str, Any] = {}
     if config.debug_unparsed_file.exists():
         try:
@@ -1081,7 +1145,7 @@ def main() -> int:
                 if len(row) > 7 and row[7].strip():
                     processed_ids.add(row[7].strip())
 
-    threads = search_threads(config)
+    threads = search_threads(config, since=search_since)
     transactions: List[Dict[str, Any]] = []
 
     for thread in threads:
@@ -1171,6 +1235,7 @@ def main() -> int:
         processed_ids.update(newly_seen_ids)
         state["processed_message_ids"] = sorted(processed_ids)[-20000:]
         state["notified_unparsed_ids"] = sorted(notified_unparsed)[-5000:]
+        state["last_run_date"] = datetime.now(timezone.utc).strftime("%Y-%m-%d")
         if spreadsheet_id and spreadsheet_id != "DRY_RUN_SPREADSHEET_ID":
             state["spreadsheet_id"] = spreadsheet_id
         save_state(config.state_file, state)
@@ -1185,7 +1250,36 @@ def main() -> int:
             encoding="utf-8",
         )
 
+        # Stale-sync health: newest transaction across the sheet snapshot
+        # plus anything written this run. If it is older than the threshold
+        # the wrapper raises a desktop alert (the user spends >=1/10 days).
+        candidate_dates = [r[0] for r in existing_rows[1:] if r]
+        candidate_dates += [t.get("txn_date", "") for t in transactions]
+        newest = latest_sheet_date(candidate_dates)
+        days_stale = (
+            (datetime.now(timezone.utc).replace(tzinfo=None) - newest).days
+            if newest
+            else None
+        )
+        config.health_file.write_text(
+            json.dumps(
+                {
+                    "newest_txn_date": newest.strftime("%Y-%m-%d")
+                    if newest
+                    else None,
+                    "days_stale": days_stale,
+                    "threshold_days": config.stale_alert_days,
+                    "stale": days_stale is not None
+                    and days_stale > config.stale_alert_days,
+                    "checked_at": datetime.now(timezone.utc).isoformat(),
+                },
+                indent=2,
+            ),
+            encoding="utf-8",
+        )
+
     print(
+        f"Search since: {search_since or f'newer_than:{config.lookback_days}d'} | "
         f"Scanned threads: {len(threads)} | Parsed new expenses: {len(transactions)} | "
         f"Unparsed expense candidates: {len(new_unparsed)} | "
         f"Unparsed HDFC mails logged: {len(unparsed_debug)} | "

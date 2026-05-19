@@ -96,7 +96,8 @@ notify_info() {
 # Alert if the sync flagged HDFC expense-looking mail it could not parse.
 UNPARSED_FILE="$SCRIPT_DIR/.hdfc_unparsed.json"
 DEBUG_UNPARSED_FILE="$SCRIPT_DIR/.hdfc_unparsed_debug.json"
-export UNPARSED_FILE DEBUG_UNPARSED_FILE
+HEALTH_FILE="$SCRIPT_DIR/.hdfc_health.json"
+export UNPARSED_FILE DEBUG_UNPARSED_FILE HEALTH_FILE
 check_unparsed() {
   [[ -f "$UNPARSED_FILE" ]] || return 0
   local summary
@@ -118,6 +119,30 @@ PY
     first=${summary#*$'\t'}
     notify_info "$count HDFC expense email(s) not tracked" \
       "Possible untracked spend — parser may need an update. e.g. $first"
+  fi
+}
+
+# Alert if the sheet's newest transaction is stale (sync likely stalled —
+# the user spends at least once every ~10 days, so a longer gap is suspect).
+check_stale() {
+  [[ -f "$HEALTH_FILE" ]] || return 0
+  local line
+  line=$("$PYTHON_BIN" - "$HEALTH_FILE" <<'PY'
+import json, sys
+try:
+    h = json.load(open(sys.argv[1]))
+except Exception:
+    sys.exit(0)
+if h.get("stale"):
+    print(f'{h.get("days_stale")}\t{h.get("newest_txn_date")}')
+PY
+)
+  if [[ -n "$line" ]]; then
+    local days newest
+    days=${line%%$'\t'*}
+    newest=${line#*$'\t'}
+    notify_info "HDFC sync may be stale ($days days)" \
+      "Newest tracked expense is $newest. Expected one within ~10 days — check the sync."
   fi
 }
 
@@ -162,6 +187,7 @@ if ((CPU_USAGE < CPU_THRESHOLD && RAM_USAGE < RAM_THRESHOLD)); then
     run_step "Sync" $RUN "$SCRIPT_DIR/sync_hdfc_expenses.py"
     printf '%s Sync complete.\n' "$(date --iso-8601=seconds)"
     check_unparsed
+    check_stale
 
     printf '%s Running retag...\n' "$(date --iso-8601=seconds)"
     run_step "Retag" $RUN "$SCRIPT_DIR/sync_hdfc_expenses.py" --retag
