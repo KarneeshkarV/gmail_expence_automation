@@ -47,6 +47,11 @@ NON_TXN_MARKERS: List[str] = [
 # ── Auto-categorisation rules ────────────────────────────────────────────────
 # Each rule is (category, [keywords]).  First match wins (order matters).
 CATEGORY_RULES: List[tuple] = [
+    # Internal card-bill payment (you paying off the HDFC credit card from
+    # your account) — not a real expense; kept first so it always wins.
+    ("Credit Card Payment", [
+        "credit card payment",
+    ]),
     ("Food", [
         "zomato", "swiggy", "eatclub", "blinkit", "dominos", "pizza", "burger",
         "hotel", "restaurant", "navarasa", "udupi", "bhavan", "dharthi",
@@ -59,12 +64,16 @@ CATEGORY_RULES: List[tuple] = [
         "t3 chat",
         "jas delicacies", "eternal limited", "ovenly", "tera bites",
         "tvk casual dine",
+        "anirban hazra", "anirbanhazra",
+        "sri matha vaibhava", "sri guru raghavendra", "mc donalds",
+        "saurav ventures", "dotpe",
     ]),
     ("Transport", [
         "redbus", "rapido", "uber", "ola", "metro", "bmtc", "bus",
         "fuel", "petro", "petroleum", "hpcl", "iocl", "bpcl",
         "filling station", "makemytrip", "balasubramanian auto",
         "roppen transport", "toll",
+        "cmrl", "chennai metro",
     ]),
     ("Medical", [
         "medic", "venus medic", "krishna medic", "pharma", "hospital",
@@ -75,10 +84,11 @@ CATEGORY_RULES: List[tuple] = [
         "google india digital", "google india service", "google cloud",
         "stripe-z.ai", "eversub", "soic", "raz*soic", "linkedin",
         "airtel", "jio", "netflix", "spotify", "amazon prime",
+        "tamizkumaran", "corequest",
     ]),
     ("Rent", [
-        "rentok", "eazyapp", "eazypg", "sandhya p g", "sandhyapg",
-        "eqaro",
+        "rentok", "eazyapp", "eazypg", "sandhya p g", "sandhya pg",
+        "sandhyapg", "eqaro",
     ]),
     ("Investment", [
         "wint wealth", "wintwealth", "zerodha", "groww", "mutual fund",
@@ -87,6 +97,7 @@ CATEGORY_RULES: List[tuple] = [
     ("Entertainment", [
         "bookmyshow", "amoeba", "pvr", "inox",
         "deva__darts", "deva_darts",
+        "eswar varun",
     ]),
     ("Fitness / Self Improvement", [
         "cult.fit", "cultfit", "cure.fit", "curefit",
@@ -104,6 +115,8 @@ CATEGORY_RULES: List[tuple] = [
         "elayaraja", "reliance digital", "datosmind", "minetech",
         "vendolite", "dhanush store", "neels super",
         "brida home", "durga leather",
+        "selvin store", "sgp shriiwisdom", "vm group", "asspl",
+        "cred club",
     ]),
     ("Groceries", [
         "kpn farm", "kpn ff", "thefarmer", "farm fresh",
@@ -113,31 +126,26 @@ CATEGORY_RULES: List[tuple] = [
     ("Fuel", [
         "aboorva glo", "srinivasa service", "platinum petro",
     ]),
+    # One-off vehicle purchase (bike) — kept out of Personal Transfer.
+    ("Vehicle", [
+        "somasundaram",
+    ]),
+    # Reimbursable / business outflow — not personal consumption.
+    ("Business", [
+        "deepak prakash",
+        "interakt", "nexmo", "name dot store",
+    ]),
     ("Personal Transfer", [
-        "veera020204", "vel murugan", "somasundaram",
-        "avneesh kumar", "deepak prakash", "jayanth srinivasan",
+        "veera020204", "vel murugan",
+        "avneesh kumar", "jayanth srinivasan",
         "jeeva svithra", "avish vijay", "anirudh raman",
         "achyut narayan", "md sajjad", "nitheesh bharadwaj",
         "nadimpalli nitya", "shivani balasubra", "shivani narayan",
         "sairam b", "m prasanna venkat", "nithya r", "tarun b",
         "prince kumar", "ashish ram",
-        "sandhya pg", "sandhyapg", "mr m deepak", "bharath k",
+        "mr m deepak", "bharath k",
         "fidusachatesvit", "venkatesh r", "suriyamoorthi",
         "r aadithya", "abdul rahim", "nasurutheen",
-    ]),
-    ("Food", [
-        "sri matha vaibhava", "sri guru raghavendra", "mc donalds",
-        "saurav ventures", "dotpe",
-    ]),
-    ("Shopping", [
-        "selvin store", "sgp shriiwisdom", "vm group", "asspl",
-        "cred club",
-    ]),
-    ("Transport", [
-        "cmrl", "chennai metro",
-    ]),
-    ("Subscriptions", [
-        "tamizkumaran", "corequest",
     ]),
     ("Grooming", [
         "saloon", "salon", "just trim", "barber",
