@@ -75,6 +75,52 @@ notify_error() {
   printf '%s [ERROR] %s: %s\n' "$(date --iso-8601=seconds)" "$title" "$msg" >> "$LOG_FILE"
 }
 
+# Non-critical desktop notification (Mako). Used for alerts that should not
+# abort the pipeline, e.g. HDFC mail that looks like a spend but did not parse.
+notify_info() {
+  local title="$1" msg="$2"
+  local uid bus
+  uid=$(id -u)
+  bus=$(find /run/user/"$uid"/ -name "bus" 2>/dev/null | head -1)
+  if [[ -n "$bus" ]]; then
+    DBUS_SESSION_BUS_ADDRESS="unix:path=$bus" notify-send \
+      --urgency=normal \
+      --icon=dialog-warning \
+      --app-name="HDFC Sync" \
+      "$title" \
+      "$msg" 2>/dev/null || true
+  fi
+  printf '%s [INFO] %s: %s\n' "$(date --iso-8601=seconds)" "$title" "$msg" >> "$LOG_FILE"
+}
+
+# Alert if the sync flagged HDFC expense-looking mail it could not parse.
+UNPARSED_FILE="$SCRIPT_DIR/.hdfc_unparsed.json"
+DEBUG_UNPARSED_FILE="$SCRIPT_DIR/.hdfc_unparsed_debug.json"
+export UNPARSED_FILE DEBUG_UNPARSED_FILE
+check_unparsed() {
+  [[ -f "$UNPARSED_FILE" ]] || return 0
+  local summary
+  summary=$("$PYTHON_BIN" - "$UNPARSED_FILE" <<'PY'
+import json, sys
+try:
+    items = json.load(open(sys.argv[1]))
+except Exception:
+    items = []
+if not items:
+    sys.exit(0)
+sample = (items[0].get("subject") or items[0].get("snippet") or "").strip()[:90]
+print(f"{len(items)}\t{sample}")
+PY
+)
+  if [[ -n "$summary" ]]; then
+    local count first
+    count=${summary%%$'\t'*}
+    first=${summary#*$'\t'}
+    notify_info "$count HDFC expense email(s) not tracked" \
+      "Possible untracked spend — parser may need an update. e.g. $first"
+  fi
+}
+
 # Run a pipeline step; on any non-zero exit, fire a notification and abort.
 # Recognises the OAuth invalid_grant case and gives a more actionable message.
 run_step() {
@@ -115,6 +161,7 @@ if ((CPU_USAGE < CPU_THRESHOLD && RAM_USAGE < RAM_THRESHOLD)); then
 
     run_step "Sync" $RUN "$SCRIPT_DIR/sync_hdfc_expenses.py"
     printf '%s Sync complete.\n' "$(date --iso-8601=seconds)"
+    check_unparsed
 
     printf '%s Running retag...\n' "$(date --iso-8601=seconds)"
     run_step "Retag" $RUN "$SCRIPT_DIR/sync_hdfc_expenses.py" --retag

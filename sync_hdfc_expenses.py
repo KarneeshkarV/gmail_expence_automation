@@ -18,8 +18,25 @@ from typing import Any, Dict, List, Optional
 
 
 DEFAULT_STATE_FILE = ".hdfc_sync_state.json"
+DEFAULT_UNPARSED_FILE = ".hdfc_unparsed.json"
+DEFAULT_DEBUG_UNPARSED_FILE = ".hdfc_unparsed_debug.json"
 DEFAULT_TAB = "Transactions"
 DEFAULT_LOOKBACK_DAYS = 90
+
+# Subjects/snippets that look transactional but never represent a real spend.
+# These keep promotional and account-service mail out of the "failed to parse"
+# alert stream so notifications stay signal, not ad noise.
+NON_TXN_MARKERS: List[str] = [
+    "otp", "one time password", "e-mandate", "emandate", "mandate",
+    "pin change", "card usage settings", "secure usage tips",
+    "relationship manager", "missed call", "statement", "e-statement",
+    "minimum amount due", "total amount due", "bill generated", "due date",
+    "pre-approved", "pre approved", "reward point", "rewards point",
+    "offer", "voucher", "% off", "flat ", "cashback offer", "discount",
+    "lucky", "congratulations", "personal loan", "loan offer",
+    "limit increase", "upgrade your", "exclusive", "introducing",
+    "registering", "registration", "successfully read",
+]
 
 # ── Auto-categorisation rules ────────────────────────────────────────────────
 # Each rule is (category, [keywords]).  First match wins (order matters).
@@ -163,6 +180,8 @@ class Config:
     tab_name: str
     lookback_days: int
     state_file: Path
+    unparsed_file: Path
+    debug_unparsed_file: Path
     dry_run: bool
 
 
@@ -293,12 +312,27 @@ def to_sheet_txn_date(value: str) -> str:
 def is_expense_candidate(subject: str, snippet: str) -> bool:
     text = f"{subject} {snippet}".lower()
 
+    if any(marker in text for marker in NON_TXN_MARKERS):
+        return False
+
     expense_keywords = ["debited", "spent", "purchase", "upi txn"]
     income_keywords = ["credited", "refund", "reversal", "cashback", "reversed"]
 
     has_expense = any(word in text for word in expense_keywords)
     has_income = any(word in text for word in income_keywords)
     return has_expense and not has_income
+
+
+def unparsed_reason(subject: str, snippet: str) -> str:
+    """Classify why an HDFC mail did not yield a transaction (for debugging)."""
+    if is_expense_candidate(subject, snippet):
+        return "expense_unparsed"
+    text = f"{subject} {snippet}".lower()
+    if any(marker in text for marker in NON_TXN_MARKERS):
+        return "non_txn_marker"
+    if any(word in text for word in ("credited", "refund", "reversal", "cashback")):
+        return "income_or_reversal"
+    return "no_expense_keyword"
 
 
 def parse_credit_card(subject: str, snippet: str) -> Optional[Dict[str, Any]]:
@@ -344,8 +378,17 @@ def parse_upi(snippet: str, subject: str) -> Optional[Dict[str, Any]]:
     if "upi" not in text and "vpa" not in text:
         return None
 
+    # Matches both the legacy wording
+    #   "Rs.X has been debited from account **8727 to VPA vpa NAME on DD-MM-YY"
+    # and the current wording
+    #   "Rs.X is debited from your account ending 8727 towards VPA vpa (NAME) on DD-MM-YY"
     main = re.search(
-        r"Rs\.?\s*([0-9,]+(?:\.[0-9]{1,2})?)\s+has\s+been\s+debited\s+from\s+account\s+\**(\d{2,4})\s+to\s+VPA\s+([^\s]+)(?:\s+(.+?))?\s+on\s+([0-9]{2}-[0-9]{2}-[0-9]{2})",
+        r"Rs\.?\s*([0-9,]+(?:\.[0-9]{1,2})?)\s+"
+        r"(?:has\s+been|is)\s+debited\s+from\s+(?:your\s+)?account\s+"
+        r"(?:ending\s+)?\**\s*(\d{2,4})\s+"
+        r"(?:to|towards)\s+VPA\s+(\S+)"
+        r"(?:\s+\(([^)]+)\)|\s+([^(]+?))?"
+        r"\s+on\s+([0-9]{2}-[0-9]{2}-[0-9]{2})",
         snippet,
         re.IGNORECASE,
     )
@@ -353,12 +396,13 @@ def parse_upi(snippet: str, subject: str) -> Optional[Dict[str, Any]]:
         return None
 
     ref_match = re.search(
-        r"(?:reference\s+number\s+is|UTR\s*(?:number)?\s*is)\s*([A-Za-z0-9]+)",
+        r"(?:reference\s+number\s+is|UTR\s*(?:number)?\s*is"
+        r"|reference\s+no\.?\s*:?)\s*([A-Za-z0-9]+)",
         snippet,
         re.IGNORECASE,
     )
 
-    entity = (main.group(4) or "").strip()
+    entity = (main.group(4) or main.group(5) or "").strip()
 
     return {
         "amount": as_float(main.group(1)),
@@ -366,7 +410,7 @@ def parse_upi(snippet: str, subject: str) -> Optional[Dict[str, Any]]:
         "merchant_or_payee": entity if entity else main.group(3).strip(),
         "account_or_card": f"**{main.group(2)}",
         "reference_no": ref_match.group(1) if ref_match else "",
-        "txn_date": normalize_txn_date(main.group(5)),
+        "txn_date": normalize_txn_date(main.group(6)),
     }
 
 
@@ -752,6 +796,67 @@ def retag_sheet(config: Config, force: bool = False) -> int:
     return 0
 
 
+def scan_unparsed(config: Config) -> int:
+    """Scan the lookback window and dump every unparsed HDFC mail.
+
+    Ignores processed state and never touches the sheet/state — purely a
+    debugging aid to inspect parser gaps.
+    """
+    debug: Dict[str, Any] = {}
+    if config.debug_unparsed_file.exists():
+        try:
+            loaded = json.loads(
+                config.debug_unparsed_file.read_text(encoding="utf-8")
+            )
+            if isinstance(loaded, dict):
+                debug = loaded
+        except json.JSONDecodeError:
+            debug = {}
+
+    threads = search_threads(config)
+    scanned = 0
+    reasons: Counter = Counter()
+    for thread in threads:
+        thread_id = thread.get("id")
+        if not thread_id:
+            continue
+        for message in get_thread_messages(config, thread_id):
+            message_id = message.get("id")
+            if not message_id:
+                continue
+            from_h = get_header(message, "From")
+            if "hdfcbank" not in from_h.lower():
+                continue
+            scanned += 1
+            if parse_transaction(message):
+                continue
+            subject = get_header(message, "Subject")
+            snippet = message.get("snippet", "")
+            reason = unparsed_reason(subject, snippet)
+            reasons[reason] += 1
+            debug[message_id] = {
+                "message_id": message_id,
+                "from": from_h,
+                "subject": subject,
+                "snippet": snippet,
+                "date": normalize_txn_date(get_header(message, "Date")),
+                "reason": reason,
+                "last_seen": datetime.now(timezone.utc).isoformat(),
+            }
+
+    if len(debug) > 5000:
+        debug = {k: debug[k] for k in list(debug)[-5000:]}
+    config.debug_unparsed_file.write_text(
+        json.dumps(debug, indent=2, sort_keys=True), encoding="utf-8"
+    )
+
+    print(
+        f"Scanned {scanned} HDFC mails | unparsed logged: {len(debug)} "
+        f"({dict(reasons)}) | file: {config.debug_unparsed_file}"
+    )
+    return 0
+
+
 def generate_report(config: Config) -> int:
     """Read the sheet and print a monthly spending report with budget comparison."""
     state = load_state(config.state_file)
@@ -881,6 +986,16 @@ def build_config(args: argparse.Namespace) -> Config:
     state_path = (
         Path(os.getenv("STATE_FILE", DEFAULT_STATE_FILE)).expanduser().resolve()
     )
+    unparsed_path = (
+        Path(os.getenv("UNPARSED_FILE", DEFAULT_UNPARSED_FILE))
+        .expanduser()
+        .resolve()
+    )
+    debug_unparsed_path = (
+        Path(os.getenv("DEBUG_UNPARSED_FILE", DEFAULT_DEBUG_UNPARSED_FILE))
+        .expanduser()
+        .resolve()
+    )
     return Config(
         gog_account=os.getenv("GOG_ACCOUNT") or None,
         spreadsheet_id=os.getenv("SPREADSHEET_ID") or None,
@@ -888,6 +1003,8 @@ def build_config(args: argparse.Namespace) -> Config:
         tab_name=os.getenv("TRANSACTIONS_TAB", DEFAULT_TAB),
         lookback_days=int(os.getenv("LOOKBACK_DAYS", str(DEFAULT_LOOKBACK_DAYS))),
         state_file=state_path,
+        unparsed_file=unparsed_path,
+        debug_unparsed_file=debug_unparsed_path,
         dry_run=args.dry_run,
     )
 
@@ -914,10 +1031,17 @@ def main() -> int:
         "--force-retag", action="store_true",
         help="Re-categorise ALL rows (including already-tagged) using rules engine",
     )
+    parser.add_argument(
+        "--scan-unparsed", action="store_true",
+        help="Scan the lookback window (ignoring processed state) and write "
+        "every unparsed HDFC mail to the debug file. No sheet/state writes.",
+    )
     args = parser.parse_args()
 
     config = build_config(args)
 
+    if args.scan_unparsed:
+        return scan_unparsed(config)
     if args.report:
         return generate_report(config)
     if args.retag:
@@ -926,7 +1050,20 @@ def main() -> int:
         return retag_sheet(config, force=True)
     state = load_state(config.state_file)
     processed_ids = set(state.get("processed_message_ids", []))
+    notified_unparsed = set(state.get("notified_unparsed_ids", []))
     newly_seen_ids: set[str] = set()
+    new_unparsed: List[Dict[str, Any]] = []
+
+    unparsed_debug: Dict[str, Any] = {}
+    if config.debug_unparsed_file.exists():
+        try:
+            loaded = json.loads(
+                config.debug_unparsed_file.read_text(encoding="utf-8")
+            )
+            if isinstance(loaded, dict):
+                unparsed_debug = loaded
+        except json.JSONDecodeError:
+            unparsed_debug = {}
 
     # Resolve sheet first so we can dedup against existing rows (state file
     # is a cache, sheet is source-of-truth — survives state-file deletion).
@@ -964,16 +1101,57 @@ def main() -> int:
             from_h = get_header(message, "From")
             snippet = message.get("snippet", "")
             parsed = parse_transaction(message)
-            newly_seen_ids.add(message_id)
             if parsed:
+                newly_seen_ids.add(message_id)
                 transactions.append(parsed)
                 if args.debug:
                     print(f"[PARSED] {message_id} | {parsed.get('mode')} | Rs.{parsed.get('amount')} | {parsed.get('merchant_or_payee')}")
-            elif args.debug:
-                print(f"[SKIPPED] {message_id}")
-                print(f"  from={from_h[:60]}")
-                print(f"  subj={subject[:80]}")
-                print(f"  snippet={snippet[:120]}")
+                continue
+
+            if "hdfcbank" not in from_h.lower():
+                newly_seen_ids.add(message_id)
+                if args.debug:
+                    print(f"[SKIPPED non-HDFC] {message_id} from={from_h[:60]}")
+                continue
+
+            # Every HDFC mail we could not turn into a transaction is logged
+            # to the debug file (deduped by id) so parser gaps can be
+            # inspected later.
+            reason = unparsed_reason(subject, snippet)
+            unparsed_debug[message_id] = {
+                "message_id": message_id,
+                "from": from_h,
+                "subject": subject,
+                "snippet": snippet,
+                "date": normalize_txn_date(get_header(message, "Date")),
+                "reason": reason,
+                "last_seen": datetime.now(timezone.utc).isoformat(),
+            }
+
+            if reason == "expense_unparsed":
+                # Looks like a spend but no rule matched — likely an HDFC
+                # wording change. Leave it unprocessed so a future parser
+                # fix can still pick it up, and alert once.
+                if message_id not in notified_unparsed:
+                    notified_unparsed.add(message_id)
+                    new_unparsed.append(
+                        {
+                            "message_id": message_id,
+                            "subject": subject,
+                            "snippet": snippet,
+                            "date": normalize_txn_date(
+                                get_header(message, "Date")
+                            ),
+                        }
+                    )
+                if args.debug:
+                    print(f"[UNPARSED-EXPENSE] {message_id} | {subject[:70]}")
+            else:
+                newly_seen_ids.add(message_id)
+                if args.debug:
+                    print(f"[SKIPPED {reason}] {message_id}")
+                    print(f"  subj={subject[:80]}")
+                    print(f"  snippet={snippet[:120]}")
 
     merchant_tag_map = build_merchant_tag_map(existing_rows)
     for txn in transactions:
@@ -992,12 +1170,25 @@ def main() -> int:
     if not config.dry_run:
         processed_ids.update(newly_seen_ids)
         state["processed_message_ids"] = sorted(processed_ids)[-20000:]
+        state["notified_unparsed_ids"] = sorted(notified_unparsed)[-5000:]
         if spreadsheet_id and spreadsheet_id != "DRY_RUN_SPREADSHEET_ID":
             state["spreadsheet_id"] = spreadsheet_id
         save_state(config.state_file, state)
+        config.unparsed_file.write_text(
+            json.dumps(new_unparsed, indent=2), encoding="utf-8"
+        )
+        if len(unparsed_debug) > 5000:
+            keep = list(unparsed_debug)[-5000:]
+            unparsed_debug = {k: unparsed_debug[k] for k in keep}
+        config.debug_unparsed_file.write_text(
+            json.dumps(unparsed_debug, indent=2, sort_keys=True),
+            encoding="utf-8",
+        )
 
     print(
         f"Scanned threads: {len(threads)} | Parsed new expenses: {len(transactions)} | "
+        f"Unparsed expense candidates: {len(new_unparsed)} | "
+        f"Unparsed HDFC mails logged: {len(unparsed_debug)} | "
         f"Tagging: pulled {pulled_count} edits, pushed {pushed_count} rows | "
         f"Spreadsheet: {spreadsheet_id} | Tab: {tab_name}"
     )

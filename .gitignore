@@ -1,5 +1,8 @@
 .env
 .hdfc_sync_state.json
+.hdfc_sync_state.json.bak
+.hdfc_unparsed.json
+.hdfc_unparsed_debug.json
 .hdfc_sync.lock
 logs/
 __pycache__/

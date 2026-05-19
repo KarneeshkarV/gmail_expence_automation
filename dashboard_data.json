@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-05-19T17:47:59.492675",
-  "transaction_count": 244,
+  "generated_at": "2026-05-19T18:19:05.423589",
+  "transaction_count": 299,
   "transactions": [
     {
       "date": "2026-05-06 20:30:46",
@@ -1709,244 +1709,669 @@
       "mode": "credit_card",
       "merchant": "UBER * EATS PENDING",
       "category": "Transport"
+    },
+    {
+      "date": "2026-05-18",
+      "amount": 5000.0,
+      "mode": "upi",
+      "merchant": "S VEL MURUGAN",
+      "category": "Personal Transfer"
+    },
+    {
+      "date": "2026-05-17",
+      "amount": 80.0,
+      "mode": "upi",
+      "merchant": "ELAYARAAJA ELECTRONICS",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2026-05-17",
+      "amount": 100.0,
+      "mode": "upi",
+      "merchant": "ARD PENNADAM",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2026-05-17",
+      "amount": 150.0,
+      "mode": "upi",
+      "merchant": "MURUGAN AGENCY",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2026-05-16",
+      "amount": 450.67,
+      "mode": "upi",
+      "merchant": "ACHYUT NARAYAN H",
+      "category": "Personal Transfer"
+    },
+    {
+      "date": "2026-05-15",
+      "amount": 180.0,
+      "mode": "upi",
+      "merchant": "Kumanan Saloon",
+      "category": "Grooming"
+    },
+    {
+      "date": "2026-05-11",
+      "amount": 208.0,
+      "mode": "upi",
+      "merchant": "JafarVP",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2026-05-11",
+      "amount": 260.0,
+      "mode": "upi",
+      "merchant": "NEELS SUPER MARKET",
+      "category": "Shopping"
+    },
+    {
+      "date": "2026-05-11",
+      "amount": 40.0,
+      "mode": "upi",
+      "merchant": "NEELS SUPER MARKET",
+      "category": "Shopping"
+    },
+    {
+      "date": "2026-05-11",
+      "amount": 196.5,
+      "mode": "upi",
+      "merchant": "ACHYUT NARAYAN H",
+      "category": "Personal Transfer"
+    },
+    {
+      "date": "2026-05-11",
+      "amount": 25.0,
+      "mode": "upi",
+      "merchant": "Hariharan Ganesh S",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2026-05-10",
+      "amount": 125.0,
+      "mode": "upi",
+      "merchant": "SUGARCANE JUICE",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2026-05-09",
+      "amount": 50.0,
+      "mode": "upi",
+      "merchant": "THARAMMAL ABDURAZACK",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2026-05-08",
+      "amount": 505.0,
+      "mode": "upi",
+      "merchant": "KARTHIGAI SELVAN R",
+      "category": "Groceries"
+    },
+    {
+      "date": "2026-05-08",
+      "amount": 10.0,
+      "mode": "upi",
+      "merchant": "KATHIRVEL JANAKIRAMAN",
+      "category": "Groceries"
+    },
+    {
+      "date": "2026-05-08",
+      "amount": 23.0,
+      "mode": "upi",
+      "merchant": "NEELS SUPER MARKET",
+      "category": "Shopping"
+    },
+    {
+      "date": "2026-04-14",
+      "amount": 15130.0,
+      "mode": "upi",
+      "merchant": "CRED Club",
+      "category": "Shopping"
+    },
+    {
+      "date": "2026-04-14",
+      "amount": 70.0,
+      "mode": "upi",
+      "merchant": "MANIKANDAN KUMAR",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2026-04-09 12:05:14",
+      "amount": 2885.87,
+      "mode": "credit_card",
+      "merchant": "NAME DOT STORE INC",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2026-04-05",
+      "amount": 265.0,
+      "mode": "upi",
+      "merchant": "PRAVIN SUPER STORE",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2026-04-05 09:02:08",
+      "amount": 2000.0,
+      "mode": "credit_card",
+      "merchant": "VEL ENTERPRISES",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2026-04-03 16:26:51",
+      "amount": 936.96,
+      "mode": "credit_card",
+      "merchant": "NEXMO",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2026-04-02 20:15:20",
+      "amount": 8260.0,
+      "mode": "credit_card",
+      "merchant": "RAZ*Interakt",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2026-03-31",
+      "amount": 464.5,
+      "mode": "upi",
+      "merchant": "Anomaly",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2026-03-29",
+      "amount": 140.0,
+      "mode": "upi",
+      "merchant": "KEERTHIGA",
+      "category": "Uncategorized"
+    },
+    {
+      "date": "2026-03-21",
+      "amount": 666.0,
+      "mode": "upi",
+      "merchant": "TAMIZKUMARAN SO MURUGAVEL",
+      "category": "Subscriptions"
+    },
+    {
+      "date": "2026-03-21",
+      "amount": 1074.88,
+      "mode": "upi",
+      "merchant": "ACHYUT NARAYAN H",
+      "category": "Personal Transfer"
+    },
+    {
+      "date": "2026-03-20",
+      "amount": 24.0,
+      "mode": "upi",
+      "merchant": "Rapido",
+      "category": "Transport"
+    },
+    {
+      "date": "2026-03-20",
+      "amount": 6.0,
+      "mode": "upi",
+      "merchant": "CMRL STTHOMAS MOUNT",
+      "category": "Transport"
+    },
+    {
+      "date": "2026-03-20",
+      "amount": 143.0,
+      "mode": "upi",
+      "merchant": "Mr M DEEPAK",
+      "category": "Personal Transfer"
+    },
+    {
+      "date": "2026-03-17",
+      "amount": 124.0,
+      "mode": "upi",
+      "merchant": "Lemon Tree",
+      "category": "Food"
+    },
+    {
+      "date": "2026-03-17",
+      "amount": 40.0,
+      "mode": "upi",
+      "merchant": "KARTHIGAI SELVAN R",
+      "category": "Groceries"
+    },
+    {
+      "date": "2026-03-15",
+      "amount": 132.0,
+      "mode": "upi",
+      "merchant": "SURIYAMOORTHI M",
+      "category": "Personal Transfer"
+    },
+    {
+      "date": "2026-03-15",
+      "amount": 159.0,
+      "mode": "upi",
+      "merchant": "Lemon Tree",
+      "category": "Food"
+    },
+    {
+      "date": "2026-03-15",
+      "amount": 712.0,
+      "mode": "upi",
+      "merchant": "SHIVANI NARAYAN L",
+      "category": "Personal Transfer"
+    },
+    {
+      "date": "2026-03-16",
+      "amount": 566.67,
+      "mode": "upi",
+      "merchant": "R AADITHYA NIRANJAN",
+      "category": "Personal Transfer"
+    },
+    {
+      "date": "2026-03-12",
+      "amount": 100.0,
+      "mode": "upi",
+      "merchant": "PRINCE KUMAR",
+      "category": "Personal Transfer"
+    },
+    {
+      "date": "2026-03-12",
+      "amount": 193.0,
+      "mode": "upi",
+      "merchant": "PRINCE KUMAR PANDEY",
+      "category": "Personal Transfer"
+    },
+    {
+      "date": "2026-03-12",
+      "amount": 190.0,
+      "mode": "upi",
+      "merchant": "VENKATESH R",
+      "category": "Personal Transfer"
+    },
+    {
+      "date": "2026-03-12",
+      "amount": 307.0,
+      "mode": "upi",
+      "merchant": "BISTRO",
+      "category": "Food"
+    },
+    {
+      "date": "2026-03-12",
+      "amount": 50.91,
+      "mode": "upi",
+      "merchant": "Nitheesh Bharadwaj S",
+      "category": "Personal Transfer"
+    },
+    {
+      "date": "2026-03-07",
+      "amount": 20000.0,
+      "mode": "upi",
+      "merchant": "ZERODHA BROKING LIMITED",
+      "category": "Investment"
+    },
+    {
+      "date": "2026-03-07",
+      "amount": 20000.0,
+      "mode": "upi",
+      "merchant": "S VEL MURUGAN",
+      "category": "Personal Transfer"
+    },
+    {
+      "date": "2026-03-06",
+      "amount": 30.0,
+      "mode": "upi",
+      "merchant": "S VEL MURUGAN",
+      "category": "Personal Transfer"
+    },
+    {
+      "date": "2026-03-06",
+      "amount": 119.0,
+      "mode": "upi",
+      "merchant": "NABEEL M",
+      "category": "Food"
+    },
+    {
+      "date": "2026-03-06",
+      "amount": 230.0,
+      "mode": "upi",
+      "merchant": "BHARATH K",
+      "category": "Personal Transfer"
+    },
+    {
+      "date": "2026-03-05",
+      "amount": 219.0,
+      "mode": "upi",
+      "merchant": "NABEEL M",
+      "category": "Food"
+    },
+    {
+      "date": "2026-03-04",
+      "amount": 826.4,
+      "mode": "upi",
+      "merchant": "ACHYUT NARAYAN H",
+      "category": "Personal Transfer"
+    },
+    {
+      "date": "2026-03-04",
+      "amount": 143.0,
+      "mode": "upi",
+      "merchant": "DHARTHI",
+      "category": "Food"
+    },
+    {
+      "date": "2026-03-02",
+      "amount": 130.0,
+      "mode": "upi",
+      "merchant": "KARTHIGAI SELVAN R",
+      "category": "Groceries"
+    },
+    {
+      "date": "2026-03-01",
+      "amount": 125.0,
+      "mode": "upi",
+      "merchant": "VM GROUP",
+      "category": "Shopping"
+    },
+    {
+      "date": "2026-02-22",
+      "amount": 14.0,
+      "mode": "upi",
+      "merchant": "Rapido",
+      "category": "Transport"
+    },
+    {
+      "date": "2026-02-19",
+      "amount": 204.0,
+      "mode": "upi",
+      "merchant": "BISTRO",
+      "category": "Food"
+    },
+    {
+      "date": "2026-02-19",
+      "amount": 20.0,
+      "mode": "upi",
+      "merchant": "SRI MATHA VAIBHAVA",
+      "category": "Food"
+    },
+    {
+      "date": "2026-02-19",
+      "amount": 20.0,
+      "mode": "upi",
+      "merchant": "SRI MATHA VAIBHAVA",
+      "category": "Food"
     }
   ],
   "categories": [
     "Personal Transfer",
-    "Uncategorized",
     "Investment",
+    "Uncategorized",
+    "Shopping",
     "Misc",
     "Food",
     "Rent",
     "Transport",
-    "Shopping",
     "Subscriptions",
     "Fuel",
     "Entertainment",
+    "Groceries",
     "Travel",
     "Medical",
     "Fitness / Self Improvement",
-    "Groceries",
     "Grooming"
   ],
   "category_totals": {
-    "Food": 16933.949999999997,
+    "Food": 18248.949999999997,
     "Entertainment": 3245.6700000000005,
-    "Shopping": 5418.799999999999,
-    "Groceries": 171.15,
-    "Investment": 42803.03,
+    "Shopping": 20996.8,
+    "Groceries": 856.15,
+    "Investment": 62803.03,
     "Fitness / Self Improvement": 307.08,
-    "Personal Transfer": 115111.56999999999,
-    "Uncategorized": 44856.799999999996,
-    "Transport": 10898.99,
+    "Personal Transfer": 145007.6,
+    "Uncategorized": 60617.13,
+    "Transport": 10942.99,
     "Fuel": 3594.47,
-    "Subscriptions": 4596.6,
+    "Subscriptions": 5262.6,
     "Misc": 18686.300000000003,
     "Medical": 460.0,
     "Rent": 13532.0,
     "Travel": 563.85,
-    "Grooming": 120.0
+    "Grooming": 300.0
   },
   "monthly_breakdown": [
     {
       "month": "2025-04",
       "total": 553.4,
       "Personal Transfer": 224.0,
-      "Uncategorized": 48.0,
       "Investment": 0,
+      "Uncategorized": 48.0,
+      "Shopping": 46.0,
       "Misc": 0,
       "Food": 10.0,
       "Rent": 0,
       "Transport": 0,
-      "Shopping": 46.0,
       "Subscriptions": 0,
       "Fuel": 0,
       "Entertainment": 225.4,
+      "Groceries": 0,
       "Travel": 0,
       "Medical": 0,
       "Fitness / Self Improvement": 0,
-      "Groceries": 0,
       "Grooming": 0
     },
     {
       "month": "2025-05",
       "total": 27828.300000000003,
       "Personal Transfer": 1500.0,
-      "Uncategorized": 20704.0,
       "Investment": 0,
+      "Uncategorized": 20704.0,
+      "Shopping": 320.0,
       "Misc": 2189.3,
       "Food": 2413.0,
       "Rent": 0,
       "Transport": 700.0,
-      "Shopping": 320.0,
       "Subscriptions": 2.0,
       "Fuel": 0,
       "Entertainment": 0,
+      "Groceries": 0,
       "Travel": 0,
       "Medical": 0,
       "Fitness / Self Improvement": 0,
-      "Groceries": 0,
       "Grooming": 0
     },
     {
       "month": "2025-06",
       "total": 9170.37,
       "Personal Transfer": 0,
-      "Uncategorized": 6856.1,
       "Investment": 0,
+      "Uncategorized": 6856.1,
+      "Shopping": 259.0,
       "Misc": 349.0,
       "Food": 1079.0,
       "Rent": 0,
       "Transport": 30.0,
-      "Shopping": 259.0,
       "Subscriptions": 0,
       "Fuel": 0,
       "Entertainment": 497.27000000000004,
+      "Groceries": 0,
       "Travel": 0,
       "Medical": 0,
       "Fitness / Self Improvement": 0,
-      "Groceries": 0,
       "Grooming": 100.0
     },
     {
       "month": "2025-07",
       "total": 5106.84,
       "Personal Transfer": 0,
-      "Uncategorized": 2084.84,
       "Investment": 0,
+      "Uncategorized": 2084.84,
+      "Shopping": 0,
       "Misc": 0,
       "Food": 0,
       "Rent": 433.0,
       "Transport": 567.0,
-      "Shopping": 0,
       "Subscriptions": 2022.0,
       "Fuel": 0,
       "Entertainment": 0,
+      "Groceries": 0,
       "Travel": 0,
       "Medical": 0,
       "Fitness / Self Improvement": 0,
-      "Groceries": 0,
       "Grooming": 0
     },
     {
       "month": "2025-08",
       "total": 5073.07,
       "Personal Transfer": 748.52,
-      "Uncategorized": 1680.6,
       "Investment": 0,
+      "Uncategorized": 1680.6,
+      "Shopping": 20.0,
       "Misc": 0,
       "Food": 1089.35,
       "Rent": 0,
       "Transport": 0,
-      "Shopping": 20.0,
       "Subscriptions": 1534.6,
       "Fuel": 0,
       "Entertainment": 0,
+      "Groceries": 0,
       "Travel": 0,
       "Medical": 0,
       "Fitness / Self Improvement": 0,
-      "Groceries": 0,
       "Grooming": 0
     },
     {
       "month": "2025-09",
       "total": 42246.53,
       "Personal Transfer": 20981.04,
-      "Uncategorized": 2299.1400000000003,
       "Investment": 0,
+      "Uncategorized": 2299.1400000000003,
+      "Shopping": 508.0,
       "Misc": 265.5,
       "Food": 4177.0,
       "Rent": 13099.0,
       "Transport": 130.0,
-      "Shopping": 508.0,
       "Subscriptions": 203.0,
       "Fuel": 0,
       "Entertainment": 0,
+      "Groceries": 0,
       "Travel": 563.85,
       "Medical": 0,
       "Fitness / Self Improvement": 0,
-      "Groceries": 0,
       "Grooming": 20.0
     },
     {
       "month": "2025-10",
       "total": 44952.6,
       "Personal Transfer": 30000.0,
-      "Uncategorized": 5441.0,
       "Investment": 1500.0,
+      "Uncategorized": 5441.0,
+      "Shopping": 2557.2,
       "Misc": 2300.0,
       "Food": 1448.4,
       "Rent": 0,
       "Transport": 1197.0,
-      "Shopping": 2557.2,
       "Subscriptions": 49.0,
       "Fuel": 0,
       "Entertainment": 0,
+      "Groceries": 0,
       "Travel": 0,
       "Medical": 460.0,
       "Fitness / Self Improvement": 0,
-      "Groceries": 0,
       "Grooming": 0
     },
     {
       "month": "2025-11",
       "total": 55655.090000000004,
       "Personal Transfer": 25712.0,
-      "Uncategorized": 3466.0,
       "Investment": 21254.940000000002,
+      "Uncategorized": 3466.0,
+      "Shopping": 177.0,
       "Misc": 1.0,
       "Food": 518.0,
       "Rent": 0,
       "Transport": 1245.0,
-      "Shopping": 177.0,
       "Subscriptions": 716.0,
       "Fuel": 0,
       "Entertainment": 2500.0,
+      "Groceries": 65.15,
       "Travel": 0,
       "Medical": 0,
       "Fitness / Self Improvement": 0,
-      "Groceries": 65.15,
+      "Grooming": 0
+    },
+    {
+      "month": "2026-02",
+      "total": 258.0,
+      "Personal Transfer": 0,
+      "Investment": 0,
+      "Uncategorized": 0,
+      "Shopping": 0,
+      "Misc": 0,
+      "Food": 244.0,
+      "Rent": 0,
+      "Transport": 14.0,
+      "Subscriptions": 0,
+      "Fuel": 0,
+      "Entertainment": 0,
+      "Groceries": 0,
+      "Travel": 0,
+      "Medical": 0,
+      "Fitness / Self Improvement": 0,
+      "Grooming": 0
+    },
+    {
+      "month": "2026-03",
+      "total": 46915.36,
+      "Personal Transfer": 24248.86,
+      "Investment": 20000.0,
+      "Uncategorized": 604.5,
+      "Shopping": 125.0,
+      "Misc": 0,
+      "Food": 1071.0,
+      "Rent": 0,
+      "Transport": 30.0,
+      "Subscriptions": 666.0,
+      "Fuel": 0,
+      "Entertainment": 0,
+      "Groceries": 170.0,
+      "Travel": 0,
+      "Medical": 0,
+      "Fitness / Self Improvement": 0,
       "Grooming": 0
     },
     {
       "month": "2026-04",
-      "total": 69621.79000000001,
+      "total": 99169.62000000001,
       "Personal Transfer": 32389.17,
-      "Uncategorized": 2102.12,
       "Investment": 9940.03,
+      "Uncategorized": 16519.95,
+      "Shopping": 16445.6,
       "Misc": 13581.5,
       "Food": 4001.98,
       "Rent": 0,
       "Transport": 3427.8500000000004,
-      "Shopping": 1315.6,
       "Subscriptions": 70.0,
       "Fuel": 2749.54,
       "Entertainment": 0,
+      "Groceries": 44.0,
       "Travel": 0,
       "Medical": 0,
       "Fitness / Self Improvement": 0,
-      "Groceries": 44.0,
       "Grooming": 0
     },
     {
       "month": "2026-05",
-      "total": 21092.269999999997,
-      "Personal Transfer": 3556.84,
-      "Uncategorized": 175.0,
+      "total": 28495.439999999995,
+      "Personal Transfer": 9204.01,
       "Investment": 10108.06,
+      "Uncategorized": 913.0,
+      "Shopping": 539.0,
       "Misc": 0,
       "Food": 2197.2200000000003,
       "Rent": 0,
       "Transport": 3602.14,
-      "Shopping": 216.0,
       "Subscriptions": 0,
       "Fuel": 844.93,
       "Entertainment": 23.0,
+      "Groceries": 577.0,
       "Travel": 0,
       "Medical": 0,
       "Fitness / Self Improvement": 307.08,
-      "Groceries": 62.0,
-      "Grooming": 0
+      "Grooming": 180.0
     }
   ],
   "months": [
@@ -1958,6 +2383,8 @@
     "2025-09",
     "2025-10",
     "2025-11",
+    "2026-02",
+    "2026-03",
     "2026-04",
     "2026-05"
   ],
@@ -1980,7 +2407,7 @@
   "top_merchants": [
     {
       "name": "S VEL MURUGAN",
-      "total": 46500.0
+      "total": 71530.0
     },
     {
       "name": "S SOMASUNDARAM",
@@ -1993,6 +2420,14 @@
     {
       "name": "Wint Wealth",
       "total": 20048.09
+    },
+    {
+      "name": "ZERODHA BROKING LIMITED",
+      "total": 20000.0
+    },
+    {
+      "name": "CRED Club",
+      "total": 15130.0
     },
     {
       "name": "EazyApp Tech Private Limited",
@@ -2011,12 +2446,16 @@
       "total": 10000.0
     },
     {
-      "name": "ESWAR VARUN S",
-      "total": 5399.24
+      "name": "RAZ*Interakt",
+      "total": 8260.0
     },
     {
       "name": "ACHYUT NARAYAN H",
-      "total": 4139.52
+      "total": 6687.97
+    },
+    {
+      "name": "ESWAR VARUN S",
+      "total": 5399.24
     },
     {
       "name": "MC AGENCIES",
@@ -2039,24 +2478,12 @@
       "total": 3105.64
     },
     {
+      "name": "NAME DOT STORE INC",
+      "total": 2885.87
+    },
+    {
       "name": "EatClub",
       "total": 2718.0
-    },
-    {
-      "name": "VAN HEUSEN",
-      "total": 2557.2
-    },
-    {
-      "name": "DEVA__DARTS",
-      "total": 2500.0
-    },
-    {
-      "name": "APARAJITH L",
-      "total": 2300.0
-    },
-    {
-      "name": "TARUN B",
-      "total": 2282.5
     }
   ]
 }
